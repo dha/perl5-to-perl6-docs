@@ -22,8 +22,11 @@ denizens of #perl6 on irc.freenode.org
 
 =head2 General Variables
 
+=item $ARG
+
 =item $_
-X<$_>
+X<$_> X<$ARG>
+
 
 Still, thankfully, the general default variable. The main difference in Perl 6
 seems to be that you can now call methods on it. For instance, Perl 5's C<say
@@ -31,8 +34,10 @@ $_> can be rendered in Perl 6 as C<$_.say>. Furthermore, as it is the default
 variable, you don't even need to use the variable name. The previous example
 can also be acheived by using C<.say>.
 
+=item @ARG
+
 =item @_
-X<@_>
+X<@_> X<@ARG>
 
 As Perl 6 now has function signatures, your arguments can go there, rather
 than depending on C<@_> for them. In fact, if you use a function signature, use
@@ -44,23 +49,107 @@ you can call methods on it. Unlike C<$_> you cannot assume C<@_> as the
 default variable for those methods to operate on. I. e. C<@_.shift> works,
 C<.shift> does not.
 
+=item $LIST_SEPARATOR
+
 =item $"
-X<$">
+X<$"> X<$LIST_SEPARATOR>
 
 Currently, there is no equivalent of the List Separator variable in Perl 6.
 Design document S28 says there isn't one, so you probably don't want to hold
 your breath.
 
+=item $PROCESS_ID
+
+=item $PID
 
 =item $$
-X<$$>
+X<$$> X<$PID> X<$PROCESS_ID>
 
 C<$$> is replaced in Perl 6 by C<$*PID>
 
+=item $PROGRAM_NAME
 =item $0
-X<$0>
+X<$0> X<$PROGRAM_NAME>
 
 You can access the program name in Perl 6 via C<$*PROGRAM_NAME>.
 
 Note: $0 in Perl 6 is the variable holding the first captured value from a
 match (i. e. capture variables now start from $0 rather than $1).
+
+=item $REAL_GROUP_ID
+
+=item $GID
+
+=item $(
+X<$(> X<$GID> X<$REAL_GROUP_ID>
+
+The real group id is provided by $*GROUP.Numeric in Perl 6. $*GROUP.Str will
+return the group name, rather than its number.
+
+=item $EFFECTIVE_GROUP_ID
+
+=item $EGID
+
+=item $)
+X<$)> X<$EGID> X<$EFFECTIVE_GROUP_ID>
+
+The effective group id does not appear to be currently provided by Perl 6.
+
+=item $REAL_USER_ID
+
+=item $UID
+
+=item $<
+X<< $< >> X<$UID> X<$REAL_USER_ID>
+
+The real user id is provided by $*USER.Numeric in Perl 6. $*USER.Str will
+return the user name, rather than its number.
+
+=item $EFFECTIVE_USER_ID
+
+=item $EUID
+
+=item $>
+X<< $> >> X<$EUID> X<$EFFECTIVE_USER_ID>
+
+The effective user id does not appear to be currently provided by Perl 6.
+
+=item $SUBSCRIPT_SEPARATOR
+
+=item $SUBSEP
+
+=item $;
+X<$;> X<$SUBSEP> X<$SUBSCRIPT_SEPARATOR>
+
+The subscript separator variable is not included in Perl 6.
+
+=item $a
+
+=item $b
+X<$a> X<$b>
+
+C<$a> and C<$b> no longer have special meaning in Perl 6. C<sort()> no
+longer uses them. They're just regular old variables.
+
+=item %ENV
+X<%ENV>
+
+%ENV has been replaced by %*ENV in Perl 6. Note that the keys of this hash may
+not be exactly the same between Perl 5 and Perl 6. As of this writing, the
+only difference seems to be that OLDPWD is missing from Perl 6's %ENV.
+
+=item $OLD_PERL_VERSION
+
+=item $]
+X<$]> X<$OLD_PERL_VERSION>
+
+The version of the perl is returned by C<$*PERL.version>. As of this writing,
+that is "vunknown", which may be less than useful.
+
+=item $SYSTEM_FD_MAX
+
+=item $^F
+
+Although the design documents indicate that this will likely become
+C<$*SYS_FD_MAX>, this has not yet been implemented.
+
