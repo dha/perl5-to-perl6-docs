@@ -1,0 +1,51 @@
+At YAPC::NA::2015, I attended the Perl 6 Beginners Class. I am happy to see
+that Perl 6 is settling down into apparently having a more settled spec (for
+some value of spec), and is, with its impending release, something I'll want
+to at least play with.
+
+That said, the docs are far from complete, and there are certainly questions
+someone coming from Perl 5 will have that are not clearly answered in the Perl
+5 to Perl 6 Translation document.
+
+Examples:
+
+ a) In trying to port the Test-Simple package to Perl 6, I encountered this
+ bit of code: "my (undef, $file, $line) = caller();" I made the mistake
+ of starting at the beginning, and wondering what I should replace
+ "undef" with. My first thought was "Nil", but a bit of poking on #perl6
+ on freenode informed me that undef would most likely be <Any> in Perl
+ 6. But, upon further investigation, "caller()" itself is gone,
+ apparently replaced by "callframe()". So, what this would *really* turn
+ into in Perl 6 is "my ($file, $line) = callframe().annotations<file
+ line>". The problem here is that "callframe()" *isn't documented* in
+ the online Perl 6 language documentation. One can also call
+ "callframe().my" which gives... something that may or may not be an
+ analog of the package name formerly returned either as the first item
+ given by "caller()" or by using that call in scalar context.
+
+
+ b) A number of files in Test-Simple look for what version of Perl you are
+ using, found in Perl 5 in the "$]" variable. This made me go looking for the
+ equivalent in Perl 6. This would seem to be the "$*PERL" variable, but that
+ gives us "Perl 6", which is not really what we're looking for. What we *are*
+ looking for seems to be in "$*PERL.version" (although at this point in Perl 6
+ development, that gives us "vunknown" which is... not useful).
+
+So, what this leads me to is that what would be *hugely* useful for people
+transitioning from Perl 5 to Perl 6 is a much more comprehensive text
+than what currently exists as the Perl 5 to Perl 6 Translation document.
+
+With that in mind, I'm going to start here with two initial goals:
+
+ 1) Map Perl 5's special variables to their Perl 6 equivalents (or, of course,
+ note where there is no direct analog)
+
+ 2) Describe how to translate the core Perl 5 functions to their Perl 6
+ equivalents (or, similarly to the variables, punt if necessary).
+
+As a cursory check shows there to be something like 4-500 built-in functions
+(don't quote me on that, I'm just grepping for "=item" in perlfunc....), this
+could take a while. But hopefully, all that work will be of use to someone.
+More hopefully a lot of someones.
+
+So here goes. Wish me luck.
