@@ -154,3 +154,96 @@ itself contains, as of this writing, "Perl 6".
 Although the design documents indicate that this will likely become
 C<$*SYS_FD_MAX>, this has not yet been implemented.
 
+=item @F
+X<@F>
+
+[NEEDS FURTHER RESEARCH] A bit confusing at this point. Design doc S28
+indicates that C<@F> in Perl 5 is replaced by C<@_> in Perl 6, but it's
+unclear just how that works. On the other hand, it's currently something of a
+moot point, as the Perl 5 to Perl 6 Translation doc indicates that the C<-a>
+and <-F> command-line switches are not yet implemented in rakudo.
+
+=item @INC
+X<@INC>
+
+[NEEDS FURTHER RESEARCH] If you've been following along, it will
+probably not surprise you that this has become C<@*INC>. The Perl 6 docs
+say "Each repository is represented as an object with the CompUnitRepo
+interface in the @*INC array" which could probably use some further
+explanation.
+
+=item %INC
+X<%INC>
+
+[NEEDS FURTHER RESEARCH] No longer exists. S28 says it is "encapsulated
+in CompUnitRepo object" which, as with C<@INC> raises the question of
+what that means.
+
+=item $INPLACE_EDIT
+
+=item $^I
+X<$^I> X<$INPLACE_EDIT>
+
+S28 suggests $*INPLACE_EDIT, but it does not yet seem to exist.
+
+=item $^M
+
+S28 suggests $*EMERGENCY_MEMORY, but it does not yet seem to exist.
+
+=item $OSNAME
+
+=item $^O
+X<$^O> X<$OSNAME>
+
+This is somewhat unclear. It probably depends on what you mean by "the name of
+the operating system" as S28 has three different suggestions, all of which
+give different answers. On my OS X machine at this time...
+
+C<$*KERNEL> gives "darwin (14.3.0)"
+C<$*DISTRO> gives "macosx (10.10.3)"
+
+using .version on either of those will give you just the version number. Those
+objects contain other information as well.
+
+S28 also lists C<$*VM> (which on my machine currently gives "moar
+(2015.5.63.ge.7.a.473.c)"), but I'm unclear how the VM relates at all to
+the operating system.
+
+=item %SIG
+X<%SIG>
+
+[NEEDS FURTHER RESEARCH] No equivalent variable. S28 indicates that this
+functionality is dealt with in Perl 6 by event filters and exception
+translation.
+
+=item $BASETIME
+
+=item $^T
+X<$^T> X<$BASETIME>
+
+Replaced in Perl 6 by C<$*INITITME>. Unlike in Perl 5, this is not in seconds
+since epoch, but an C<Instant> object, which is measured in atomic seconds,
+with fractions.
+
+=item $PERL_VERSION
+
+=item $^V
+X<$^V> X<$PERL_VERSION>
+
+As with C<$]> this has been replaced with C<$PERL.version>.
+
+=item ${^WIN32_SLOPPY_STAT}
+X<${^WIN32_SLOPPY_STAT}>
+
+There does not seem to be any analog to this in Perl 6.
+
+=item $EXECUTABLE_NAME
+
+=item $^X
+X<$^X> X<$EXECUTABLE_NAME>
+
+This has been replaced by C<$*EXECUTABLE_NAME>. Confusingly, the Perl 6
+Variables doc says "Favor $*EXECUTABLE because it is not guaranteed that the
+perl executable is in PATH." Confusingly because C<$*EXECUTABLE> is an C<IO>
+object, which does not seem to be what you would want here.
+
