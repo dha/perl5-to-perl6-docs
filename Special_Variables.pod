@@ -144,7 +144,8 @@ only difference seems to be that OLDPWD is missing from Perl 6's %ENV.
 X<$]> X<$OLD_PERL_VERSION>
 
 The version of the perl is returned by C<$*PERL.version>. As of this writing,
-that is "vunknown", which may be less than useful.
+that is "vunknown", which may be less than useful. For the record, C<$*PERL>
+itself contains, as of this writing, "Perl 6".
 
 =item $SYSTEM_FD_MAX
 
