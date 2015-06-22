@@ -465,3 +465,84 @@ Not implemented in Perl 6.
 
 There are no formats in Perl 6.
 
+=head2 Error Variables
+X<error> X<exception>
+
+Because of how error variables have changed in Perl 6, I will not detail the
+changes individually.
+
+To quote the Perl 6 docs, "$! is the error variable." That's it. All the 
+error variables appear to have been eaten by $!. As with the rest of
+Perl 6, it's likely an object that will return various things depending
+on how you use it. Sadly, at the moment, the documentation for it is
+terribly sparse. It will probably do what you intend, but I'm not guaranteeing
+anything. Hopefully there will be more information in the near future.
+
+=head2 Variables related to the interpreter state
+
+=item $COMPILING
+
+=item $^C
+X<$^C> X<$COMPILING>
+
+=item $^D
+X<$^D> X<$DEBUGGING>
+
+Currently no equivalents for either of these variables.
+
+=item ${^ENCODING}
+X<${^ENCODING}>
+
+This is deprecated in Perl 5, but may have some sort of equivalent in
+C<$?ENC>, but this is far from clear.
+
+BAL_PHASE}
+X<${^GLOBAL_PHASE}>
+
+No Perl 6 equivalent.
+
+=item $^H
+X<$^H>
+
+=item %^H
+X<%^H>
+
+=item ${^OPEN}
+X<${^OPEN}>
+
+There may or may not be equivalents of these in Perl 6, but they're internal
+and you shouldn't be messing with them in the first place - certainly not if
+your understanding of Perl 6 requires you to read this document...
+
+=item $PERLDB
+
+=item $^P
+X<$^P> X<$PERLDB>
+
+The chance of the Perl 6 debugger resembling the Perl 5 debugger is slim
+at best, and at this point there does not seem to be an equivalent of
+this variable.
+
+=item ${^TAINT}
+X<${^TAINT}>
+
+S28 claims this variable is "pending". Not currently in Perl 6.
+
+=item ${^UNICODE}
+X<${^UNICODE}>
+
+=item ${^UTF8CACHE}
+X<${^UTF8CACHE}>
+
+=item ${^UTF8LOCALE}
+X<${^UTF8LOCALE}>
+
+These Unicode-related variables do not appear to exist in Perl 6, but -
+maybe? - could have analogs in C<$?ENC> somewhere. This, however, is
+totally unconfirmed.
+
+=head2 Deprecated and removed variables
+
+It should go without saying that, as these have been removed from Perl 5
+already, there should be no need to tell you how to use them in Perl 6.
+
