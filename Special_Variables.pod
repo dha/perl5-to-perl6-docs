@@ -247,3 +247,60 @@ Variables doc says "Favor $*EXECUTABLE because it is not guaranteed that the
 perl executable is in PATH." Confusingly because C<$*EXECUTABLE> is an C<IO>
 object, which does not seem to be what you would want here.
 
+=head2 Variables related to regular expressions
+
+=head3 Performance issues
+
+As shown below, C<$`>, C<$&>, and C<$'> are gone, primarily replaced by
+variations on C<$/> and, with their elimination, the associated performance
+issues no longer apply.
+
+=item $<I<digits>> ($1, $2, ...)
+X<$1> X<$2> X<$3>
+
+These existing variables do the same thing in Perl 6 as they do in Perl 5,
+except that they now start at C<$0> rather than C<$1>. Furthermore, they are
+synonyms for indexed items in the match variable C<$/>. I. e. C<$0> is equivalent
+to C<$/[0]>, C<$1> is equivalent to C<$/[1]>, etc.
+
+=item $MATCH
+
+=item $&
+X<$&> X<$MATCH>
+
+C<$/> now contains the match object, so the old behavior of C<$&> can be
+obtained by stringifying it, i. e. C<~$/>. C<$/.Str> also should work, but
+C<~$/> seems to be the consensus preference.
+
+=item ${^MATCH}
+X<${^MATCH}>
+
+Since the former performance issues are done away with, this variable is no
+longer of use.
+
+=item $PREMATCH
+
+=item $`
+X<$`> X<$PREMATCH>
+
+Replaced by C<$/.prematch>.
+
+=item ${^PREMATCH}
+X<$`> X<${^PREMATCH}>
+
+Since the former performance issues are done away with, this variable is no
+longer of use.
+
+=item $POSTMATCH
+
+=item $'
+X<$'> X<$POSTMATCH>
+
+Replaced by C<$/.postmatch>.
+
+=item ${^POSTMATCH}
+X<${^POSTMATCH}>
+
+Since the former performance issues are done away with, this variable is no
+longer of use.
+
