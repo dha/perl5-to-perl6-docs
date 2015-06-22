@@ -304,3 +304,84 @@ X<${^POSTMATCH}>
 Since the former performance issues are done away with, this variable is no
 longer of use.
 
+=item $LAST_PAREN_MATCH
+
+=item $+
+X<$+> X<$LAST_PAREN_MATCH>
+
+No longer exists, but you can get the same information using C<$/[*-1]>
+
+If you want to I<understand> why that works, you can look at these documents:
+
+=item http://doc.perl6.org/routine/%5B%20%5D#language_documentation_Operators
+
+=item http://doc.perl6.org/type/Whatever
+
+...and possibly
+
+=item http://design.perl6.org/S02.html#line_1126
+
+...though the design documents are not always up to date.
+
+=item $LAST_SUBMATCH_RESULT
+
+=item $^N
+X<$^N> X<$LAST_SUBMATCH_RESULT>
+
+S28 suggests C<$*MOST_RECENT_CAPTURED_MATCH>, but there does not seem to be
+any implemented variable that matches C<$^N>.
+
+=item @LAST_MATCH_END
+
+=item @+
+X<@+> X<@LAST_MATCH_END>
+
+As with most regular expression related variables, this functionality is, at
+least in part, moved to the C<$/> variable. Or, in this case, the numbered
+variables that alias to the indexes of it. The offset is found by using the
+C<.to> method. I. e. the first offset is C<$/[0].to>, which is synonymous with
+C<$0.to>. The value previously provided by C<$+[0]> is now provided by
+C<$/.to>.
+
+=item %LAST_PAREN_MATCH
+
+=item %+
+X<%+> X<%LAST_PAREN_MATCH>
+
+Once again, we move over to C<$/>. The former C<$+{$match}> is now
+C<$/{$match}>.
+
+=item @LAST_MATCH_START
+
+=item @-
+X<@-> X<@LAST_MATCH_START>
+
+Similarly to C<@+>, C<@-> is now replaced by using the C<.from> method on
+C<$/> and its variations. The first offset is C<$/[0].from> or the equivalent
+C<$0.from>. The former C<$-[0]> is now C<$/.from>.
+
+=item %LAST_MATCH_START
+
+=item %-
+X<%-> X<%LAST_MATCH_START>
+
+Much like C<%+>, a use of C<%-{$match}> would be replaced with C<$/{$match}>.
+
+=item $LAST_REGEXP_CODE_RESULT
+
+=item $^R
+X<$^R> X<$LAST_REGEXP_CODE_RESULT>
+
+S28 suggests C<$*LAST_REGEXP_CODE_RESULT>, but no variable seems to actually
+exist yet.
+
+=item ${^RE_DEBUG_FLAGS}
+X<${^RE_DEBUG_FLAGS}>
+
+No equivalent.
+
+=item ${^RE_TRIE_MAXBUF}
+X<${^RE_TRIE_MAXBUF}>
+
+No equivalent.
+
