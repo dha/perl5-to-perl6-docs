@@ -67,7 +67,9 @@ Most of the former filetests have colon equivalents for use with smart match:
 :s Size
 :z Zero size
 
-Three tests, however, only have method equivalents:
+All of these tests have method equivalents.
+
+Three tests, however, I<only> have method equivalents:
 
 C<-M $fh> => C<$fh.modified>
 C<-A $fh> => C<$fh.accessed>
