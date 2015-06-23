@@ -1,0 +1,81 @@
+=head1 NAME
+X<function>
+
+perlfunc - Perl builtin functions
+
+=head1 DESCRIPTION
+
+A (hopefully) comprehensive list of Perl 5 builtin functions with their
+Perl 6 equivalents with notes on variations between them where
+necessary.
+
+=head1 NOTE
+
+I will I<not> be explaining the functions in detail. This document is an
+attempt to guide you from the functions in Perl 5's perlvar document to
+their equivalents in Perl 6. For full documentation on the Perl 6
+equivalents, please see the Perl 6 documentation.
+
+One general comment: Perl 6 takes its objects a lot more seriously than Perl
+5. A I<lot> of things are objects. This means a lot of things that used to be
+function calls of the form C<function(@args)> are now method calls of the form
+C<@args.function>. This should be obvious in the following text, but it
+probably behooves you to get into that frame of mind now.
+
+=head1 SOURCES
+
+I'm taking my information from http://doc.perl6.org, supplemented by the
+design documents at http://design.perl6.org/ and input from the denizens
+of #perl6 on irc.freenode.org
+
+=head2 Alphabetical Listing of Perl Functions
+
+=item -X FILEHANDLE
+X<-r>X<-w>X<-x>X<-o>X<-R>X<-W>X<-X>X<-O>X<-e>X<-z>X<-s>X<-f>X<-d>X<-l>X<-p>
+X<-S>X<-b>X<-c>X<-t>X<-u>X<-g>X<-k>X<-T>X<-B>X<-M>X<-A>X<-C>
+
+=item -X EXPR
+
+=item -X DIRHANDLE
+
+=item -X
+
+Perl 6 gives you a couple of options when it comes to file tests. You can do a
+smart match (C<~~>) or you can call a method.
+
+In Perl 6, you don't need to actually open a filehandle in the
+traditional way (although you can) to do a filetest. You can simply append
+C<.IO> to the filename. For instance, here is how to check if a file is
+readable using smart match:
+
+C<'/path/to/file'.IO ~~ :r>
+
+You can, of course, use an already opened filehandle. Here, using the file
+handle C<$fh>, an example, using the method syntax for the file test:
+
+C<$fh.r>
+
+Most of the former filetests have colon equivalents for use with smart match:
+
+:e Exists
+:d Directory
+:f File
+:l Symbolic link
+:r Readable
+:w Writable
+:x Executable
+:s Size
+:z Zero size
+
+Three tests, however, only have method equivalents:
+
+C<-M $fh> => C<$fh.modified>
+C<-A $fh> => C<$fh.accessed>
+C<-C $fh> => C<$fh.changed>
+
+The documentation for this can be found at
+http://doc.perl6.org/type/IO::FileTestable#File_Test_operators.
+
+More information on reading and writing files can be found at
+http://doc.perl6.org/language/io. Also, the section on C<open()> below may be
+helpful.
