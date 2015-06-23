@@ -127,3 +127,53 @@ method. For instance, these are equivalent:
 C<atan2(100)>
 C<100.atan2>
 
+=item bind SOCKET,NAME
+X<bind>
+
+[NEEDS FURTHER RESEARCH] No sign of a socket-related C<bind()> in Perl 6. At a
+guess, whatever socket binding is needed happens when you create a new socket
+object.
+
+=item binmode FILEHANDLE
+
+Instead of this, you would now use C<:bin> as the file mode when opening the
+socket. E. g. C<my $fh = open("path/to/file", :bin);>
+
+=item bless REF,CLASSNAME
+X<bless>
+
+With the changes in class creation in Perl 6, this may find less use, and is
+now a method. The Perl 6 docs say "Creates a new object of the same type as
+the invocant, uses the named arguments to initialize attributes, and returns
+the created object." If you're porting a module from Perl 5 to Perl 6, it's
+quite possible you'll want to use C<new> for creating objects rather than
+C<bless>, although there may be some situations in which the latter may still
+be useful.
+
+=item break
+
+Not in Perl 6. For breaking out of C<given> blocks, you should probably take a
+look at C<proceed> and C<succeed>
+(http://doc.perl6.org/language/control#proceed_and_succeed).
+
+=item caller EXPR
+X<caller> X<call stack> X<stack> X<stack trace>
+
+[NEEDS FURTHER RESEARCH] What C<caller> used to do has been taken on by
+C<callframe>. However, a simple call to C<callframe> will be of little
+use, as it will return a CallFrame object, rather than any useful
+information. The filename and line number previously returned as the
+second and third values from C<caller>, are in C<callframe.annotations>.
+You would get them by using C<< callframe().annotations.<file line> >>
+or, individually with C<< callframe().annotations.<file> >> or C<<
+callframe().annotations.<line> >>. There does not seem to be a simple way of
+getting the package name out of C<callframe> though.
+
+=item chdir EXPR
+X<chdir>
+X<cd>
+X<directory, change>
+
+Still seems to work as it used to.
+
+
