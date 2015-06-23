@@ -83,7 +83,7 @@ match (i. e. capture variables now start from $0 rather than $1).
 =item $(
 X<$(> X<$GID> X<$REAL_GROUP_ID>
 
-The real group id is provided by $*GROUP.Numeric in Perl 6. $*GROUP.Str will
+The real group id is provided by C<$*GROUP.Numeric> in Perl 6. C<$*GROUP.Str> will
 return the group name, rather than its number.
 
 =item $EFFECTIVE_GROUP_ID
@@ -102,7 +102,7 @@ The effective group id does not appear to be currently provided by Perl 6.
 =item $<
 X<< $< >> X<$UID> X<$REAL_USER_ID>
 
-The real user id is provided by $*USER.Numeric in Perl 6. $*USER.Str will
+The real user id is provided by C<$*USER.Numeric> in Perl 6. C<$*USER.Str> will
 return the user name, rather than its number.
 
 =item $EFFECTIVE_USER_ID
@@ -121,7 +121,8 @@ The effective user id does not appear to be currently provided by Perl 6.
 =item $;
 X<$;> X<$SUBSEP> X<$SUBSCRIPT_SEPARATOR>
 
-The subscript separator variable is not included in Perl 6.
+The subscript separator variable is not included in Perl 6. Frankly, if your
+Perl 5 code is using this, it's almost certainly really, really old.
 
 =item $a
 
@@ -151,8 +152,9 @@ itself contains, as of this writing, "Perl 6".
 
 =item $^F
 
-Although the design documents indicate that this will likely become
-C<$*SYS_FD_MAX>, this has not yet been implemented.
+Although the design documents (S28) indicate that this will likely
+become C<$*SYS_FD_MAX>, this has not yet been implemented.
+
 
 =item @F
 X<@F>
@@ -170,7 +172,9 @@ X<@INC>
 probably not surprise you that this has become C<@*INC>. The Perl 6 docs
 say "Each repository is represented as an object with the CompUnitRepo
 interface in the @*INC array" which could probably use some further
-explanation.
+explanation. With the version of rakudo star I'm working with, each directory
+is prefixed with either C<file#> or C<inst#>. Presumably this will become
+clear when documentation for CompUnitRepo shows up.
 
 =item %INC
 X<%INC>
@@ -202,12 +206,13 @@ give different answers. On my OS X machine at this time...
 C<$*KERNEL> gives "darwin (14.3.0)"
 C<$*DISTRO> gives "macosx (10.10.3)"
 
-using .version on either of those will give you just the version number. Those
-objects contain other information as well.
+using C<.version> on either of those will give you just the version
+number. C<.name> gives the kernel or distro name. Those objects contain
+other information as well.
 
-S28 also lists C<$*VM> (which on my machine currently gives "moar
-(2015.5.63.ge.7.a.473.c)"), but I'm unclear how the VM relates at all to
-the operating system.
+S28 also lists C<$*VM> (which with my build of rakudo star currently
+gives "moar (2015.5.63.ge.7.a.473.c)"), but I'm unclear how the VM
+relates at all to the operating system.
 
 =item %SIG
 X<%SIG>
@@ -246,6 +251,7 @@ This has been replaced by C<$*EXECUTABLE_NAME>. Confusingly, the Perl 6
 Variables doc says "Favor $*EXECUTABLE because it is not guaranteed that the
 perl executable is in PATH." Confusingly because C<$*EXECUTABLE> is an C<IO>
 object, which does not seem to be what you would want here.
+C<$*EXECUTABLE.Str> would give the desired result, though.
 
 =head2 Variables related to regular expressions
 
@@ -309,7 +315,8 @@ longer of use.
 =item $+
 X<$+> X<$LAST_PAREN_MATCH>
 
-No longer exists, but you can get the same information using C<$/[*-1]>
+No longer exists, but you can get the same information using C<$/[*-1].Str>
+(C<$/[*-1]> would be the match object, not the actual string).
 
 If you want to I<understand> why that works, you can look at these documents:
 
@@ -356,9 +363,11 @@ C<$/{$match}>.
 =item @-
 X<@-> X<@LAST_MATCH_START>
 
-Similarly to C<@+>, C<@-> is now replaced by using the C<.from> method on
-C<$/> and its variations. The first offset is C<$/[0].from> or the equivalent
-C<$0.from>. The former C<$-[0]> is now C<$/.from>.
+Similarly to C<@+> being replaced by using the C<.to> method, C<@-> is
+now replaced by using the C<.from> method on C<$/> and its variations.
+The first offset is C<$/[0].from> or the equivalent C<$0.from>. The
+former C<$-[0]> is now C<$/.from>.
+
 
 =item %LAST_MATCH_START
 
@@ -446,7 +455,7 @@ C<$*IN.nl>.
 X<$\> X<$ORS> X<$OUTPUT_RECORD_SEPARATOR>
 
 [NEEDS FURTHER RESEARCH] The <.nl> method on the filehandle (e. g.
-C<$*OUT.nl>) appears to give the output record separator, but this is
+C<$*OUT.nl>) I<appears> to give the output record separator, but this is
 currently not clear.
 
 =item $OUTPUT_AUTOFLUSH
@@ -493,7 +502,7 @@ Currently no equivalents for either of these variables.
 =item ${^ENCODING}
 X<${^ENCODING}>
 
-This is deprecated in Perl 5, but may have some sort of equivalent in
+Although deprecated in Perl 5, this may have some sort of equivalent in
 C<$?ENC>, but this is far from clear.
 
 BAL_PHASE}
@@ -545,4 +554,3 @@ totally unconfirmed.
 
 It should go without saying that, as these have been removed from Perl 5
 already, there should be no need to tell you how to use them in Perl 6.
-
