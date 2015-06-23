@@ -22,6 +22,10 @@ function calls of the form C<function(@args)> are now method calls of the form
 C<@args.function>. This should be obvious in the following text, but it
 probably behooves you to get into that frame of mind now.
 
+Also, unless otherwise stated, the use of the term "function" here will mean a
+function in the style of C<func(@args)>, while "method" will refer to a
+function in the style of C<@args.func>.
+
 =head1 SOURCES
 
 I'm taking my information from http://doc.perl6.org, supplemented by the
@@ -75,9 +79,51 @@ C<-M $fh> => C<$fh.modified>
 C<-A $fh> => C<$fh.accessed>
 C<-C $fh> => C<$fh.changed>
 
+The remaining filetests in Perl 5 do not appear to have been implemented in
+Perl 6.
+
 The documentation for this can be found at
 http://doc.perl6.org/type/IO::FileTestable#File_Test_operators.
 
 More information on reading and writing files can be found at
 http://doc.perl6.org/language/io. Also, the section on C<open()> below may be
 helpful.
+
+=item abs VALUE
+X<abs> X<absolute>
+
+Still works as a function (C<abs($x)>), but also as a method. One gotcha,
+however - method calls bind more tightly than C<->, so, for example,
+C<-15.abs> evaluates as C<-(15.abs)> giving you C<-15>. In this example, you
+would have to do something like C<(-15).abs>.
+
+C<abs> also still operates on C<$_> in the absence of a value, but not as a
+function, and as a method you need to call it as C<.abs> rather than simply
+C<abs>.
+
+=item accept NEWSOCKET,GENERICSOCKET
+X<accept>
+
+C<accept> is now a method you can call on a server, e. g. C<$server.accept()>.
+Instead of returning a packed address, it returns a socket, most likely an
+IO::Socket object of some sort.
+
+=item alarm SECONDS
+X<alarm>
+X<SIGALRM>
+X<timer>
+
+[NEEDS FURTHER RESEARCH] C<alarm()> is no more. It has been
+suggested that a replacement may be somewhere in the new Concurrency
+features, such as C<Promise.in>, but some digging may be needed to
+find a true analog.
+
+=item atan2 Y,X
+X<atan2> X<arctangent> X<tan> X<tangent>
+
+Still available as a function as well as now being able to be used as a
+method. For instance, these are equivalent:
+
+C<atan2(100)>
+C<100.atan2>
+
