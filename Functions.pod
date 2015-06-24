@@ -176,4 +176,41 @@ X<directory, change>
 
 Still seems to work as it used to.
 
+mod LIST
+X<chmod> X<permission> X<mode>
+
+Still can function as under Perl 5, with the change that octal numbers are now
+represented differently (C<0o755> rather than C<0755>). You may also use it as
+a method, e. g. C<$fh.chmod(0o755)>.
+
+=item chomp VARIABLE
+X<chomp> X<INPUT_RECORD_SEPARATOR> X<$/> X<newline> X<eol>
+
+The behavior of C<chomp> has changed. It now leaves the target unaffected and
+I<returns> the target with a final logical newline removed. I. e. C<$x =
+"howdy\n";$y = chomp($x);> results in C<$x> containing "howdy\n" and C<$y>
+containing "howdy". Can also now be used as a method, i. e. C<$y = $x.chomp>.
+
+=item chop VARIABLE
+X<chop>
+
+As with C<chomp>, now returns the chopped string, rather than chopping in
+place. I. e. C<$x = "howdy";$y = chop($x);> results in C<$x> being "howdy" and
+C<$y> being "howd". Can also be used as a method: C<$y = $x.chop>
+
+=item chown LIST
+X<chown> X<owner> X<user> X<group>
+
+C<chown> is no longer in Perl 6.
+
+=item chr NUMBER
+X<chr> X<character> X<ASCII> X<Unicode>
+
+Similar to the Perl 5 version, coerces the target to an integer, and uses that
+as a Unicode code point to return the relevant character. Can be used as a
+function and a method:
+
+C<chr(65); # "A">
+C<65.chr;  # "A">
+
 
