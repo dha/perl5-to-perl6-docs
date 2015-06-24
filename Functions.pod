@@ -213,4 +213,201 @@ function and a method:
 C<chr(65); # "A">
 C<65.chr;  # "A">
 
+=item chroot FILENAME
+X<chroot> X<root>
+
+Apparently this is no longer in Perl 6.
+
+=item close FILEHANDLE
+X<close>
+
+Still closes a filehandle. Returns a boolean value. Both C<close $fh> and
+C<$fh.close> will work.
+
+=item closedir DIRHANDLE
+X<closedir>
+
+Currently, there is no C<closedir> function. When it is implemented, it may
+well be a method in the IO::Dir class.
+
+=item connect SOCKET,NAME
+X<connect>
+
+Not clearly documented, but it appears that C<connect> will now be a method
+you would call on some variety of IO::Socket object.
+
+=item continue BLOCK
+X<continue>
+
+=item continue
+
+Instead of a C<continue> block, you should use a C<NEXT> block. The closest
+analog to a bare C<continue;> appears to be C<proceed>/C<succeed>.
+
+=item cos EXPR
+X<cos> X<cosine> X<acos> X<arccosine>
+
+Still works as in Perl 5, but can be also used as a method, i. e.
+C<(1/60000).cos>.
+
+=item crypt PLAINTEXT,SALT
+X<crypt> X<digest> X<hash> X<salt> X<plaintext> X<password>
+X<decrypt> X<cryptography> X<passwd> X<encrypt>
+
+This appears not to have made it into Perl 6.
+
+=item dbmclose HASH
+X<dbmclose>
+
+=item dbmopen HASH,DBNAME,MASK
+X<dbmopen> X<dbm> X<ndbm> X<sdbm> X<gdbm>
+
+These functions have largely been superseded in Perl 5, and are unlikely to
+ever turn up in Perl 6 (although any assumptions about the Perl 6 database
+implementation may be premature).
+
+=item defined EXPR
+X<defined> X<undef> X<undefined>
+
+Probably still does what you expect, but technically it returns C<False> on
+the type object, and true otherwise. This may make more sense when you realize
+that C<$num.perl> is the type C<Any> if you haven't assigned anything to it,
+and the assigned value if you have. Can, of course be used as a method:
+C<$num.defined>
+
+=item delete EXPR
+X<delete>
+
+Replaced by the new adverb syntax, specifically the C<:delete> adverb. E. g.
+C<my $deleted_value = %hash{$key}:delete;> and C<my $deleted_value =
+@array[$i]:delete;>.
+
+=item die LIST
+X<die> X<throw> X<exception> X<raise> X<$@> X<abort>
+
+Works similarly to the Perl 5 version, but Perl 6's Exception mechanism may
+give you more power and flexibility than was previously availble. See
+L<http://doc.perl6.org/language/exceptions>.
+
+=item do BLOCK
+X<do> X<block>
+
+Similar to the Perl 5 version. Note that there must be a space between the
+C<do> and the block.
+
+=item do EXPR
+X<do>
+
+Has been replaced by C<EVALFILE>.
+
+=item dump LABEL
+X<dump> X<core> X<undump>
+
+According to S29, C<dump> has been... dumped.
+
+=item each HASH
+X<each> X<hash, iterator>
+
+There is no exact equivalent. The closest is probably <%hash.kv> which returns
+a list of keys and values. Ergo: C<for %hash.kv -> $k, $v { #do stuff with $k
+and $v }>
+
+Incidentally, what we have there with the C<< -> >> is called a pointy block
+and, though there are a number of examples in the documentation, there doesn't
+seem to be a really clear explanation of how they work.
+L<http://design.perl6.org/S04.html#The_for_statement> may be of some help
+here, as well as the design document at
+L<http://design.perl6.org/S06.html#%22Pointy_blocks%22>. There is also some
+information at
+L<https://en.wikibooks.org/wiki/Perl_6_Programming/Blocks_and_Closures#Pointy_Blocks>
+
+=item eof FILEHANDLE
+X<eof>
+X<end of file>
+X<end-of-file>
+
+No longer usable as a function, but only as a method. I. e.
+C<$filehandle.eof>. Returns C<True> if at end of file.
+
+=item eval EXPR
+X<eval> X<try> X<catch> X<evaluate> X<parse> X<execute>
+X<error, handling> X<exception, handling>
+
+=item eval EXPR
+X<eval> X<try> X<catch> X<evaluate> X<parse> X<execute>
+X<error, handling> X<exception, handling>
+
+Replaced by C<EVAL>. Note that C<EVAL> does not do any exception handling!
+
+=item evalbytes EXPR
+X<evalbytes>
+
+No longer seems to exist.
+
+=item exec LIST
+X<exec> X<execute>
+
+Nothing in Perl 6 exactly replicates C<exec>. C<shell> and C<run> are similar
+to Perl 5's C<system>, but C<exec>'s behavior of not returning after executing
+a system command would have to be emulated by something like
+C<shell($command);exit();> or possibly C<exit shell($command);>
+
+=item exists EXPR
+X<exists> X<autovivification>
+
+Has been moved from a function to an adverb:
+
+C<%hash{$key}:exists;>
+C<@array[$i]:exists;>
+
+=item exit EXPR
+X<exit> X<terminate> X<abort>
+
+Appears to do the same thing as in Perl 5.
+
+=item exp EXPR
+X<exp> X<exponential> X<antilog> X<antilogarithm> X<e>
+
+Same as in Perl 5, but can also be used as a method: C<5.exp>;
+
+=item fc EXPR
+X<fc> X<foldcase> X<casefold> X<fold-case> X<case-fold>
+
+Looks like it would do the same thing as in Perl 5... if it were implemented.
+
+=item fcntl FILEHANDLE,FUNCTION,SCALAR
+X<fcntl>
+
+Appears not to be in Perl 6.
+
+=item __FILE__
+X<__FILE__>
+
+Replaced by C<$?FILE>.
+
+=item fileno FILEHANDLE
+X<fileno>
+
+S32 indicates that this should be available as a method, but appears currently
+unimplemented.
+
+=item flock FILEHANDLE,OPERATION
+X<flock> X<lock> X<locking>
+
+Currently unimplemented.
+
+=item fork
+X<fork> X<child> X<parent>
+
+Not implemented as a built in function, but available through the
+C<NativeCall> interface. E. g. C<use NativeCall; sub fork returns int32 is
+native { * }; say fork;>.
+
+=item format
+X<format>
+
+=item formline PICTURE,LIST
+X<formline>
+
+Perl 6 no longer has formats.
 
