@@ -132,6 +132,16 @@ X<$a> X<$b>
 C<$a> and C<$b> no longer have special meaning in Perl 6. C<sort()> no
 longer uses them. They're just regular old variables.
 
+This feature has been extended by having blocks with placeholder parameters
+which are more versatile.
+
+    sort { $^a cmp $^z }, 1,5,6,4,2,3;
+    # 1,2,3,4,5,6
+    sort { $^g cmp $^a }, 1,5,6,4,2,3;
+    # 6,5,4,3,2,1
+    for 1..9 { say $^c, $^a, $^b; last }
+    # 312
+
 =item %ENV
 X<%ENV>
 
