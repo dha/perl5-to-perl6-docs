@@ -28,8 +28,8 @@ function in the style of C<@args.func>.
 
 =head1 SOURCES
 
-I'm taking my information from http://doc.perl6.org, supplemented by the
-design documents at http://design.perl6.org/ and input from the denizens
+I'm taking my information from L<http://doc.perl6.org>, supplemented by the
+design documents at L<http://design.perl6.org/> and input from the denizens
 of #perl6 on irc.freenode.org
 
 =head2 Alphabetical Listing of Perl Functions
@@ -83,10 +83,10 @@ The remaining filetests in Perl 5 do not appear to have been implemented in
 Perl 6.
 
 The documentation for this can be found at
-http://doc.perl6.org/type/IO::FileTestable#File_Test_operators.
+L<http://doc.perl6.org/type/IO::FileTestable#File_Test_operators>.
 
 More information on reading and writing files can be found at
-http://doc.perl6.org/language/io. Also, the section on C<open()> below may be
+L<http://doc.perl6.org/language/io>. Also, the section on C<open()> below may be
 helpful.
 
 =item abs VALUE
@@ -154,7 +154,7 @@ be useful.
 
 Not in Perl 6. For breaking out of C<given> blocks, you should probably take a
 look at C<proceed> and C<succeed>
-(http://doc.perl6.org/language/control#proceed_and_succeed).
+(L<http://doc.perl6.org/language/control#proceed_and_succeed>).
 
 =item caller EXPR
 X<caller> X<call stack> X<stack> X<stack trace>
