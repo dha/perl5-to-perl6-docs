@@ -411,3 +411,130 @@ X<formline>
 
 Perl 6 no longer has formats.
 
+=item getc FILEHANDLE
+X<getc> X<getchar> X<character> X<file, read>
+
+Still reads a single character from the input stream. May now also be used as
+a method: C<$filehandle.getc>
+
+=item getlogin
+X<getlogin> X<login>
+
+S29 lists it, but it does not seem to be yet implemented.
+
+=item getpeername SOCKET
+X<getpeername> X<peer>
+
+S29 lists it, but the implementation does not seem clear or, for that matter,
+implemented.
+
+=item getpgrp PID
+X<getpgrp> X<group>
+
+Does not appear to be implemented.
+
+=item getpriority WHICH,WHO
+X<getpriority> X<priority> X<nice>
+
+Does not appear to be implemented.
+
+=item getpwnam NAME
+X<getpwnam> X<getgrnam> X<gethostbyname> X<getnetbyname> X<getprotobyname>
+X<getpwuid> X<getgrgid> X<getservbyname> X<gethostbyaddr> X<getnetbyaddr>
+X<getprotobynumber> X<getservbyport> X<getpwent> X<getgrent> X<gethostent>
+X<getnetent> X<getprotoent> X<getservent> X<setpwent> X<setgrent>
+X<sethostent>
+X<setnetent> X<setprotoent> X<setservent> X<endpwent> X<endgrent>
+X<endhostent>
+X<endnetent> X<endprotoent> X<endservent> 
+
+=item getgrnam NAME
+
+=item gethostbyname NAME
+
+=item getnetbyname NAME
+
+=item getprotobyname NAME
+
+=item getpwuid UID
+
+=item getgrgid GID
+
+=item getservbyname NAME,PROTO
+
+=item gethostbyaddr ADDR,ADDRTYPE
+
+=item getnetbyaddr ADDR,ADDRTYPE
+
+=item getprotobynumber NUMBER
+
+=item getservbyport PORT,PROTO
+
+=item getpwent
+
+=item getgrent
+
+=item gethostent
+
+=item getnetent
+
+=item getprotoent
+
+=item getservent
+
+=item setpwent
+
+=item setgrent
+
+=item sethostent STAYOPEN
+
+=item setnetent STAYOPEN
+
+=item setprotoent STAYOPEN
+
+=item setservent STAYOPEN
+
+=item endpwent
+
+=item endgrent
+
+=item endhostent
+
+=item endnetent
+
+=item endprotoent
+
+=item endservent
+
+[NEEDS FURTHER RESEARCH] Apparently this range of functions are to be handled
+by roles like User, Group, etc.
+
+=item getsockname SOCKET
+X<getsockname>
+
+=item getsockopt SOCKET,LEVEL,OPTNAME
+X<getsockopt>
+
+[NEEDS FURTHER RESEARCH] These are likely implemented by some kind of
+IO::Socket object, but details are unclear.
+
+=item glob EXPR
+X<glob> X<wildcard> X<filename, expansion> X<expand>
+
+Used in an example in S32, but apparently unimplemented.
+
+=item gmtime EXPR
+X<gmtime> X<UTC> X<Greenwich>
+
+S29 indicates that this would be implemented by something in the Temporal
+modules, but apparently not yet implemented.
+
+=item goto LABEL
+X<goto> X<jump> X<jmp>
+
+=item goto EXPR
+
+=item goto &NAME
+
+[NEEDS FURTHER RESEARCH] Described in S04, but not yet fully documented.
+
