@@ -576,6 +576,60 @@ Still works. Can also now be used as a method: C<"howdy!".index("how"); # 0>
 =item int EXPR
 X<int> X<integer> X<truncate> X<trunc> X<floor>
 
-[NEEDS FURTHER RESEARCH] No longer exists. Not clear what the equivalent is at
-this time.
+There is now a C<truncate> function (also usable as a method) that does what
+C<int> used to. You may want to use that as a direct translation of Perl 5
+code, but in Perl 6, you can just as easily call the C<.Int> method on the
+number. C<3.9.Int; # 3> and C<3.9.truncate> are equivalent.
+
+=item ioctl FILEHANDLE,FUNCTION,SCALAR
+X<ioctl>
+
+Currently unimplemented in Perl 6.
+
+=item join EXPR,LIST
+X<join>
+
+Still works, and now works as a method: C<@x.join(",")>
+
+=item keys HASH
+X<keys> X<key>
+
+Works as before, and can also be used as a method: C<%hash.keys>
+
+=item kill SIGNAL, LIST
+
+=item kill SIGNAL
+X<kill> X<signal>
+
+Now part of the C<Proc::ASync> class, but looks to work as before.
+
+=item last LABEL
+X<last> X<break>
+
+=item last EXPR
+
+=item last
+
+Unchanged in Perl 6.
+
+=item lc EXPR
+X<lc> X<lowercase>
+
+Works as before and also as a method: C<"UGH".lc>
+
+=item lcfirst EXPR
+X<lcfirst> X<lowercase>
+
+Gone from Perl 6.
+
+=item length EXPR
+X<length> X<size>
+
+Replaced by C<chars>, typically used as a method (C<$string.chars>), but still
+works as a function.
+
+=item __LINE__
+X<__LINE__>
+
+Replaced by C<$?LINE>.
 
