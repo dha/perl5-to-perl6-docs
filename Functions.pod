@@ -538,3 +538,44 @@ X<goto> X<jump> X<jmp>
 
 [NEEDS FURTHER RESEARCH] Described in S04, but not yet fully documented.
 
+=item grep BLOCK LIST
+X<grep>
+
+=item grep EXPR,LIST
+
+Still works, with the caveat that the block form now requires a comma after
+the block. I.e. C<@foo = grep { $_ = "bars" }, @baz>. Can also be used as a
+method: C<@foo = @bar.grep(/^f/)>
+
+=item hex EXPR
+X<hex> X<hexadecimal>
+
+Replaced by the adverbial form C<:16>. E. g. C<:16("aF")> returns 175.
+
+Alternately, the same result can be acheived by using the C<.base> method:
+C<0xaF.base(10)>
+
+It just so happens that C<.Str> defaults to base 10, so if you just C<say
+0xaF>, that will also print 175, but that may not be immediately obvious, so
+probably isn't the best way to go for this.
+
+=item import LIST
+X<import>
+
+Was never a builtin function in the first place. In Perl 6, typically, one
+declares functions as exportable or not, and all the exportable ones are
+exported. Nevertheless, selective importing is possible, but beyond the scope
+of this document. For details, see
+L<http://doc.perl6.org/language/5to6#Importing_specific_functions_from_a_module>.
+
+=item index STR,SUBSTR,POSITION
+X<index> X<indexOf> X<InStr>
+
+Still works. Can also now be used as a method: C<"howdy!".index("how"); # 0>
+
+=item int EXPR
+X<int> X<integer> X<truncate> X<trunc> X<floor>
+
+[NEEDS FURTHER RESEARCH] No longer exists. Not clear what the equivalent is at
+this time.
+
