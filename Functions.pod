@@ -633,3 +633,19 @@ X<__LINE__>
 
 Replaced by C<$?LINE>.
 
+=item link OLDFILE,NEWFILE
+X<link>
+
+[NEEDS FURTHER RESEARCH] Unclear whether this works or not in Perl 6.
+
+=item listen SOCKET,QUEUESIZE
+X<listen>
+
+Not clearly documented, but it appears that C<listen> will now be a method
+you would call on some variety of IO::Socket object.
+
+=item local EXPR
+X<local>
+
+The Perl 6 equivalent is C<temp>.
+
