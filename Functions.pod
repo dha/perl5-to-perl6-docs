@@ -526,8 +526,9 @@ Used in an example in S32, but apparently unimplemented.
 =item gmtime EXPR
 X<gmtime> X<UTC> X<Greenwich>
 
-S29 indicates that this would be implemented by something in the Temporal
-modules, but apparently not yet implemented.
+Like the various parts of C<localtime>, C<gmtime>'s functionality now appears
+to in the C<DateTime> object. To get a UTC version of a C<DateTime> object for
+the current time, for instance, use C<my $gmtime = DateTime.now.utc>.
 
 =item goto LABEL
 X<goto> X<jump> X<jmp>
@@ -636,7 +637,9 @@ Replaced by C<$?LINE>.
 =item link OLDFILE,NEWFILE
 X<link>
 
-[NEEDS FURTHER RESEARCH] Unclear whether this works or not in Perl 6.
+Now part of IO::Path. The only difference between Perl 5 and Perl 6 is
+that the argument order has changed. It's now
+C<link($original, $linked_file)>.
 
 =item listen SOCKET,QUEUESIZE
 X<listen>
@@ -648,4 +651,128 @@ you would call on some variety of IO::Socket object.
 X<local>
 
 The Perl 6 equivalent is C<temp>.
+
+=item localtime EXPR
+X<localtime> X<ctime>
+
+Most of the functionality of C<localtime> is now found in C<DateTime>. The
+specific parts of C<localtime> can be found as follows:
+
+C<
+my $d = DateTime.now;
+$sec = $d.second; # Potentially includes fractional seconds
+$min = $d.minute;
+$hour = $d.hour;
+$mday = $d.day-of-month; # or $d.day; 1..31
+$mon = $d.month; # 1..12
+$year = $d.year;
+$wday = $d.day-of-week; # 1 => Monday, 2 => Tuesday, etc.
+$yday = $d.day-of-year; # 1..366
+>
+
+Please note that ranges are no longer 0-based, as shown in the comments in the
+example.
+
+There does not currently appear to be a way to get C<$isdst>. Also, the old
+result of C<scalar(localtime)> is not available. C<$d.Str> will give something
+along the lines of "2015-06-29T12:49:31-04:00".
+
+=item lock THING
+X<lock>
+
+Now a method in the C<Lock> class.
+
+=item log EXPR
+X<log> X<logarithm> X<e> X<ln> X<base>
+
+Still in Perl 6. Also available as a method. I. e. C<log(2)> is equivalent to
+C<2.log>.
+
+=item lstat FILEHANDLE
+X<lstat>
+
+=item lstat EXPR
+
+=item lstat DIRHANDLE
+
+=item lstat
+
+Likely now implemented somewhere in C<IO>, but it is not clear where at this
+time.
+
+=item m//
+
+Regular expression syntax is somewhat different now, but the match operator
+still exists. If you're trying to rewrite some Perl 5 code, the most important
+difference is that C<=~> is now replaced by the smart match operator, C<~~>.
+Similarly, C<!~> is now C<!~~>.
+
+=item map BLOCK LIST
+X<map>
+
+=item map EXPR,LIST
+
+As a function, the only difference is that, if you're using a block, the block
+must be followed by a comma. Can also be used now as a method: C<@new =
+@old.map: { $_ * 2 }>
+
+=item mkdir FILENAME,MASK
+X<mkdir> X<md> X<directory, create>
+
+=item mkdir FILENAME
+
+=item mkdir
+
+Still available in Perl 6.
+
+=item msgctl ID,CMD,ARG
+X<msgctl>
+
+=item msgget KEY,FLAGS
+X<msgget>
+
+=item msgrcv ID,VAR,SIZE,TYPE,FLAGS
+X<msgrcv>
+
+=item msgsnd ID,MSG,FLAGS
+X<msgsnd>
+
+No longer builtins. May appear in an external module at some point. Maybe.
+
+=item my VARLIST
+X<my>
+
+=item my TYPE VARLIST
+
+=item my VARLIST : ATTRS
+
+=item my TYPE VARLIST : ATTRS
+
+Still in Perl 6.
+
+=item next LABEL
+X<next> X<continue>
+
+=item next EXPR
+
+=item next
+
+Unchanged in Perl 6.
+
+=item no MODULE VERSION
+
+=item no MODULE LIST
+
+=item no MODULE
+
+=item no VERSION
+
+Still usable for pragmaas such as C<strict>, but not for modules. It's unclear
+whether it can be used for versions, but since that's currently something of a
+moot point, I would guess not.
+
+=item oct
+
+Replaced by the adverbial form C<:8>. E. g. C<:8("100")> returns 64.
+
 
