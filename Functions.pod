@@ -775,4 +775,116 @@ moot point, I would guess not.
 
 Replaced by the adverbial form C<:8>. E. g. C<:8("100")> returns 64.
 
+=item open FILEHANDLE,EXPR
+X<open> X<pipe> X<file, open> X<fopen>
+
+=item open FILEHANDLE,MODE,EXPR
+
+=item open FILEHANDLE,MODE,EXPR,LIST
+
+=item open FILEHANDLE,MODE,REFERENCE
+
+=item open FILEHANDLE
+
+The most obvious change is the file mode syntax. To open a file for reading
+only, you would say C<open("file", :r)>. For write-only, read-write, and
+append, you would use C<:w>, C<:rw>, and C<:a> respectively. There are also
+options for encoding and how the filehandle deals with newlines. Details at
+L<http://doc.perl6.org/routine/open>.
+
+=item opendir DIRHANDLE,EXPR
+X<opendir>
+
+No longer a builtin function. You would use the IO::Path class:
+
+C<my $dir = IO::Path.new("directory")>
+
+C<my $dir = "directory".IO; # Same, but probably more direct>
+
+=item ord EXPR
+X<ord> X<encoding>
+
+Same. May be used as a method: C<"howdy!".ord; # 104>
+
+=item our VARLIST
+X<our> X<global>
+
+=item our TYPE VARLIST
+
+=item our VARLIST : ATTRS
+
+=item our TYPE VARLIST : ATTRS
+
+Still in Perl 6.
+
+=item pack TEMPLATE,LIST
+X<pack>
+
+Still in Perl 6. The template options are currently more restricted than they
+are in Perl 5. The current documented list can be found at
+L<http://doc.perl6.org/routine/unpack>.
+
+=item package NAMESPACE
+
+=item package NAMESPACE VERSION
+X<package> X<module> X<namespace> X<version>
+
+=item package NAMESPACE BLOCK
+
+=item package NAMESPACE VERSION BLOCK
+X<package> X<module> X<namespace> X<version>
+
+S10 indicates that C<package> can still be used, but only with a block. I. e.
+C<package Foo { ... }> would mean the code within the block would be in
+package Foo. there is a special case where a declaration of the form
+C<package Foo;> as the first statement in a file indicates that the rest
+of the file is Perl 5 code, but the usefulness of this is unclear. In fact, as
+modules and classes are declared with distinct keywords (such as C<class>),
+it's unlikely you will use C<package> directly in Perl 6.
+
+=item __PACKAGE__
+X<__PACKAGE__>
+
+Replaced by C<$?PACKAGE>.
+
+=item pipe READHANDLE,WRITEHANDLE
+X<pipe>
+
+Probably replaced by something in the C<IO::Pipe> class, but this is not
+clearly documented.
+
+=item pop ARRAY
+X<pop> X<stack>
+
+Still works, and can also be used as a method. I. e. C<my $x = pop @a;> and
+C<my $x = @a.pop;> are equivalent.
+
+=item pos SCALAR
+X<pos> X<match, position>
+
+No longer in Perl 6. The closest equivalent is the C<:c> adverb, which defaults
+to C<$/.to> if C<$/> is true, and C<0> if it isn't. For information on C<:c>,
+see L<http://doc.perl6.org/language/regexes#Continue>.
+
+=item print FILEHANDLE LIST
+X<print>
+
+=item print FILEHANDLE
+
+=item print LIST
+
+=item print
+
+To use C<print> the way you used to, you need to put a colon after the
+filehandle. I. e. C<print $fh: "Howdy!">. The use of the colon as an "invocant
+marker" here is discussed at L<http://design.perl6.org/S03.html#line_4019>.
+Alternately, you can use a method call: C<$fh.print("howdy!")>
+
+=item printf FILEHANDLE
+
+=item printf FORMAT, LIST
+
+=item printf
+
+Still works in Perl 6. For the formats, see the documentation for C<sprintf>.
 
