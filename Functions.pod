@@ -888,3 +888,102 @@ Alternately, you can use a method call: C<$fh.print("howdy!")>
 
 Still works in Perl 6. For the formats, see the documentation for C<sprintf>.
 
+=item prototype FUNCTION
+X<prototype>
+
+No longer in Perl 6. The closest equivalent seems to be C<.signature>. E. g.
+C<say &sprintf.signature> results in "(Cool $format, *@args)".
+
+=item push ARRAY,LIST
+X<push> X<stack>
+
+Still works as in Perl 5, as well as being a method: C<@a.push("foo");>
+
+=item q/STRING/
+
+=item qq/STRING/
+
+=item qw/STRING/
+
+=item qx/STRING/
+
+These survive the transition to Perl 6. Some notes:
+
+C<q/.../> is still equivalent to using single quotes.
+C<qq/.../> is still equivalent to using double quotes.
+C<qw/.../> is more commonly rendered as C<< <...> >> in Perl 6.
+
+There are some added quoting constructs and equivalents, as explained at
+L<http://doc.perl6.org/language/quoting>.
+
+=item qr/STRING/
+
+Has been replaced by C<rx/.../>.
+
+=item quotemeta EXPR
+X<quotemeta> X<metacharacter>
+
+Not direct equivalent, i.e. nothing that just returns the string with all the
+ASCII non-word characters backslashed. In regexes, however, using C<$foo> will
+treat C<$foo> as a literal string, and using C<< <$foo> >> will interpret the
+contents of C<$foo> as regex code.
+
+=item rand EXPR
+X<rand> X<random>
+
+C<rand> by itself still works as it used to, but you can no longer give it an
+argument. You can, however, use it as a method on a number to get that
+behavior. I. e. the Perl 5 C<rand(100)> is equivalent to C<100.rand> in Perl
+6. Additionally, you can get a random integer by using something like
+C<(^100).pick>. For I<why> you are able to do that, see
+L<http://doc.perl6.org/language/operators#prefix_%5E> and
+L<http://doc.perl6.org/routine/pick>.
+
+=item read FILEHANDLE,SCALAR,LENGTH,OFFSET
+X<read> X<file, read>
+
+C<read> is now found in C<IO::Handle> and C<IO::Socket>. It now reads the
+specified number of bytes (rather than characters) from the relevant handle or
+socket. The previously available use of an offset is not documented to exist
+at this time.
+
+=item readdir DIRHANDLE
+X<readdir>
+
+No longer a builtin function. To iterate through the contents of a directory,
+take a look at L<http://doc.perl6.org/type/IO::Path#routine_dir>.
+
+=item readline
+X<readline> X<gets> X<fgets>
+
+No longer in Perl 6. You most likely want to use the C<.lines> method in some
+way. For more detailed information on reading from files, see
+L<http://doc.perl6.org/language/io>.
+
+=item readlink EXPR
+X<readlink>
+
+Appear to be gone from Perl 6.
+
+=item readpipe EXPR
+
+=item readpipe
+X<readpipe>
+
+Doesn't appear to be working in Perl 6, but C<qx//> is functional, so it might
+be lurking around in some class that isn't obvious.
+
+=item recv SOCKET,SCALAR,LENGTH,FLAGS
+X<recv>
+
+Appears to now be in IO::Socket. Not extensively documented at this time.
+
+=item redo LABEL
+X<redo>
+
+=item redo EXPR
+
+=item redo
+
+Unchanged in Perl 6.
+
