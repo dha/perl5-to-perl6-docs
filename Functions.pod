@@ -990,3 +990,39 @@ X<redo>
 
 Unchanged in Perl 6.
 
+=item ref EXPR
+X<ref> X<reference>
+
+Gone. To quote S29, "If you really want the type name, you can
+use C<$var.WHAT.perl>.  If you really want P5 ref
+semantics, use C<Perl5::p5ref>." Except that C<Perl5::p5ref> does not seem to
+currently exist...
+
+=item rename OLDNAME,NEWNAME
+X<rename> X<move> X<mv> X<ren>
+
+Still exists in Perl 6.
+
+=item require VERSION
+X<require>
+
+Seems that this still may work for modules, but unclear if it will still work
+with version numbers.
+
+=item reset EXPR
+X<reset>
+
+Seeing no evidence of this in Perl 6 and, in fact, S29 asks if there was a
+good use for this. I'm guessing it's probably gone.
+
+=item return EXPR
+X<return>
+
+Appears to still be in Perl 6, although not clearly documented.
+
+=item reverse LIST
+X<reverse> X<rev> X<invert>
+
+Now only reverses the elements of a list. C<reverse(@a)> or C<@a.reverse>. to
+reverse the characters in a string, use the C<.flip> method.
+
