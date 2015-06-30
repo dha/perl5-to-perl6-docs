@@ -705,7 +705,9 @@ time.
 Regular expression syntax is somewhat different now, but the match operator
 still exists. If you're trying to rewrite some Perl 5 code, the most important
 difference is that C<=~> is now replaced by the smart match operator, C<~~>.
-Similarly, C<!~> is now C<!~~>.
+Similarly, C<!~> is now C<!~~>. Options for regex operators are now adverbs
+and are complicated. for details, see
+L<http://doc.perl6.org/language/regexes#Adverbs>
 
 =item map BLOCK LIST
 X<map>
@@ -875,10 +877,12 @@ X<print>
 
 =item print
 
-To use C<print> the way you used to, you need to put a colon after the
-filehandle. I. e. C<print $fh: "Howdy!">. The use of the colon as an "invocant
-marker" here is discussed at L<http://design.perl6.org/S03.html#line_4019>.
-Alternately, you can use a method call: C<$fh.print("howdy!")>
+C<print> can still be used as a function, defaulting to standard out. To
+use C<print> as a function with a filehndle I<instead> of standard out,
+you need to put a colon after the filehandle. I. e. C<print $fh:
+"Howdy!">. The use of the colon as an "invocant marker" here is
+discussed at L<http://design.perl6.org/S03.html#line_4019>. Alternately,
+you can use a method call: C<$fh.print("howdy!")>
 
 =item printf FILEHANDLE
 
@@ -1026,3 +1030,43 @@ X<reverse> X<rev> X<invert>
 Now only reverses the elements of a list. C<reverse(@a)> or C<@a.reverse>. To
 reverse the characters in a string, use the C<.flip> method.
 
+=item rewinddir DIRHANDLE
+X<rewinddir>
+
+[NEEDS FURTHER RESEARCH] There does not appear to be an obvious direct
+equivalent. It is possible that some incantation in C<IO::Path> may serve, but
+it's not clear what it would be.
+
+=item rindex STR,SUBSTR,POSITION
+X<rindex>
+
+Works as in Perl 5, and may now also be used as a method. E. g. C<$x =
+"babaganush";say $x.rindex("a");say $x.rindex("a", 3); # 5, 3>
+
+=item rmdir FILENAME
+X<rmdir> X<rd> X<directory, remove>
+
+Still works and can also be used as a method. C<rmdir "Foo";> and
+C<"Foo".IO.rmdir;> are equivalent.
+
+=item s///
+
+Regular expression syntax is somewhat different now, but the
+substitution operator still exists. If you're trying to rewrite some
+Perl 5 code, the most important difference is that C<=~> is now replaced
+by the smart match operator, C<~~>. Similarly, C<!~> is now C<!~~>.
+Options for regex operators are now adverbs and are complicated. for
+details, see L<http://doc.perl6.org/language/regexes#Adverbs>
+
+=item say FILEHANDLE
+
+=item say LIST
+
+=item say
+
+C<say> can still be used as a function, defaulting to standard out. To
+use C<say> as a function with a filehndle I<instead> of standard out,
+you need to put a colon after the filehandle. I. e. C<say $fh:
+"Howdy!">. The use of the colon as an "invocant marker" here is
+discussed at L<http://design.perl6.org/S03.html#line_4019>. Alternately,
+you can use a method call: C<$fh.say("howdy!")>
