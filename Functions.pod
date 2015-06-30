@@ -660,11 +660,11 @@ specific parts of C<localtime> can be found as follows:
 
 C<
 my $d = DateTime.now;
-$sec = $d.second; # Potentially includes fractional seconds
-$min = $d.minute;
+$sec  = $d.second; # Potentially includes fractional seconds
+$min  = $d.minute;
 $hour = $d.hour;
 $mday = $d.day-of-month; # or $d.day; 1..31
-$mon = $d.month; # 1..12
+$mon  = $d.month; # 1..12
 $year = $d.year;
 $wday = $d.day-of-week; # 1 => Monday, 2 => Tuesday, etc.
 $yday = $d.day-of-year; # 1..366
