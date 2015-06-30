@@ -1070,3 +1070,45 @@ you need to put a colon after the filehandle. I. e. C<say $fh:
 "Howdy!">. The use of the colon as an "invocant marker" here is
 discussed at L<http://design.perl6.org/S03.html#line_4019>. Alternately,
 you can use a method call: C<$fh.say("howdy!")>
+
+=item scalar EXPR
+X<scalar> X<context>
+
+Gone. Apparently "very" gone.
+
+=item seek FILEHANDLE,POSITION,WHENCE
+X<seek> X<fseek> X<filehandle, position>
+
+Not documented in a any real way yet, but listed under the C<IO::Handle>
+class.
+
+=item seekdir DIRHANDLE,POS
+X<seekdir>
+
+Not currently documented, but looks to be something that would be implemented
+in one of the C<IO> modules, likely C<IO::Path>.
+
+=item select FILEHANDLE
+X<select> X<filehandle, default>
+
+"[S]elect as a global concept is dead." When I asked around about C<select>, I
+was told that $*OUT and such are overridable in dynamic scope, and that
+C<IO::Capture::Simple (at L<https://github.com/sergot/IO-Capture-Simple>) may
+be of use for something you might be doing with the value of C<select>.
+
+=item semctl ID,SEMNUM,CMD,ARG
+X<semctl>
+
+=item semget KEY,NSEMS,FLAGS
+X<semget>
+
+=item semop KEY,OPSTRING
+X<semop>
+
+Gone from the core. May turn up in a module somewhere.
+
+=item send SOCKET,MSG,FLAGS,TO
+X<send>
+
+Now found in C<IO::Socket>.
+
