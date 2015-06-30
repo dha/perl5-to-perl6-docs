@@ -8,7 +8,7 @@ equivalents with notes on variations between them where necessary.
 =head1 NOTE
 
 I will I<not> be explaining the full functions of the Perl 6 variables. This
-document is an attempt to guide you from the Special Varibles in Perl 5 to
+document is an attempt to guide you from the Special Variables in Perl 5 to
 their equivalents in Perl 6. For full documentation on the Perl 6 special
 variables, please see the Perl 6 documentation for those variables.
 
@@ -32,7 +32,7 @@ Still, thankfully, the general default variable. The main difference in Perl 6
 seems to be that you can now call methods on it. For instance, Perl 5's C<say
 $_> can be rendered in Perl 6 as C<$_.say>. Furthermore, as it is the default
 variable, you don't even need to use the variable name. The previous example
-can also be acheived by using C<.say>.
+can also be achieved by using C<.say>.
 
 =item @ARG
 
@@ -133,7 +133,7 @@ C<$a> and C<$b> no longer have special meaning in Perl 6. C<sort()> no
 longer uses them. They're just regular old variables.
 
 This feature has been extended by having blocks with placeholder parameters
-which are more versatile. Placeholder varibles are created with the C<^>
+which are more versatile. Placeholder variables are created with the C<^>
 twigil (e. g. C<$^z>. They can be used in a bare block or in a subroutine
 without an explicit parameter list. The arguments to the block are assigned to
 the placeholder variables in their Unicode order. I. e. even if the variables
@@ -223,7 +223,7 @@ give different answers. On my OS X machine at this time...
 C<$*KERNEL> gives "darwin (14.3.0)"
 C<$*DISTRO> gives "macosx (10.10.3)"
 
-using C<.version> on either of those will give you just the version
+Using C<.version> on either of those will give you just the version
 number. C<.name> gives the kernel or distro name. Those objects contain
 other information as well.
 

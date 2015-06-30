@@ -12,7 +12,7 @@ necessary.
 =head1 NOTE
 
 I will I<not> be explaining the functions in detail. This document is an
-attempt to guide you from the functions in Perl 5's perlvar document to
+attempt to guide you from the functions in Perl 5's perlfunc document to
 their equivalents in Perl 6. For full documentation on the Perl 6
 equivalents, please see the Perl 6 documentation.
 
@@ -176,7 +176,7 @@ X<directory, change>
 
 Still seems to work as it used to.
 
-mod LIST
+=item chmod LIST
 X<chmod> X<permission> X<mode>
 
 Still can function as under Perl 5, with the change that octal numbers are now
@@ -286,7 +286,7 @@ C<my $deleted_value = %hash{$key}:delete;> and C<my $deleted_value =
 X<die> X<throw> X<exception> X<raise> X<$@> X<abort>
 
 Works similarly to the Perl 5 version, but Perl 6's Exception mechanism may
-give you more power and flexibility than was previously availble. See
+give you more power and flexibility than was previously available. See
 L<http://doc.perl6.org/language/exceptions>.
 
 =item do BLOCK
@@ -553,7 +553,7 @@ X<hex> X<hexadecimal>
 
 Replaced by the adverbial form C<:16>. E. g. C<:16("aF")> returns 175.
 
-Alternately, the same result can be acheived by using the C<.base> method:
+Alternately, the same result can be achieved by using the C<.base> method:
 C<0xaF.base(10)>
 
 It just so happens that C<.Str> defaults to base 10, so if you just C<say
@@ -767,7 +767,7 @@ Unchanged in Perl 6.
 
 =item no VERSION
 
-Still usable for pragmaas such as C<strict>, but not for modules. It's unclear
+Still usable for pragmas such as C<strict>, but not for modules. It's unclear
 whether it can be used for versions, but since that's currently something of a
 moot point, I would guess not.
 
@@ -836,7 +836,7 @@ X<package> X<module> X<namespace> X<version>
 
 S10 indicates that C<package> can still be used, but only with a block. I. e.
 C<package Foo { ... }> would mean the code within the block would be in
-package Foo. there is a special case where a declaration of the form
+package Foo. There is a special case where a declaration of the form
 C<package Foo;> as the first statement in a file indicates that the rest
 of the file is Perl 5 code, but the usefulness of this is unclear. In fact, as
 modules and classes are declared with distinct keywords (such as C<class>),
@@ -1023,6 +1023,6 @@ Appears to still be in Perl 6, although not clearly documented.
 =item reverse LIST
 X<reverse> X<rev> X<invert>
 
-Now only reverses the elements of a list. C<reverse(@a)> or C<@a.reverse>. to
+Now only reverses the elements of a list. C<reverse(@a)> or C<@a.reverse>. To
 reverse the characters in a string, use the C<.flip> method.
 
