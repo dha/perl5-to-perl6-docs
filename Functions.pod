@@ -1112,3 +1112,116 @@ X<send>
 
 Now found in C<IO::Socket>.
 
+=item setpgrp PID,PGRP
+X<setpgrp> X<group>
+
+No longer in core. Will probably wind up in a POSIX module.
+
+=item setpriority WHICH,WHO,PRIORITY
+X<setpriority> X<priority> X<nice> X<renice>
+
+No longer in core. Will probably wind up in a POSIX module.
+
+=item setsockopt SOCKET,LEVEL,OPTNAME,OPTVAL
+X<setsockopt>
+
+Not documented, but probably hiding in an C<IO> module somewhere.
+
+=item shift ARRAY
+X<shift>
+
+=item shift EXPR
+
+=item shift
+
+Now works as a method as well as a function. C<shift @a> and C<@a.shift> are
+equivalent.
+
+=item shmctl ID,CMD,ARG
+X<shmctl>
+
+=item shmget KEY,SIZE,FLAGS
+X<shmget>
+
+=item shmread ID,VAR,POS,SIZE
+X<shmread>
+X<shmwrite>
+
+=item shmwrite ID,STRING,POS,SIZE
+
+Gone from the core. May turn up in a module somewhere.
+
+=item shutdown SOCKET,HOW
+X<shutdown>
+
+Not documented, but likely moved into C<IO::Socket>.
+
+=item sin EXPR
+X<sin> X<sine> X<asin> X<arcsine>
+
+Still works as a function and now also as a method. C<sin(2)> and
+C<2.sin> are equivalent.
+
+=item sleep EXPR
+X<sleep> X<pause>
+
+Still works as before. As of this writing, works as a method, but that is
+deprecated and will be removed soon.
+
+=item socket SOCKET,DOMAIN,TYPE,PROTOCOL
+X<socket>
+
+=item socketpair SOCKET1,SOCKET2,DOMAIN,TYPE,PROTOCOL
+X<socketpair>
+
+Not currently documented, but will likely wind up in C<IO::Socket>.
+
+=item sort SUBNAME LIST
+X<sort> X<qsort> X<quicksort> X<mergesort>
+
+C<sort> still exists, but has changed somewhat. C<$a> and C<$b> are no longer
+special (See L<Special_Variables.pod>) and sort routines no longer return
+positive integers, negative integers, or 0, but C<Order::Increase>,
+C<Order::Same>, or C<Order::Decrease> objects. See
+L<http://doc.perl6.org/routine/sort> for details. May also be used as a method
+- I. e. C<sort(@a)> is equivalent to C<@a.sort>.
+
+=item splice ARRAY,OFFSET,LENGTH
+
+=item splice ARRAY,OFFSET
+
+=item splice ARRAY
+
+=item splice EXPR,OFFSET,LENGTH,LIST
+
+=item splice EXPR,OFFSET,LENGTH
+
+=item splice EXPR,OFFSET
+
+=item splice EXPR
+
+Still in Perl 6. Can also be used as a method. C<< splice(@foo, 2,3, <M N O
+P>); >> is equivalent to C<< @foo.splice(2, 3, <M N O P>); >>.
+
+=item split /PATTERN/,EXPR,LIMIT
+X<split>
+
+=item split /PATTERN/,EXPR
+
+=item split /PATTERN/
+
+=item split
+
+Still works mostly as in Perl 5. There are some exceptions, though. To
+get the special behavior of using the empty string, you must actually
+use the empty string - the special case of the empty pattern C<//> being
+treated as the empty string is gone. If you use a regex for the split,
+it will use the regex, while a literal string will be treated literally.
+If you wish to have the delimiters included in the resulting list, you
+need to use the named parameter C<:all>, like this: C<split(';',
+"a;b;c", :all) # a ; b ; c> Empty chunks are not removed from the result
+list as they are in Perl 5. For that behavior, see C<comb>. Details on
+C<split> are at L<http://doc.perl6.org/routine/split>. Unsurprisingly,
+C<split> also now works as a method: C<"a;b;c".split(';')>
+
+
