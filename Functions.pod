@@ -1224,4 +1224,169 @@ list as they are in Perl 5. For that behavior, see C<comb>. Details on
 C<split> are at L<http://doc.perl6.org/routine/split>. Unsurprisingly,
 C<split> also now works as a method: C<"a;b;c".split(';')>
 
+=item sprintf FORMAT, LIST
+X<sprintf>
+
+Works as in Perl 5. The formats currently available are:
+
+%   a literal percent sign
+c   a character with the given codepoint
+s   a string
+d   a signed integer, in decimal
+u   an unsigned integer, in decimal
+o   an unsigned integer, in octal
+x   an unsigned integer, in hexadecimal
+e   a floating-point number, in scientific notation
+f   a floating-point number, in fixed decimal notation
+g   a floating-point number, in %e or %f notation
+X   like x, but using uppercase letters
+E   like e, but using an uppercase "E"
+G   like g, but with an uppercase "E" (if applicable)
+
+Compatibility:
+
+i   a synonym for %d
+D   a synonym for %ld
+U   a synonym for %lu
+O   a synonym for %lo
+F   a synonym for %f
+
+Perl 5 (non-)compatibility:
+
+n   produces a runtime exception
+p   produces a runtime exception
+
+There are modifiers for integers, but they're mainly no-ops now, as the
+semantics aren't settled:
+
+h  interpret integer as native "short" (typically int16)
+l  interpret integer as native "long" (typically int32 or int64)
+ll interpret integer as native "long long" (typically int64)
+L  interpret integer as native "long long" (typically uint64)
+q  interpret integer as native "quads" (typically int64 or larger)
+
+=item sqrt EXPR
+X<sqrt> X<root> X<square root>
+
+Works as a function and a method. C<sqrt(4)> and C<4.sqrt> are equivalent.
+
+=item srand EXPR
+X<srand> X<seed> X<randseed>
+
+Still exists in Perl 6.
+
+=item stat EXPR
+
+=item stat DIRHANDLE
+
+=item stat
+
+Likely now implemented somewhere in C<IO>, but it is not clear where at this
+time.
+
+=item state VARLIST
+X<state>
+
+=item state TYPE VARLIST
+
+=item state VARLIST : ATTRS
+
+=item state TYPE VARLIST : ATTRS
+
+Still in Perl 6, but currently not documented.
+
+=item study SCALAR
+X<study>
+
+=item study
+
+C<study> is no more.
+
+=item sub NAME BLOCK
+X<sub>
+
+=item sub NAME (PROTO) BLOCK
+
+=item sub NAME : ATTRS BLOCK
+
+=item sub NAME (PROTO) : ATTRS BLOCK
+
+Unsurprisingly, we still have subroutines! You can now have a signature in
+your subroutine which allows you to specify arguments. Nevertheless, in the
+absense of a signature (and only in the absence of a signature), C<@_> still
+contains what is passed to the function, so, in theory, you don't need to
+change that aspect of a function if porting from Perl 5 to Perl 6 (although
+you should probably consider the option of using a signature). For all the
+gory details, see L<http://doc.perl6.org/language/functions>.
+
+=item __SUB__
+X<__SUB__>
+
+Replaced by C<&?ROUTINE>.
+
+=item substr EXPR,OFFSET,LENGTH,REPLACEMENT
+X<substr> X<substring> X<mid> X<left> X<right>
+
+=item substr EXPR,OFFSET,LENGTH
+
+=item substr EXPR,OFFSET
+
+Can be used as a function or a method. C<substr("hola!", 1, 3)> and
+C<"hola!.substr(1, 3)> both return "ola".
+
+=item symlink OLDFILE,NEWFILE
+X<symlink> X<link> X<symbolic link> X<link, symbolic>
+
+Now part of IO::Path. The only difference between Perl 5 and Perl 6 is
+that the argument order has changed. It's now
+C<link($original, $linked_file)>.
+
+=item syscall NUMBER, LIST
+X<syscall> X<system call>
+
+No longer builtin. Most likely out in a module somewhere, but it's currently
+unclear where.
+
+=item sysopen FILEHANDLE,FILENAME,MODE
+X<sysopen>
+
+=item sysopen FILEHANDLE,FILENAME,MODE,PERMS
+
+=item sysread FILEHANDLE,SCALAR,LENGTH,OFFSET
+X<sysread>
+
+=item sysread FILEHANDLE,SCALAR,LENGTH
+
+=item sysseek FILEHANDLE,POSITION,WHENCE
+X<sysseek> X<lseek>
+
+As with the non-sys versions of these functions, are probably lurking in the
+C<IO> namespace somewhere.
+
+=item system LIST
+X<system> X<shell>
+
+=item system PROGRAM LIST
+
+You probably want C<run> (L<http://doc.perl6.org/routine/run>) or C<shell>
+(L<http://doc.perl6.org/routine/shell>) for this.
+
+=item syswrite FILEHANDLE,SCALAR,LENGTH,OFFSET
+X<syswrite>
+
+=item syswrite FILEHANDLE,SCALAR,LENGTH
+
+=item syswrite FILEHANDLE,SCALAR
+
+As with C<sysopen>, etc. moved into the C<IO> classes.
+
+=item tell FILEHANDLE
+X<tell>
+
+In C<IO::Handle>, but not yet documented, beyond a mention.
+
+=item telldir DIRHANDLE
+X<telldir>
+
+Possibly in C<IO::Path>, but not yet documented.
 
