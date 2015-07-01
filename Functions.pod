@@ -1390,3 +1390,180 @@ X<telldir>
 
 Possibly in C<IO::Path>, but not yet documented.
 
+=item tie VARIABLE,CLASSNAME,LIST
+X<tie>
+
+=item tied VARIABLE
+X<tied>
+
+[NEEDS FURTHER RESEARCH] S29 indicates that variable tying has been
+replaced by container types. Unfortunately, what this means in practical
+terms has not been obviously specified.
+
+=item time
+X<time> X<epoch>
+
+"Returns an Int representing the current time." Although I<how> it represents the
+current time isn't in the documentation currently, it appears to still be
+seconds since epoch, as before.
+
+=item times
+X<times>
+
+No longer in Perl 6.
+
+=item tr///
+
+Not well documented in this form, but seems to work similarly to how it does
+in Perl 5. The one caveat is that ranges are specified differently. Instead of
+using a range "a-z", you would now use "a..z", i. e. with Perl's range
+operator. C<tr///> now has a method version, which is better documented,
+called C<.trans>. C<.trans> uses a list of pairs, as follows:
+C<< $x.trans(['a'..'c'] => ['A'..'C'], ['d'..'q'] => ['D'..'Q'], ['r'..'z'] =>
+['R'..'Z']); >> A much more extensive description of the uses of C<.trans> can
+be found at L<http://design.perl6.org/S05.html#Transliteration>. The C<y///>
+equivalent has been done away with.
+
+=item truncate FILEHANDLE,LENGTH
+X<truncate>
+
+=item truncate EXPR,LENGTH
+
+Most likely somewhere in C<IO::Handle>, but not currently documented.
+
+=item uc EXPR
+X<uc> X<uppercase> X<toupper>
+
+Works as a function and a method. C<uc("ha")> and C<"ha".uc> both return "HA".
+
+=item ucfirst EXPR
+X<ucfirst> X<uppercase>
+
+=item ucfirst
+
+Perl 6 has done away with C<ucfirst>. The title case function C<tc> probably
+does what you need here. L<http://doc.perl6.org/routine/tc>
+
+=item umask EXPR
+X<umask>
+
+Is now an C<IO> method. C<IO.umask> returns the umask.
+
+=item undef EXPR
+X<undef> X<undefine>
+
+There is no C<undef> in Perl 6. You can't undefine a function, and the closest
+equivalent value is probably C<Nil>, but you'll likely have no use for that.
+If you were using something like C<(undef, $file, $line) = caller;>, you would
+just get the filename and line number directly in Perl 6 instead of discarding
+the first result of C<caller>. C<caller> has been replaced by C<callframe> in
+Perl 6, so the equivalent statement would be C<($file, $line) =
+callframe.annotations<file line>;>
+
+=item unlink LIST
+X<unlink> X<delete> X<remove> X<rm> X<del>
+
+=item unlink
+
+Still available. Now usable as a method: C<"filename".IO.unlink>
+
+=item unpack TEMPLATE,EXPR
+X<unpack>
+
+=item unpack TEMPLATE
+
+Still in Perl 6. The template options are currently more restricted than they
+are in Perl 5. The current documented list can be found at
+L<http://doc.perl6.org/routine/unpack>.
+
+=item unshift ARRAY,LIST
+X<unshift>
+
+=item unshift EXPR,LIST
+
+Still in Perl 6. Can be used as a method. C<unshift(@a, "blah")> is equivalent
+to C<@a.unshift("blah")>.
+
+=item untie VARIABLE
+X<untie>
+
+[NEEDS FURTHER RESEARCH] Functions for tying variables seem to be replaced in
+Perl 6 by container types, as mentioned in S29. This has become no clearer
+since I wrote the entry for C<tie>, above.
+
+=item use Module VERSION LIST
+X<use> X<module> X<import>
+
+=item use Module VERSION
+
+=item use Module LIST
+
+=item use Module
+
+=item use VERSION
+
+Still in Perl 6, but, oddly, not yet documented.
+
+=item utime LIST
+X<utime>
+
+S32 says this is gone, and refers you to C<Path.times>. Unfortunately, there
+seems to be no sign of C<Path.times>. Perhaps there will be something in
+C<IO::Path>, but it is not currently evident.
+
+=item values HASH
+X<values>
+
+=item values ARRAY
+
+=item values EXPR
+
+Still in Perl 6. Can also be used as a method. C<values %hash> is equivalent
+to C<%hash.values>.
+
+=item vec EXPR,OFFSET,BITS
+X<vec> X<bit> X<bit vector>
+
+S29 says "Should replace C<vec> with declared buffer/array of C<bit>,
+C<uint2>, C<uint4>, etc." It is unclear, however, that this has actually
+happened.
+
+=item wait
+X<wait>
+
+[NEEDS FURTHER RESEARCH] Unclear where this has gone. There's a C<wait>
+method in C<Supply>, and an C<await> method in both C<Channel> and C<Promise>,
+but which, if any or all, of these is a direct equivalent of Perl 5's C<wait>
+is unclear.
+
+=item waitpid PID,FLAGS
+X<waitpid>
+
+As with C<wait>, the disposition of this is unclear.
+
+=item wantarray
+X<wantarray> X<context>
+
+There is no longer a C<wantarray> in Perl 6.
+
+=item warn LIST
+X<warn> X<warning> X<STDERR>
+
+C<warn> now throws an exception. To simply print a message to C<$*ERR>, you
+would use the C<note> function. For more on exceptions, see
+L<http://doc.perl6.org/language/exceptions>.
+
+=item write FILEHANDLE
+X<write>
+
+=item write EXPR
+
+=item write
+
+Formats are gone from Perl 6, so this no longer works.
+
+=item y///
+
+This synonym for C<tr///> is gone. For functionality, see the entry for
+C<tr///>.
+
