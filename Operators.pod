@@ -1,0 +1,199 @@
+=head1 NAME
+X<operator>
+
+perlop - Perl operators and precedence
+
+=head1 DESCRIPTION
+
+A (hopefully) comprehensive list of Perl 5 operators with their Perl 6
+equivalents with notes on variations between them where necessary.
+
+=head1 NOTE
+
+I will I<not> be explaining the operators in detail. This document is an
+attempt to guide you from the operators in Perl 5's perlop document to
+their equivalents in Perl 6. For full documentation on the Perl 6
+equivalents, please see the Perl 6 documentation.
+
+=head1 SOURCES
+
+I'm taking my information from L<http://doc.perl6.org> (in particular,
+L<http://doc.perl6.org/language/operators>), supplemented by the
+design documents at L<http://design.perl6.org/> and input from the denizens
+of #perl6 on irc.freenode.org
+
+=head2 Operator Precedence and Associativity
+X<operator, precedence> X<precedence> X<associativity>
+
+The operator precedence table is somewhat different in Perl 6 than it is in
+Perl 5, so I will not detail it here. If you need to know the precedence and
+associativity of a given operator in Perl 6, refer to
+L<http://doc.perl6.org/language/operators#Operator_Precedence>.
+
+=head2 Terms and List Operators 
+X<list operator> X<operator, list> X<term>
+
+The things listed in Perl 5's perlop document as unary and list operators in
+this section tend to be things that can also be thought of as functions, such
+as C<print> and C<chdir>. As such, you can find information about them in
+L<Functions.pod>. Parentheses are still used for grouping.
+
+=head2 The Arrow Operator
+X<arrow> X<dereference> X<< -> >>
+
+As you typically will not be using references in Perl 6, the arrow is probably
+less useful as a dereferencing operator. If you do need to dereference
+something, however, the arrow is now the dot. It is also now the dot for
+method calls. So, C<$arrayref->[7]> becomes C<$arrayref.[7]> and
+C<$user->name> becomes C<$user.name>.
+
+=head2 Auto-increment and Auto-decrement
+X<increment> X<auto-increment> X<++> X<decrement> X<auto-decrement> X<-->
+
+Still work as in Perl 5. The one possible caveat is that they now function by
+calling the C<succ> method for C<++> and the C<pred> method for C<-->. For
+builtin numeric types, this is unlikely to do something unusual, but custom
+types can define their own C<succ> and C<pred> methods, so in those cases, you
+should probably take note of what C<++> and C<--> will I<actually> do.
+
+=head2 Exponentiation
+X<**> X<exponentiation> X<power>
+
+Still works as you would expect. The caveat in Perl 5's perlop about C<**>
+binding more tightly than unary minus (i. e. "-2**4" evaluates as "-(2**4)"
+rather than "(-2)**4)") still seems to hold true.
+
+=head2 Symbolic Unary Operators
+X<unary operator> X<operator, unary>
+
+Unary C<!> and C<-> still do logical arithmetic negation, respectively. C<?^>
+is used for bitwise logical negation, which the documentation indicates is
+equivalent to C<!>.
+
+Unary C<~> is now the string context operator, so use prefix C<+^> for
+bitwise integer negation. Assumes two's complement.
+
+C<+> now I<does> have an effect, coercing its argument to to the Numeric type.
+
+Unary <\> is no more. If you really want to take a reference to an existing
+named variable, you can use item context, like so: C<$aref = item(@array)>
+You can get a reference to a named subroutine by using the C<&> sigil: <$sref
+= &foo> Anonymous arrays, hashes, and subs return their references during
+creation.
+
+=head2 Binding Operators
+X<binding> X<operator, binding> X<=~> X<!~>
+
+C<=~> and C<!~> have been replaced by C<~~> and C<!~~>, respectively. Those of
+you who consider smart matching broken in Perl 5 will be happy to hear that it
+works much better in Perl 6, as the stronger typing means less guesswork.
+
+=head2 Multiplicative Operators
+X<operator, multiplicative>
+
+Binary C<*>, C</>, and C<%> still do multiplication, division, and modulo,
+respectively.
+
+Binary C<x> has changed slightly and gotten a companion. C<print '-' x 80;>
+still gives you a string of 80 dashes, but for the old behavior of C<@ones =
+(1) x 80;> giving you a list of 80 "1"s, you would now use C<@ones = 1 xx
+80;>.
+
+=head2 Additive Operators
+X<operator, additive>
+
+Binary C<+> and <-> still do addition and subtraction, respectively.
+
+C<.> is now the method call operator, so binary C<~> now acts as the
+concatenation operator.
+
+=head2 Shift Operators
+X<shift operator> X<operator, shift> X<<< << >>>
+X<<< >> >>> X<right shift> X<left shift> X<bitwise shift>
+X<shl> X<shr> X<shift, right> X<shift, left>
+
+C<< << >> and C<< >> >> have been replaced by C<< +< >> and C<< +> >>.
+
+=head2 Named Unary Operators
+X<operator, named unary>
+
+As noted above, you'll find these in L<Functions.pod>.
+
+=head2 Relational Operators
+X<relational operator> X<operator, relational>
+
+These all work as in Perl 5.
+
+=head2 Equality Operators
+X<equality> X<equal> X<equals> X<operator, equality>
+
+C<==> and C<!=> both work as in Perl 5.
+
+C<< <=> >> and C<cmp> have changed. C<< <=> >> still does a numeric
+comparison, but returns <Order::Less>, <Order::Same>, or <Order::More> instead
+of Perl 5's C<-1>, C<0>, or C<1>. To get the old behavior (with the change
+that it returns the C<Order> objects, rather than integers) of C<cmp>, you
+would now use the C<leg> operator.
+
+C<cmp> now does either C<< <=> >> or C<leg>, depending on the existing type of
+its arguments.
+
+C<~~> is still the smart match operator, but it's also now just the match
+operator, as noted above. For how smart matching works in Perl 6, see
+L<http://design.perl6.org/S03.html#Smart_matching>.
+
+=head2 Smartmatch Operator
+
+See the entry on C<~~> directly above.
+
+=head2 Bitwise And
+X<operator, bitwise, and> X<bitwise and> X<&>
+
+Binary C<&> is now C<+&>.
+
+=head2 Bitwise Or and Exclusive Or
+X<operator, bitwise, or> X<bitwise or> X<|> X<operator, bitwise, xor>
+X<bitwise xor> X<^>
+
+Bitwise OR has changed from C<|> to C<+|>. Bitwise XOR has changed from C<^>
+to C<+^>
+
+=head2 C-style Logical And
+X<&&> X<logical and> X<operator, logical, and>
+
+Unchanged.
+
+=head2 C-style Logical Or
+X<||> X<operator, logical, or>
+
+Unchanged.
+
+=head2 Logical Defined-Or
+X</operator>/> X<operator, logical, defined-or>
+
+Still there. Now defined as returning the first defined operand, although it
+appears to return the last operand if none of the operands are defined, so
+that may need a tweak.
+
+=head2 Range Operators
+X<operator, range> X<range> X<..> X<...>
+
+In list context, C<..> still operates as the range operator and should not
+need to be changed. That said, there are now exclusionary range operators that
+may be useful. These are:
+
+infix  ..^  Excludes endpoint. C<1..^5; # 1 2 3 4 >
+infix  ^..  Excludes startpoint. C<1^..5; # 2 3 4 5>
+infix  ^..^ Excludes both start- and endpoint. C<1^..^5; # 2 3 4>
+prefix ^    From 0, excludes endpoint. C<^5; # 0 1 2 3 4>
+
+In scalar context, C<..> and C<...> worked as flip-flop operators, but were
+little-known, and probably even less used. Those operations have been taken
+over by C<ff> and C<fff>, but are not clearly documented at this time.
+
+=head2 Conditional Operator
+X<operator, conditional> X<operator, ternary> X<ternary> X<?:>
+
+C<?:> has been changed to C<?? !!>. I. e. where you would have used C<$x = $ok
+? $y : $z;> in Perl 5, you would use C<$x = $ok ?? $y !! $z;> in Perl 6.
+
