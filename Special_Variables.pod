@@ -417,7 +417,7 @@ No equivalent.
 X<$ARGV>
 
 The name of the current file when reading lines can be obtained through
-C<$*ARGFILE.filename>.
+C<$*ARGFILES.filename>.
 
 =item @ARGV
 X<@ARGV>
