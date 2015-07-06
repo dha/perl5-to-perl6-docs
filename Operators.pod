@@ -319,4 +319,37 @@ Similarly, you get escaping and interpolation based on your quoting operator,
 i. e. literals with C<Q>, backslash escapes with C<q>, and interpolation with
 C<qq>.
 
-in Perl 5
+=head2 I/O Operators
+X<operator, i/o> X<operator, io> X<io> X<while> X<filehandle>
+X<< <> >> X<< <<>> >> X<@ARGV>
+
+The full details on Input/Output in Perl 6 can be found at
+L<http://doc.perl6.org/language/io>.
+
+As C<< <...> >> is now the quote-words construct, C<< <> >> is no longer
+used for reading lines from a file. You can now do that by either making an
+C<IO> object from a file name or using an open filehandle and then, in either case,
+calling C<.lines> on it. I. e. either C<my @a = "filename".IO.lines;> or
+C<my $fh = open "filename", :r;my @a = $fh.lines;> (In the latter case, we are
+using C<:r> to specifically open the file for reading). To do this in an
+iterative manner, you can use a C<for> loop this way:
+
+=begin code
+
+for 'huge-csv'.IO.lines -> $line {
+    # Do something with $line
+}
+
+=end code
+
+Note the use of C<< -> >> there. That's part of the Block syntax, and is
+now needed for C<if>, C<for>, C<while>, etc.
+
+If you want to slurp the entire file into a scalar, you would - surprise! -
+use the C<.slurp> method. For instance, C<my $x = "filename".IO.slurp;> or
+C<my $fh = open "filename", :r;my $x = $fh.slurp;>.
+
+As noted in L<Special_Variables.pod>, the C<ARGV> magic input filehandle has
+been replaced by C<$*ARGFILES>, and the C<@ARGV> array of command line
+arguments has been replaced by C<@*ARGS>.
+
