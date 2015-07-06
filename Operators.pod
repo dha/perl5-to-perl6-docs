@@ -353,3 +353,23 @@ As noted in L<Special_Variables.pod>, the C<ARGV> magic input filehandle has
 been replaced by C<$*ARGFILES>, and the C<@ARGV> array of command line
 arguments has been replaced by C<@*ARGS>.
 
+=head2 No-ops
+X<no-op> X<nop>
+
+Although it's not specifically documented, C<1 while foo();> still appears to
+work in this sense.
+
+=head2 Bitwise String Operators
+X<operator, bitwise, string> X<&.> X<|.> X<^.> X<~.>
+
+Documented individually above, but to summarize...
+
+Bitwise integer negation is now prefix C<+^>. Bitwise boolean negation
+is now C<?^>.
+
+Bitwise and is now C<+&>.
+
+Bitwise integer or is now C<+|>. Bitwise integer xor is now infix C<+^>.
+Bitwise boolean or is now <?|>.
+
+Left shift and right shift are now C<< +< >> and C<< +> >>.
