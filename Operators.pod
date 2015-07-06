@@ -30,7 +30,7 @@ Perl 5, so I will not detail it here. If you need to know the precedence and
 associativity of a given operator in Perl 6, refer to
 L<http://doc.perl6.org/language/operators#Operator_Precedence>.
 
-=head2 Terms and List Operators 
+=head2 Terms and List Operators
 X<list operator> X<operator, list> X<term>
 
 The things listed in Perl 5's perlop document as unary and list operators in
@@ -41,11 +41,13 @@ L<Functions.pod>. Parentheses are still used for grouping.
 =head2 The Arrow Operator
 X<arrow> X<dereference> X<< -> >>
 
-As you typically will not be using references in Perl 6, the arrow is probably
-less useful as a dereferencing operator. If you do need to dereference
-something, however, the arrow is now the dot. It is also now the dot for
-method calls. So, C<$arrayref->[7]> becomes C<$arrayref.[7]> and
-C<$user->name> becomes C<$user.name>.
+As you typically will not be using references in Perl 6, the arrow is
+probably less useful as a dereferencing operator. If you do need to
+dereference something, however, the arrow is now the dot. It is also now
+the dot for method calls. So, C<$arrayref->[7]> becomes C<$arrayref.[7]>
+and C<$user->name> becomes C<$user.name>. The C<< => >> arrow is now
+used for constructing Pairs, see
+L<http://doc.perl6.org/language/terms#Pair>.
 
 =head2 Auto-increment and Auto-decrement
 X<increment> X<auto-increment> X<++> X<decrement> X<auto-decrement> X<-->
@@ -68,7 +70,8 @@ X<unary operator> X<operator, unary>
 
 Unary C<!> and C<-> still do logical arithmetic negation, respectively. C<?^>
 is used for bitwise logical negation, which the documentation indicates is
-equivalent to C<!>.
+equivalent to C<!>. It may be relevant to note that these now coerce their
+arguments to C<Bool> and C<Numeric>, respectively.
 
 Unary C<~> is now the string context operator, so use prefix C<+^> for
 bitwise integer negation. Assumes two's complement.
@@ -173,7 +176,8 @@ X</operator>/> X<operator, logical, defined-or>
 
 Still there. Now defined as returning the first defined operand, although it
 appears to return the last operand if none of the operands are defined, so
-that may need a tweak.
+that may need a tweak. Also, there is now a low precedence version, called
+C<orelse>.
 
 =head2 Range Operators
 X<operator, range> X<range> X<..> X<...>
@@ -197,3 +201,122 @@ X<operator, conditional> X<operator, ternary> X<ternary> X<?:>
 C<?:> has been changed to C<?? !!>. I. e. where you would have used C<$x = $ok
 ? $y : $z;> in Perl 5, you would use C<$x = $ok ?? $y !! $z;> in Perl 6.
 
+=head2 Assignment Operators
+X<assignment> X<operator, assignment> X<=> X<**=> X<+=> X<*=> X<&=>
+X<<< <<= >>> X<&&=> X<-=> X</->=> X<|=> X<<< >>= >>> X<||=> X</operator>/=>
+X<.=>
+X<%=> X<^=> X<x=> X<&.=> X<|.=> X<^.=>
+
+Although not fully documented, S03 indicates that the mathematical and logical
+assignment operators should work as you would expect. The one noticeable change
+is that C<.=> now calls a mutating method on the object on the left, while
+C<~=> is now the string concatenation assignment, as you might expect with the
+changes in C<.> and C<~>. Also, the bitwise assignment operators are likely
+not separated into numeric and string versions (C<&=>, etc., vs. C<&.=>, etc.),
+as that feature is currently experimental in Perl 5 itself - although, again,
+this is not specifically documented.
+
+=head2 Comma Operator
+X<comma> X<operator, comma> X<,>
+
+The comma operator still works mostly as expected, but technically it now
+creates Parcels (see L<http://doc.perl6.org/type/Parcel>) or separates
+arguments in function calls. Also, there is a C<:> variant that turns function
+calls into method calls - see
+L<http://doc.perl6.org/language/operators#infix_%3A>.
+
+The C<< => >> operator works similarly to the old "fat comma" behavior in that
+it allows an unquoted identifier on its left side, but now constructs Pair
+objects, rather than just functioning as a separator. If you are trying to
+just literally translate a line of Perl 5 code to Perl 6, it should behave as
+expected.
+
+=head2 List Operators (Rightward)
+X<operator, list, rightward> X<list operator>
+
+Like the Named Unary Operators, you'll find these discussed in
+L<Functions.pod>.
+
+=head2 Logical Not
+X<operator, logical, not> X<not>
+
+Still the lower precedence version of C<!>. As with C<!>, now coerces its
+argument to C<Bool>.
+
+=head2 Logical And
+X<operator, logical, and> X<and>
+
+Lower precedence version of C<&&> as before.
+
+=head2 Logical or and Exclusive Or
+X<operator, logical, or> X<operator, logical, xor>
+X<operator, logical, exclusive or>
+X<or> X<xor>
+
+C<or> is still the low precedence version of C<||>. The documentation lists an
+C<xor>, but does not actually document it.
+
+Additionally, there is now a low precedence version of C<//>, called
+C<orelse>. Unlike C<//>, this is documented to return the last argument if
+there is no defined argument.
+
+=head2 Quote and Quote-like Operators
+X<operator, quote> X<operator, quote-like> X<q> X<qq> X<qx> X<qw> X<m>
+X<qr> X<s> X<tr> X<'> X<''> X<"> X<""> X</tr>/> X<`> X<``> X<<< << >>>
+X<escape sequence> X<escape>
+
+For all the gory details on quoting constructs, see
+L<http://doc.perl6.org/language/quoting>.
+
+There is now a quoting operator that allows absolute literal strings: C<Q> or
+C<｢…｣>, although the latter might be difficult to find on your keyboard,
+depending on your keyboard... Backslash escapes do I<not> apply in C<Q> quoted
+strings. E. g. C<Q{This is still a closing brace → \}> renders "This is still a
+closing brace → \".
+
+C<q> still does what you expect, allowing backslash escapes. E. g. C<q{This is
+not a closing brace → \}, but this is → }> returning "This is not a closing
+brace → }, but this is →". As in Perl 5, you can get this behavior with single
+quotes.
+
+C<qq> still allows interpolation of variables. However, by default, only
+scalar variables are now interpolated. To get other variables to interpolate,
+you need to put square brackets after them. E. g. C<< @a = <1 2 3>;say qq/@a[]
+example@example.com/; >> results in "1 2 3 example@example.com". Hashes
+interpolate in a possibly unexpected manner: C<< %a = 1 => 2, 3 => 4;say
+"%a[]"; >> results in a space separating the pairs and tabs separating the key
+from the value in each pair (apparently). You can also interpolate Perl 6 code
+in strings using curly braces. For all the details, see
+L<http://doc.perl6.org/language/quoting#Interpolation%3A_qq>.
+
+C<qw> still works, and can also be rendered as C<< <...> >>. E. g. C<qw/a b
+c/> is equivalent to C<< <a b c> >>.
+
+There is also now a version of C<qw> that interpolates, which is C<qqw>. So
+C<my $a = 42;say qqw/$a b c/;> gives you "42 b c".
+
+Shell quoting is still available through C<qx>, but you should note that
+backticks no longer do shell quoting, and Perl variables are I<not>
+interpolated in C<qx> strings. If you need to interpolate Perl variables in a
+shell command string, you can use C<qqx> instead.
+
+The C<qr> operator is gone.
+
+C<tr///> is not well documented, but seems to work similarly to how it
+does in Perl 5. The one caveat is that ranges are specified differently.
+Instead of using a range "a-z", you would now use "a..z", i. e. with
+Perl's range operator. C<tr///> now has a method version, which is
+better documented, called C<.trans>. C<.trans> uses a list of pairs, as
+follows: C<< $x.trans(['a'..'c'] => ['A'..'C'], ['d'..'q'] =>
+['D'..'Q'], ['r'..'z'] => ['R'..'Z']); >> A much more extensive
+description of the uses of C<.trans> can be found at
+L<http://design.perl6.org/S05.html#Transliteration>. The C<y///>
+equivalent has been done away with.
+
+Heredocs are specified differently in Perl 6. You use C<:to> with your quoting
+operator, e. g. C<q:to/END/;> would start a heredoc ending with "END".
+Similarly, you get escaping and interpolation based on your quoting operator,
+i. e. literals with C<Q>, backslash escapes with C<q>, and interpolation with
+C<qq>.
+
+in Perl 5
