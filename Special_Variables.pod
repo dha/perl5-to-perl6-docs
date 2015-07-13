@@ -1,3 +1,5 @@
+=begin pod
+
 =head1 Perl 5 to Perl 6 Translation of Special Variables.
 
 =head1 DESCRIPTION
@@ -140,12 +142,16 @@ the placeholder variables in their Unicode order. I. e. even if the variables
 appear in the block in the order C<($^q, $^z, $^a)>, they will be I<assigned>
 in the order C<($^a, $^q, $^z)>. Ergo:
 
+=begin code
+
     sort { $^a cmp $^z }, 1,5,6,4,2,3;
     # 1,2,3,4,5,6
     sort { $^g cmp $^a }, 1,5,6,4,2,3;
     # 6,5,4,3,2,1
     for 1..9 { say $^c, $^a, $^b; last }
     # 312
+
+=end code
 
 For more on placeholder variables, see
 L<http://doc.perl6.org/language/variables#The_%5E_Twigil>
@@ -497,7 +503,7 @@ X<error> X<exception>
 Because of how error variables have changed in Perl 6, I will not detail the
 changes individually.
 
-To quote the Perl 6 docs, "$! is the error variable." That's it. All the 
+To quote the Perl 6 docs, "$! is the error variable." That's it. All the
 error variables appear to have been eaten by $!. As with the rest of
 Perl 6, it's likely an object that will return various things depending
 on how you use it. Sadly, at the moment, the documentation for it is
@@ -571,3 +577,5 @@ totally unconfirmed.
 
 It should go without saying that, as these have been removed from Perl 5
 already, there should be no need to tell you how to use them in Perl 6.
+
+=end pod

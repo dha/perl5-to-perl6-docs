@@ -1,3 +1,5 @@
+=begin pod
+
 =head1 NAME
 X<operator>
 
@@ -373,3 +375,5 @@ Bitwise integer or is now C<+|>. Bitwise integer xor is now infix C<+^>.
 Bitwise boolean or is now <?|>.
 
 Left shift and right shift are now C<< +< >> and C<< +> >>.
+
+=end pod

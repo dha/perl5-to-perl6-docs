@@ -1,3 +1,5 @@
+=begin pod
+
 =head1 NAME
 X<function>
 
@@ -658,7 +660,8 @@ X<localtime> X<ctime>
 Most of the functionality of C<localtime> is now found in C<DateTime>. The
 specific parts of C<localtime> can be found as follows:
 
-C<
+=begin code
+
 my $d = DateTime.now;
 $sec  = $d.second; # Potentially includes fractional seconds
 $min  = $d.minute;
@@ -668,7 +671,8 @@ $mon  = $d.month; # 1..12
 $year = $d.year;
 $wday = $d.day-of-week; # 1 => Monday, 2 => Tuesday, etc.
 $yday = $d.day-of-year; # 1..366
->
+
+=end code
 
 Please note that ranges are no longer 0-based, as shown in the comments in the
 example.
@@ -1567,3 +1571,4 @@ Formats are gone from Perl 6, so this no longer works.
 This synonym for C<tr///> is gone. For functionality, see the entry for
 C<tr///>.
 
+=end pod
