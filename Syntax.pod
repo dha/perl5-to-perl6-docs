@@ -33,7 +33,7 @@ where the presence or lack of whitespace is now significant. For
 instance, in Perl 5, you could omit a space following a keyword (e. g.
 C<while($x < 5)> or C<my($x, $y)>). In Perl 6, that space is required,
 thus C<while ($x < 5)> or C<my ($x, $y)>. In Perl 6, however, you can
-omit the parentheses altogether: C<while $x < 5>. This holds for C<if>,
+omit the parentheses altogether: C<< while $x < 5 >>. This holds for C<if>,
 C<for>, etc.
 
 Oddly, in Perl 5, you could leave spaces between an array or hash and its
@@ -201,3 +201,20 @@ L<http://design.perl6.org/S06.html#Stub_declarations> for the gory details.
 That said, there doesn't seem to be an I<obvious> reason why it shouldn't
 still fulfill the role it did in Perl 5, despite its role being expanded in
 Perl 6.
+
+=head2 PODs: Embedded Documentation
+X<POD> X<documentation>
+
+Pod has changed between Perl 5 and Perl 6. Probably the biggest difference is
+that you need to enclose your pod between C<=begin pod> and C<=end pod>
+directives. There are a few tweaks here and there as well. As I have
+discovered while writing these documents, the vertical bar ("|") is
+significant in C<< X<> >> codes, and it's not clear how to get a literal "|"
+into them. Your best bet may be to use the Perl 6 interpreter to check your
+pod. You can do this by using the C<--doc> switch. E. g. C<perl6 --doc
+Whatever.pod>. This will output any problems to standard error. (Depending on
+how/where you've installed perl6, you may need to specify the location of
+C<Pod::To::Text>.) Details on Perl 6 style pod is at
+L<http://design.perl6.org/S26.html>.
+
+=end pod
