@@ -1097,7 +1097,7 @@ X<select> X<filehandle, default>
 
 "[S]elect as a global concept is dead." When I asked around about C<select>, I
 was told that $*OUT and such are overridable in dynamic scope, and that
-C<IO::Capture::Simple (at L<https://github.com/sergot/IO-Capture-Simple>) may
+C<IO::Capture::Simple> (at L<https://github.com/sergot/IO-Capture-Simple>) may
 be of use for something you might be doing with the value of C<select>.
 
 =item semctl ID,SEMNUM,CMD,ARG
