@@ -1,0 +1,15 @@
+=begin pod
+
+=head1 NAME
+
+Essentials - The important stuff in Perl 6
+
+=head1 DESCRIPTION
+
+The (arguably) most important things to know about Perl 6 if you're a Perl 5
+programmer. For instance, you probably need to know that method calls are now
+done with C<.> rather than C<< -> >>. On the other hand, that you need to know
+that the left bit shift operator has changed from C<< << >> to C<< +< >> is
+less likely. The changes from Perl 5 to Perl 6 are covered much more
+exhaustively in the other documents in this set, such as L<Operators.pod> and
+C<Functions.pod>.
