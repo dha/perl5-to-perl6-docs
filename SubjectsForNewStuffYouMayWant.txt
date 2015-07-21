@@ -4,3 +4,23 @@ This document is a list of possible topics to put into a document
 describing new features in Perl 6, rather than changes from Perl 5 to
 Perl 6, that a programmer might find useful. To some extent, this might be
 seen as The Reasons You Might Actually Want To Use Perl 6.
+
+Reductions ([+], [*], etc.)
+» operator
+Bags
+New OO system?
+Gradual typing
+Exception system?
+subsets
+constraints
+| (union)
+multi subs
+state?
+Whatever
+Placeholder variables
+Memoization
+Lazy lists
+Captures
+Adverbs?
+Code usable in double quoted strings
+
