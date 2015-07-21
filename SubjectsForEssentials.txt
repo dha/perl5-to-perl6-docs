@@ -67,3 +67,9 @@ $ARGV is now $*ARGFILES.filename
 ARGV is now $*ARGFILES
 $. is replaced by the .ins method
 $/ replaced by the .nl method
+Sigil invariance
+"Consider explaining the general form of changes.  For example, operators that
+had separate boolean and numeric forms became ?op and +op, and global special
+variables gained twigils indicating static compile time or dynamic runtime
+behavior."
+
