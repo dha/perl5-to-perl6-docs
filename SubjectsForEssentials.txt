@@ -1,3 +1,9 @@
+DECRIPTION
+
+This document is a list of possible topics to put into a document describing
+what might be thought of as the esential changes from Perl 5 to Perl 6 that
+the typical programmer would need.
+
 -> to . for method calls (and -> for blocks?)
 Many functions can now be called as methods
 ~ is now the concat op
