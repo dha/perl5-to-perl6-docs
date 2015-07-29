@@ -5,8 +5,8 @@ what might be thought of as the esential changes from Perl 5 to Perl 6 that
 the typical programmer would need.
 
 -> to . for method calls (and -> for blocks?)
-Many functions can now be called as methods
 ~ is now the concat op
+Many functions can now be called as methods
 References?
 =~ and !~ to ~~ and !~~ and smartmatch now less stupid
 x vs. xx
