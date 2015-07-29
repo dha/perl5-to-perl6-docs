@@ -20,6 +20,16 @@ I'm taking my information from L<http://doc.perl6.org>, supplemented by the
 design documents at L<http://design.perl6.org/> and input from the denizens
 of #perl6 on irc.freenode.org
 
+=head2 Sigils
+
+The sigils we know and love are all still there, but after years of trying to
+teach people that, although arrays start with "@", but array I<elements> start
+with "$", and the like, we've given up. In Perl 6, arrays begin with "@" and
+array elements start with "@". Similarly with hashes and "%". The first
+element of C<@a> is C<@a[0]>. The value of a hash element with the key "foo"
+is C<%hash{foo}>. Scalars, obviously, retain the "$" sigil.
+
+
 =head2 Methods and Concatenation
 
 As noted in the L<#DESCRIPTION> section, methods are now called with the dot,
