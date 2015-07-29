@@ -13,3 +13,24 @@ that the left bit shift operator has changed from C<< << >> to C<< +< >> is
 less likely. The changes from Perl 5 to Perl 6 are covered much more
 exhaustively in the other documents in this set, such as L<Operators.pod> and
 C<Functions.pod>.
+
+=head1 SOURCES
+
+I'm taking my information from L<http://doc.perl6.org>, supplemented by the
+design documents at L<http://design.perl6.org/> and input from the denizens
+of #perl6 on irc.freenode.org
+
+=head2 Methods and Concatenation
+
+As noted in the L<#DESCRIPTION> section, methods are now called with the dot,
+rather than the arrow. So, where in Perl 5 you might have used C<<
+$object->method >> in Perl 6 you would use C<$object.method>.
+
+With the dot now being used for method calls, the concatenation operator is
+now the tilde. So, C<$thing = "beep" . "boop"> is now C<$thing = "beep" ~
+"boop">.
+
+And, further on the subject of methods, many things that were only available
+as traditional function calls can now be used as methods. Obvious examples are
+functions that operate on arrays. C<pop(@a)> can now be done as C<@a.pop>,
+although the former still works.
