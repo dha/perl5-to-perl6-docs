@@ -19,9 +19,13 @@ state?
 Whatever
 Placeholder variables
 Memoization
-Lazy lists
+Lazy/Unbounded/Nonconsecutive lists
 Captures
 Adverbs?
 Code usable in double quoted strings
 FIRST and NEXT in loops
+Junctions
+Extended range operators
+Parallelization
+Hyperoperators
 
