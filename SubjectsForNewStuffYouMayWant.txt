@@ -28,4 +28,6 @@ Junctions
 Extended range operators
 Parallelization
 Hyperoperators
-
+modern extensible object model
+composable concurrency features
+consistent design
