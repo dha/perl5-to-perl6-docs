@@ -1,0 +1,65 @@
+DECRIPTION
+
+This document is a list of possible topics to put into a document describing
+what might be thought of as the esential changes from Perl 5 to Perl 6 that
+the typical programmer would need.
+
+~ is now the concat op
+Many functions can now be called as methods
+New range ops (^.. and friends)
+=> now makes Pairs - need explanation of Pairs?
+Quote and quotelike ops
+tr/// now uses range op for ranges. y/// is gone.
+Filetests?
+binmode on filehandles with :bin
+caller() now callframe()?
+chop and chomp now return rather than working in-place
+defined means something different
+each is now (sort of) .kv
+eof is *only* method?
+eval is now EVAL (and somewhat different)
+system() is now (sort of) shell() and run() and exec() is harder to replicate
+Formats are dead
+gmtime is now DateTime.now.utc?
+hex() is now :16, oct() is :8
+int() is now truncate() (or .Int)
+lcfirst is gone
+length() is now chars() or .chars
+argument order of link() and symlink() has changed
+__LINE__ is now $?LINE ?
+local() is now temp()
+localtime() replaced by DateTime methods
+pragmas can be no()'d, but not modules anymore
+Opening filehandles uses different file mode syntax
+pack() and unpack() have fewer template options
+package() is probably losing utility
+pos() is (sort of) replaced by :c
+Need a colon after the filehandle if specifying one in a print or say
+quotemeta() ?
+ref() can be replaced with $var.WHAT.perl but you shouldn't need it
+reverse() only works on lists. Reverse characters with .flip
+scalar() is gone
+sort() no longer uses $a and $b
+split() now treats strings and regexes differently
+@_ only works in the absense of a signature
+ucfirst() is gone, sort of replaced with tc()
+There is no undef in Perl 6
+use is currently undocumented
+wantarray is dead
+warn() now throws exception. Print error string with note()
+Call methods on $_ with .method
+Array methods no longer default to @_
+$0 is now $*PROGRAM_NAME ?
+@INC is now @*INC and has different format
+Match variables have changed
+$ARGV is now $*ARGFILES.filename
+@ARGV is now @*ARGS
+ARGV is now $*ARGFILES
+$. is replaced by the .ins method
+$/ replaced by the .nl method
+"Consider explaining the general form of changes.  For example, operators that
+had separate boolean and numeric forms became ?op and +op, and global special
+variables gained twigils indicating static compile time or dynamic runtime
+behavior."
+Mention that "no strict" does work, although "no warnings" doesn't?
+Perl::ToPerl6
