@@ -200,7 +200,7 @@ over by C<ff> and C<fff>, but are not clearly documented at this time.
 =head2 Conditional Operator
 X<operator, conditional> X<operator, ternary> X<ternary> X<?:>
 
-C<?:> has been changed to C<?? !!>. I. e. where you would have used C<$x = $ok
+C<?:> has been changed to C<?? !!>. I. e. where you would use C<$x = $ok
 ? $y : $z;> in Perl 5, you would use C<$x = $ok ?? $y !! $z;> in Perl 6.
 
 =head2 Assignment Operators

@@ -18,14 +18,14 @@ attempt to guide you from the functions in Perl 5's perlfunc document to
 their equivalents in Perl 6. For full documentation on the Perl 6
 equivalents, please see the Perl 6 documentation.
 
-One general comment: Perl 6 takes its objects a lot more seriously than
-Perl 5. In Perl 6, everything is an object, although the language is
-flexible enough to not force you to work in an object oriented manner if
-you so desire. What this does mean, however, is that a lot of things
-that used to be function calls of the form C<function(@args)> can now
-method calls of the form C<@args.function>. This should be obvious in
-the following text, but it probably behooves you to get into that frame
-of mind now.
+One general comment: Perl 6 takes its objects a lot more seriously
+than Perl 5. In Perl 6, everything is an object, although the language
+is flexible enough to not force you to work in an object oriented
+manner if you so desire. What this does mean, however, is that a lot
+of things that ar function calls of the form C<function(@args)> can
+now method calls of the form C<@args.function>. This should be obvious
+in the following text, but it probably behooves you to get into that
+frame of mind now.
 
 Also, unless otherwise stated, the use of the term "function" here will mean a
 function in the style of C<func(@args)>, while "method" will refer to a
@@ -164,22 +164,22 @@ look at C<proceed> and C<succeed>
 =item caller EXPR
 X<caller> X<call stack> X<stack> X<stack trace>
 
-[NEEDS FURTHER RESEARCH] What C<caller> used to do has been taken on by
-C<callframe>. However, a simple call to C<callframe> will be of little
-use, as it will return a CallFrame object, rather than any useful
+[NEEDS FURTHER RESEARCH] What C<caller> does in Perl 5 has been taken on
+by C<callframe>. However, a simple call to C<callframe> will be of
+little use, as it will return a CallFrame object, rather than any useful
 information. The filename and line number previously returned as the
 second and third values from C<caller>, are in C<callframe.annotations>.
 You would get them by using C<< callframe().annotations.<file line> >>
 or, individually with C<< callframe().annotations.<file> >> or C<<
-callframe().annotations.<line> >>. There does not seem to be a simple way of
-getting the package name out of C<callframe> though.
+callframe().annotations.<line> >>. There does not seem to be a simple
+way of getting the package name out of C<callframe> though.
 
 =item chdir EXPR
 X<chdir>
 X<cd>
 X<directory, change>
 
-Still seems to work as it used to.
+Still seems to work as it does in Perl 5.
 
 =item chmod LIST
 X<chmod> X<permission> X<mode>
@@ -290,9 +290,9 @@ C<my $deleted_value = %hash{$key}:delete;> and C<my $deleted_value =
 =item die LIST
 X<die> X<throw> X<exception> X<raise> X<$@> X<abort>
 
-Works similarly to the Perl 5 version, but Perl 6's Exception mechanism may
-give you more power and flexibility than was previously available. See
-L<http://doc.perl6.org/language/exceptions>.
+Works similarly to the Perl 5 version, but Perl 6's Exception mechanism
+may give you more power and flexibility than is available in Perl 5.
+See L<http://doc.perl6.org/language/exceptions>.
 
 =item do BLOCK
 X<do> X<block>
@@ -582,10 +582,11 @@ Still works. Can also now be used as a method: C<"howdy!".index("how"); # 0>
 =item int EXPR
 X<int> X<integer> X<truncate> X<trunc> X<floor>
 
-There is now a C<truncate> function (also usable as a method) that does what
-C<int> used to. You may want to use that as a direct translation of Perl 5
-code, but in Perl 6, you can just as easily call the C<.Int> method on the
-number. C<3.9.Int; # 3> and C<3.9.truncate> are equivalent.
+There is now a C<truncate> function (also usable as a method) that does
+what Perl 5's C<int> does. You may want to use that as a direct
+translation of Perl 5 code, but in Perl 6, you can just as easily call
+the C<.Int> method on the number. C<3.9.Int; # 3> and C<3.9.truncate>
+are equivalent.
 
 =item ioctl FILEHANDLE,FUNCTION,SCALAR
 X<ioctl>
@@ -843,13 +844,14 @@ X<package> X<module> X<namespace> X<version>
 =item package NAMESPACE VERSION BLOCK
 X<package> X<module> X<namespace> X<version>
 
-S10 indicates that C<package> can still be used, but only with a block. I. e.
-C<package Foo { ... }> would mean the code within the block would be in
-package Foo. There is a special case where a declaration of the form
-C<package Foo;> as the first statement in a file indicates that the rest
-of the file is Perl 5 code, but the usefulness of this is unclear. In fact, as
-modules and classes are declared with distinct keywords (such as C<class>),
-it's unlikely you will use C<package> directly in Perl 6.
+S10 indicates that C<package> can be used in Perl 6, but only with a
+block. I. e. C<package Foo { ... }> means that the code within the block
+would be in package Foo. There is a special case where a declaration of
+the form C<package Foo;> as the first statement in a file indicates that
+the rest of the file is Perl 5 code, but the usefulness of this is
+unclear. In fact, as modules and classes are declared with distinct
+keywords (such as C<class>), it's unlikely you will use C<package>
+directly in Perl 6.
 
 =item __PACKAGE__
 X<__PACKAGE__>
@@ -945,12 +947,12 @@ L<http://design.perl6.org/S05.html#Extensible_metasyntax_(%3C...%3E)>
 =item rand EXPR
 X<rand> X<random>
 
-C<rand> by itself still works as it used to, but you can no longer give it an
-argument. You can, however, use it as a method on a number to get that
-behavior. I. e. the Perl 5 C<rand(100)> is equivalent to C<100.rand> in Perl
-6. Additionally, you can get a random integer by using something like
-C<(^100).pick>. For I<why> you are able to do that, see
-L<http://doc.perl6.org/language/operators#prefix_%5E> and
+C<rand> by itself still works as it does in Perl 5, but you can no
+longer give it an argument. You can, however, use it as a method on a
+number to get that behavior. I. e. the Perl 5 C<rand(100)> is equivalent
+to C<100.rand> in Perl 6. Additionally, you can get a random integer by
+using something like C<(^100).pick>. For I<why> you are able to do that,
+see L<http://doc.perl6.org/language/operators#prefix_%5E> and
 L<http://doc.perl6.org/routine/pick>.
 
 =item read FILEHANDLE,SCALAR,LENGTH,OFFSET

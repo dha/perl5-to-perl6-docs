@@ -30,15 +30,15 @@ documents at L<http://design.perl6.org/> and input from the denizens of
 
 Perl 6 is still I<largely> free form. However, there are a few instances
 where the presence or lack of whitespace is now significant. For
-instance, in Perl 5, you could omit a space following a keyword (e. g.
+instance, in Perl 5, you can omit a space following a keyword (e. g.
 C<while($x < 5)> or C<my($x, $y)>). In Perl 6, that space is required,
 thus C<while ($x < 5)> or C<my ($x, $y)>. In Perl 6, however, you can
-omit the parentheses altogether: C<< while $x < 5 >>. This holds for C<if>,
-C<for>, etc.
+omit the parentheses altogether: C<< while $x < 5 >>. This holds for
+C<if>, C<for>, etc.
 
-Oddly, in Perl 5, you could leave spaces between an array or hash and its
-subscript, and before a postfix operator. So C<$seen {$_} ++> was valid. No
-more. That would now have to be C<%seen{$_}++>.
+Oddly, in Perl 5, you can leave spaces between an array or hash and its
+subscript, and before a postfix operator. So C<$seen {$_} ++> is valid.
+No more. That would now have to be C<%seen{$_}++>.
 
 If it makes you feel better, you can use backslashes to "unspace" whitespace,
 so you can use whitespace where it would otherwise be forbidden.
@@ -150,7 +150,7 @@ completely: C<loop {...}>
 =head2 Foreach Loops
 X<for> X<foreach>
 
-In Perl 5, C<for>, in addition to being used for C-style C<for> loops, was a
+In Perl 5, C<for>, in addition to being used for C-style C<for> loops, is a
 synonym for C<foreach>. In Perl 6, C<for> is just used for C<foreach> style
 loops.
 
