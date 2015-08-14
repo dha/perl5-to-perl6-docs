@@ -27,7 +27,6 @@ denizens of #perl6 on irc.freenode.org
 =item $ARG
 
 =item $_
-X<$_> X<$ARG>
 
 
 Still, thankfully, the general default variable. The main difference in Perl 6
@@ -39,7 +38,6 @@ can also be achieved by using C<.say>.
 =item @ARG
 
 =item @_
-X<@_> X<@ARG>
 
 As Perl 6 now has function signatures, your arguments can go there, rather
 than depending on C<@_> for them. In fact, if you use a function signature, use
@@ -54,7 +52,6 @@ C<.shift> does not.
 =item $LIST_SEPARATOR
 
 =item $"
-X<$"> X<$LIST_SEPARATOR>
 
 Currently, there is no equivalent of the List Separator variable in Perl 6.
 Design document S28 says there isn't one, so you probably don't want to hold
@@ -65,13 +62,11 @@ your breath.
 =item $PID
 
 =item $$
-X<$$> X<$PID> X<$PROCESS_ID>
 
 C<$$> is replaced in Perl 6 by C<$*PID>
 
 =item $PROGRAM_NAME
 =item $0
-X<$0> X<$PROGRAM_NAME>
 
 You can access the program name in Perl 6 via C<$*PROGRAM_NAME>.
 
@@ -83,7 +78,6 @@ match (i. e. capture variables now start from $0 rather than $1).
 =item $GID
 
 =item $(
-X<$(> X<$GID> X<$REAL_GROUP_ID>
 
 The real group id is provided by C<$*GROUP.Numeric> in Perl 6. C<$*GROUP.Str> will
 return the group name, rather than its number.
@@ -93,7 +87,6 @@ return the group name, rather than its number.
 =item $EGID
 
 =item $)
-X<$)> X<$EGID> X<$EFFECTIVE_GROUP_ID>
 
 The effective group id does not appear to be currently provided by Perl 6.
 
@@ -102,7 +95,6 @@ The effective group id does not appear to be currently provided by Perl 6.
 =item $UID
 
 =item $<
-X<< $< >> X<$UID> X<$REAL_USER_ID>
 
 The real user id is provided by C<$*USER.Numeric> in Perl 6. C<$*USER.Str> will
 return the user name, rather than its number.
@@ -112,7 +104,6 @@ return the user name, rather than its number.
 =item $EUID
 
 =item $>
-X<< $> >> X<$EUID> X<$EFFECTIVE_USER_ID>
 
 The effective user id does not appear to be currently provided by Perl 6.
 
@@ -121,7 +112,6 @@ The effective user id does not appear to be currently provided by Perl 6.
 =item $SUBSEP
 
 =item $;
-X<$;> X<$SUBSEP> X<$SUBSCRIPT_SEPARATOR>
 
 The subscript separator variable is not included in Perl 6. Frankly, if your
 Perl 5 code is using this, it's almost certainly really, really old.
@@ -129,7 +119,6 @@ Perl 5 code is using this, it's almost certainly really, really old.
 =item $a
 
 =item $b
-X<$a> X<$b>
 
 C<$a> and C<$b> no longer have special meaning in Perl 6. C<sort()> no
 longer uses them. They're just regular old variables.
@@ -156,7 +145,6 @@ in the order C<($^a, $^q, $^z)>. Ergo:
 For more on placeholder variables, see
 L<http://doc.perl6.org/language/variables#The_%5E_Twigil>
 =item %ENV
-X<%ENV>
 
 %ENV has been replaced by %*ENV in Perl 6. Note that the keys of this hash may
 not be exactly the same between Perl 5 and Perl 6. As of this writing, the
@@ -165,7 +153,6 @@ only difference seems to be that OLDPWD is missing from Perl 6's %ENV.
 =item $OLD_PERL_VERSION
 
 =item $]
-X<$]> X<$OLD_PERL_VERSION>
 
 The version of the perl is returned by C<$*PERL.version>. As of this writing,
 that is "vunknown", which may be less than useful. For the record, C<$*PERL>
@@ -180,7 +167,6 @@ become C<$*SYS_FD_MAX>, this has not yet been implemented.
 
 
 =item @F
-X<@F>
 
 [NEEDS FURTHER RESEARCH] A bit confusing at this point. Design doc S28
 indicates that C<@F> in Perl 5 is replaced by C<@_> in Perl 6, but it's
@@ -189,7 +175,6 @@ moot point, as the Perl 5 to Perl 6 Translation doc indicates that the C<-a>
 and <-F> command-line switches are not yet implemented in rakudo.
 
 =item @INC
-X<@INC>
 
 [NEEDS FURTHER RESEARCH] If you've been following along, it will
 probably not surprise you that this has become C<@*INC>. The Perl 6 docs
@@ -200,7 +185,6 @@ is prefixed with either C<file#> or C<inst#>. Presumably this will become
 clear when documentation for CompUnitRepo shows up.
 
 =item %INC
-X<%INC>
 
 [NEEDS FURTHER RESEARCH] No longer exists. S28 says it is "encapsulated
 in CompUnitRepo object" which, as with C<@INC> raises the question of
@@ -209,7 +193,6 @@ what that means.
 =item $INPLACE_EDIT
 
 =item $^I
-X<$^I> X<$INPLACE_EDIT>
 
 S28 suggests $*INPLACE_EDIT, but it does not yet seem to exist.
 
@@ -220,7 +203,6 @@ S28 suggests $*EMERGENCY_MEMORY, but it does not yet seem to exist.
 =item $OSNAME
 
 =item $^O
-X<$^O> X<$OSNAME>
 
 This is somewhat unclear. It probably depends on what you mean by "the name of
 the operating system" as S28 has three different suggestions, all of which
@@ -238,7 +220,6 @@ gives "moar (2015.5.63.ge.7.a.473.c)"), but I'm unclear how the VM
 relates at all to the operating system.
 
 =item %SIG
-X<%SIG>
 
 [NEEDS FURTHER RESEARCH] No equivalent variable. S28 indicates that this
 functionality is dealt with in Perl 6 by event filters and exception
@@ -247,7 +228,6 @@ translation.
 =item $BASETIME
 
 =item $^T
-X<$^T> X<$BASETIME>
 
 Replaced in Perl 6 by C<$*INITITME>. Unlike in Perl 5, this is not in seconds
 since epoch, but an C<Instant> object, which is measured in atomic seconds,
@@ -256,19 +236,16 @@ with fractions.
 =item $PERL_VERSION
 
 =item $^V
-X<$^V> X<$PERL_VERSION>
 
 As with C<$]> this has been replaced with C<$PERL.version>.
 
 =item ${^WIN32_SLOPPY_STAT}
-X<${^WIN32_SLOPPY_STAT}>
 
 There does not seem to be any analog to this in Perl 6.
 
 =item $EXECUTABLE_NAME
 
 =item $^X
-X<$^X> X<$EXECUTABLE_NAME>
 
 This has been replaced by C<$*EXECUTABLE_NAME>. Confusingly, the Perl 6
 Variables doc says "Favor $*EXECUTABLE because it is not guaranteed that the
@@ -285,7 +262,6 @@ variations on C<$/> and, with their elimination, the associated performance
 issues no longer apply.
 
 =item $<I<digits>> ($1, $2, ...)
-X<$1> X<$2> X<$3>
 
 These existing variables do the same thing in Perl 6 as they do in Perl 5,
 except that they now start at C<$0> rather than C<$1>. Furthermore, they are
@@ -295,14 +271,12 @@ to C<$/[0]>, C<$1> is equivalent to C<$/[1]>, etc.
 =item $MATCH
 
 =item $&
-X<$&> X<$MATCH>
 
 C<$/> now contains the match object, so the old behavior of C<$&> can be
 obtained by stringifying it, i. e. C<~$/>. C<$/.Str> also should work, but
 C<~$/> seems to be the consensus preference.
 
 =item ${^MATCH}
-X<${^MATCH}>
 
 Since the former performance issues are done away with, this variable is no
 longer of use.
@@ -310,12 +284,10 @@ longer of use.
 =item $PREMATCH
 
 =item $`
-X<$`> X<$PREMATCH>
 
 Replaced by C<$/.prematch>.
 
 =item ${^PREMATCH}
-X<$`> X<${^PREMATCH}>
 
 Since the former performance issues are done away with, this variable is no
 longer of use.
@@ -323,12 +295,10 @@ longer of use.
 =item $POSTMATCH
 
 =item $'
-X<$'> X<$POSTMATCH>
 
 Replaced by C<$/.postmatch>.
 
 =item ${^POSTMATCH}
-X<${^POSTMATCH}>
 
 Since the former performance issues are done away with, this variable is no
 longer of use.
@@ -336,7 +306,6 @@ longer of use.
 =item $LAST_PAREN_MATCH
 
 =item $+
-X<$+> X<$LAST_PAREN_MATCH>
 
 No longer exists, but you can get the same information using C<$/[*-1].Str>
 (C<$/[*-1]> would be the match object, not the actual string).
@@ -356,7 +325,6 @@ If you want to I<understand> why that works, you can look at these documents:
 =item $LAST_SUBMATCH_RESULT
 
 =item $^N
-X<$^N> X<$LAST_SUBMATCH_RESULT>
 
 S28 suggests C<$*MOST_RECENT_CAPTURED_MATCH>, but there does not seem to be
 any implemented variable that matches C<$^N>.
@@ -364,7 +332,6 @@ any implemented variable that matches C<$^N>.
 =item @LAST_MATCH_END
 
 =item @+
-X<@+> X<@LAST_MATCH_END>
 
 As with most regular expression related variables, this functionality is, at
 least in part, moved to the C<$/> variable. Or, in this case, the numbered
@@ -376,7 +343,6 @@ C<$/.to>.
 =item %LAST_PAREN_MATCH
 
 =item %+
-X<%+> X<%LAST_PAREN_MATCH>
 
 Once again, we move over to C<$/>. The former C<$+{$match}> is now
 C<$/{$match}>.
@@ -384,7 +350,6 @@ C<$/{$match}>.
 =item @LAST_MATCH_START
 
 =item @-
-X<@-> X<@LAST_MATCH_START>
 
 Similarly to C<@+> being replaced by using the C<.to> method, C<@-> is
 now replaced by using the C<.from> method on C<$/> and its variations.
@@ -395,48 +360,40 @@ former C<$-[0]> is now C<$/.from>.
 =item %LAST_MATCH_START
 
 =item %-
-X<%-> X<%LAST_MATCH_START>
 
 Much like C<%+>, a use of C<%-{$match}> would be replaced with C<$/{$match}>.
 
 =item $LAST_REGEXP_CODE_RESULT
 
 =item $^R
-X<$^R> X<$LAST_REGEXP_CODE_RESULT>
 
 S28 suggests C<$*LAST_REGEXP_CODE_RESULT>, but no variable seems to actually
 exist yet.
 
 =item ${^RE_DEBUG_FLAGS}
-X<${^RE_DEBUG_FLAGS}>
 
 No equivalent.
 
 =item ${^RE_TRIE_MAXBUF}
-X<${^RE_TRIE_MAXBUF}>
 
 No equivalent.
 
 =head2 Variables related to filehandles
 
 =item $ARGV
-X<$ARGV>
 
 The name of the current file when reading lines can be obtained through
 C<$*ARGFILES.filename>.
 
 =item @ARGV
-X<@ARGV>
 
 C<@*ARGS> contains the command line arguments.
 
 =item ARGV
-X<ARGV>
 
 This has been replaced by C<$*ARGFILES>.
 
 =item ARGVOUT
-X<ARGVOUT>
 
 As the C<-i> command line switch has not yet been implemented, there is not
 yet an equivalent of C<ARGVOUT>.
@@ -446,7 +403,6 @@ yet an equivalent of C<ARGVOUT>.
 =item $OFS
 
 =item $,
-X<$,> X<$OFS> X<$OUTPUT_FIELD_SEPARATOR>
 
 Currently no obvious equivalent.
 
@@ -455,7 +411,6 @@ Currently no obvious equivalent.
 =item $NR
 
 =item $.
-X<$.> X<$NR> X<$INPUT_LINE_NUMBER> X<line number>
 
 The current line number is returned by the C<.ins> method on the appropriate
 filehandle. E. g. C<$*IN.ins>.
@@ -465,7 +420,6 @@ filehandle. E. g. C<$*IN.ins>.
 =item $RS
 
 =item $/
-X<$/> X<$RS> X<$INPUT_RECORD_SEPARATOR>
 
 This is now accessed through the C<.nl> method on the filehandle. E. g.
 C<$*IN.nl>.
@@ -475,7 +429,6 @@ C<$*IN.nl>.
 =item $ORS
 
 =item $\
-X<$\> X<$ORS> X<$OUTPUT_RECORD_SEPARATOR>
 
 [NEEDS FURTHER RESEARCH] The <.nl> method on the filehandle (e. g.
 C<$*OUT.nl>) I<appears> to give the output record separator, but this is
@@ -484,12 +437,10 @@ currently not clear.
 =item $OUTPUT_AUTOFLUSH
 
 =item $|
-X<$|> X<$OUTPUT_AUTOFLUSH>
 
 Currently autoflush is not implemented in Perl 6.
 
 =item ${^LAST_FH}
-X<${^LAST_FH}>
 
 Not implemented in Perl 6.
 
@@ -498,7 +449,6 @@ Not implemented in Perl 6.
 There are no formats in Perl 6.
 
 =head2 Error Variables
-X<error> X<exception>
 
 Because of how error variables have changed in Perl 6, I will not detail the
 changes individually.
@@ -515,32 +465,25 @@ anything. Hopefully there will be more information in the near future.
 =item $COMPILING
 
 =item $^C
-X<$^C> X<$COMPILING>
 
 =item $^D
-X<$^D> X<$DEBUGGING>
 
 Currently no equivalents for either of these variables.
 
 =item ${^ENCODING}
-X<${^ENCODING}>
 
 Although deprecated in Perl 5, this may have some sort of equivalent in
 C<$?ENC>, but this is far from clear.
 
-BAL_PHASE}
-X<${^GLOBAL_PHASE}>
+=item ${^GLOBAL_PHASE}
 
 No Perl 6 equivalent.
 
 =item $^H
-X<$^H>
 
 =item %^H
-X<%^H>
 
 =item ${^OPEN}
-X<${^OPEN}>
 
 There may or may not be equivalents of these in Perl 6, but they're internal
 and you shouldn't be messing with them in the first place - certainly not if
@@ -549,25 +492,20 @@ your understanding of Perl 6 requires you to read this document...
 =item $PERLDB
 
 =item $^P
-X<$^P> X<$PERLDB>
 
 The chance of the Perl 6 debugger resembling the Perl 5 debugger is slim
 at best, and at this point there does not seem to be an equivalent of
 this variable.
 
 =item ${^TAINT}
-X<${^TAINT}>
 
 S28 claims this variable is "pending". Not currently in Perl 6.
 
 =item ${^UNICODE}
-X<${^UNICODE}>
 
 =item ${^UTF8CACHE}
-X<${^UTF8CACHE}>
 
 =item ${^UTF8LOCALE}
-X<${^UTF8LOCALE}>
 
 These Unicode-related variables do not appear to exist in Perl 6, but -
 maybe? - could have analogs in C<$?ENC> somewhere. This, however, is

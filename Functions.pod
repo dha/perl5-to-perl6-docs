@@ -1,7 +1,6 @@
 =begin pod
 
 =head1 NAME
-X<function>
 
 perlfunc - Perl builtin functions
 
@@ -40,8 +39,6 @@ of #perl6 on irc.freenode.org
 =head2 Alphabetical Listing of Perl Functions
 
 =item -X FILEHANDLE
-X<-r>X<-w>X<-x>X<-o>X<-R>X<-W>X<-X>X<-O>X<-e>X<-z>X<-s>X<-f>X<-d>X<-l>X<-p>
-X<-S>X<-b>X<-c>X<-t>X<-u>X<-g>X<-k>X<-T>X<-B>X<-M>X<-A>X<-C>
 
 =item -X EXPR
 
@@ -95,7 +92,6 @@ L<http://doc.perl6.org/language/io>. Also, the section on C<open()> below may be
 helpful.
 
 =item abs VALUE
-X<abs> X<absolute>
 
 Still works as a function (C<abs($x)>), but also as a method. One gotcha,
 however - method calls bind more tightly than C<->, so, for example,
@@ -107,16 +103,12 @@ function, and as a method you need to call it as C<.abs> rather than simply
 C<abs>.
 
 =item accept NEWSOCKET,GENERICSOCKET
-X<accept>
 
 C<accept> is now a method you can call on a server, e. g. C<$server.accept()>.
 Instead of returning a packed address, it returns a socket, most likely an
 IO::Socket object of some sort.
 
 =item alarm SECONDS
-X<alarm>
-X<SIGALRM>
-X<timer>
 
 [NEEDS FURTHER RESEARCH] C<alarm()> is no more. It has been
 suggested that a replacement may be somewhere in the new Concurrency
@@ -124,7 +116,6 @@ features, such as C<Promise.in>, but some digging may be needed to
 find a true analog.
 
 =item atan2 Y,X
-X<atan2> X<arctangent> X<tan> X<tangent>
 
 Still available as a function as well as now being able to be used as a
 method. For instance, these are equivalent:
@@ -133,7 +124,6 @@ C<atan2(100)>
 C<100.atan2>
 
 =item bind SOCKET,NAME
-X<bind>
 
 [NEEDS FURTHER RESEARCH] No sign of a socket-related C<bind()> in Perl 6. At a
 guess, whatever socket binding is needed happens when you create a new socket
@@ -145,7 +135,6 @@ Instead of this, you would now use C<:bin> as the file mode when opening the
 socket. E. g. C<my $fh = open("path/to/file", :bin);>
 
 =item bless REF,CLASSNAME
-X<bless>
 
 With the changes in class creation in Perl 6, this may find less use, and is
 now a method. The Perl 6 docs say "Creates a new object of the same type as
@@ -162,7 +151,6 @@ look at C<proceed> and C<succeed>
 (L<http://doc.perl6.org/language/control#proceed_and_succeed>).
 
 =item caller EXPR
-X<caller> X<call stack> X<stack> X<stack trace>
 
 [NEEDS FURTHER RESEARCH] What C<caller> does in Perl 5 has been taken on
 by C<callframe>. However, a simple call to C<callframe> will be of
@@ -175,21 +163,16 @@ callframe().annotations.<line> >>. There does not seem to be a simple
 way of getting the package name out of C<callframe> though.
 
 =item chdir EXPR
-X<chdir>
-X<cd>
-X<directory, change>
 
 Still seems to work as it does in Perl 5.
 
 =item chmod LIST
-X<chmod> X<permission> X<mode>
 
 Still can function as under Perl 5, with the change that octal numbers are now
 represented differently (C<0o755> rather than C<0755>). You may also use it as
 a method, e. g. C<$fh.chmod(0o755)>.
 
 =item chomp VARIABLE
-X<chomp> X<INPUT_RECORD_SEPARATOR> X<$/> X<newline> X<eol>
 
 The behavior of C<chomp> has changed. It now leaves the target unaffected and
 I<returns> the target with a final logical newline removed. I. e. C<$x =
@@ -197,19 +180,16 @@ I<returns> the target with a final logical newline removed. I. e. C<$x =
 containing "howdy". Can also now be used as a method, i. e. C<$y = $x.chomp>.
 
 =item chop VARIABLE
-X<chop>
 
 As with C<chomp>, now returns the chopped string, rather than chopping in
 place. I. e. C<$x = "howdy";$y = chop($x);> results in C<$x> being "howdy" and
 C<$y> being "howd". Can also be used as a method: C<$y = $x.chop>
 
 =item chown LIST
-X<chown> X<owner> X<user> X<group>
 
 C<chown> is no longer in Perl 6.
 
 =item chr NUMBER
-X<chr> X<character> X<ASCII> X<Unicode>
 
 Similar to the Perl 5 version, coerces the target to an integer, and uses that
 as a Unicode code point to return the relevant character. Can be used as a
@@ -219,30 +199,25 @@ C<chr(65); # "A">
 C<65.chr;  # "A">
 
 =item chroot FILENAME
-X<chroot> X<root>
 
 Apparently this is no longer in Perl 6.
 
 =item close FILEHANDLE
-X<close>
 
 Still closes a filehandle. Returns a boolean value. Both C<close $fh> and
 C<$fh.close> will work.
 
 =item closedir DIRHANDLE
-X<closedir>
 
 Currently, there is no C<closedir> function. When it is implemented, it may
 well be a method in the IO::Dir class.
 
 =item connect SOCKET,NAME
-X<connect>
 
 Not clearly documented, but it appears that C<connect> will now be a method
 you would call on some variety of IO::Socket object.
 
 =item continue BLOCK
-X<continue>
 
 =item continue
 
@@ -250,29 +225,23 @@ Instead of a C<continue> block, you should use a C<NEXT> block. The closest
 analog to a bare C<continue;> appears to be C<proceed>/C<succeed>.
 
 =item cos EXPR
-X<cos> X<cosine> X<acos> X<arccosine>
 
 Still works as in Perl 5, but can be also used as a method, i. e.
 C<(1/60000).cos>.
 
 =item crypt PLAINTEXT,SALT
-X<crypt> X<digest> X<hash> X<salt> X<plaintext> X<password>
-X<decrypt> X<cryptography> X<passwd> X<encrypt>
 
 This appears not to have made it into Perl 6.
 
 =item dbmclose HASH
-X<dbmclose>
 
 =item dbmopen HASH,DBNAME,MASK
-X<dbmopen> X<dbm> X<ndbm> X<sdbm> X<gdbm>
 
 These functions have largely been superseded in Perl 5, and are unlikely to
 ever turn up in Perl 6 (although any assumptions about the Perl 6 database
 implementation may be premature).
 
 =item defined EXPR
-X<defined> X<undef> X<undefined>
 
 Probably still does what you expect, but technically it returns C<False> on
 the type object, and true otherwise. This may make more sense when you realize
@@ -281,37 +250,31 @@ and the assigned value if you have. Can, of course be used as a method:
 C<$num.defined>
 
 =item delete EXPR
-X<delete>
 
 Replaced by the new adverb syntax, specifically the C<:delete> adverb. E. g.
 C<my $deleted_value = %hash{$key}:delete;> and C<my $deleted_value =
 @array[$i]:delete;>.
 
 =item die LIST
-X<die> X<throw> X<exception> X<raise> X<$@> X<abort>
 
 Works similarly to the Perl 5 version, but Perl 6's Exception mechanism
 may give you more power and flexibility than is available in Perl 5.
 See L<http://doc.perl6.org/language/exceptions>.
 
 =item do BLOCK
-X<do> X<block>
 
 Similar to the Perl 5 version. Note that there must be a space between the
 C<do> and the block.
 
 =item do EXPR
-X<do>
 
 Has been replaced by C<EVALFILE>.
 
 =item dump LABEL
-X<dump> X<core> X<undump>
 
 According to S29, C<dump> has been... dumped.
 
 =item each HASH
-X<each> X<hash, iterator>
 
 There is no exact equivalent. The closest is probably <%hash.kv> which returns
 a list of keys and values. Ergo: C<for %hash.kv -> $k, $v { #do stuff with $k
@@ -327,30 +290,21 @@ information at
 L<https://en.wikibooks.org/wiki/Perl_6_Programming/Blocks_and_Closures#Pointy_Blocks>
 
 =item eof FILEHANDLE
-X<eof>
-X<end of file>
-X<end-of-file>
 
 No longer usable as a function, but only as a method. I. e.
 C<$filehandle.eof>. Returns C<True> if at end of file.
 
 =item eval EXPR
-X<eval> X<try> X<catch> X<evaluate> X<parse> X<execute>
-X<error, handling> X<exception, handling>
 
 =item eval EXPR
-X<eval> X<try> X<catch> X<evaluate> X<parse> X<execute>
-X<error, handling> X<exception, handling>
 
 Replaced by C<EVAL>. Note that C<EVAL> does not do any exception handling!
 
 =item evalbytes EXPR
-X<evalbytes>
 
 No longer seems to exist.
 
 =item exec LIST
-X<exec> X<execute>
 
 Nothing in Perl 6 exactly replicates C<exec>. C<shell> and C<run> are similar
 to Perl 5's C<system>, but C<exec>'s behavior of not returning after executing
@@ -358,7 +312,6 @@ a system command would have to be emulated by something like
 C<shell($command);exit();> or possibly C<exit shell($command);>
 
 =item exists EXPR
-X<exists> X<autovivification>
 
 Has been moved from a function to an adverb:
 
@@ -366,92 +319,69 @@ C<%hash{$key}:exists;>
 C<@array[$i]:exists;>
 
 =item exit EXPR
-X<exit> X<terminate> X<abort>
 
 Appears to do the same thing as in Perl 5.
 
 =item exp EXPR
-X<exp> X<exponential> X<antilog> X<antilogarithm> X<e>
 
 Same as in Perl 5, but can also be used as a method: C<5.exp>;
 
 =item fc EXPR
-X<fc> X<foldcase> X<casefold> X<fold-case> X<case-fold>
 
 Looks like it would do the same thing as in Perl 5... if it were implemented.
 
 =item fcntl FILEHANDLE,FUNCTION,SCALAR
-X<fcntl>
 
 Appears not to be in Perl 6.
 
 =item __FILE__
-X<__FILE__>
 
 Replaced by C<$?FILE>.
 
 =item fileno FILEHANDLE
-X<fileno>
 
 S32 indicates that this should be available as a method, but appears currently
 unimplemented.
 
 =item flock FILEHANDLE,OPERATION
-X<flock> X<lock> X<locking>
 
 Currently unimplemented.
 
 =item fork
-X<fork> X<child> X<parent>
 
 Not implemented as a built in function, but available through the
 C<NativeCall> interface. E. g. C<use NativeCall; sub fork returns int32 is
 native { * }; say fork;>.
 
 =item format
-X<format>
 
 =item formline PICTURE,LIST
-X<formline>
 
 Perl 6 no longer has formats.
 
 =item getc FILEHANDLE
-X<getc> X<getchar> X<character> X<file, read>
 
 Still reads a single character from the input stream. May now also be used as
 a method: C<$filehandle.getc>
 
 =item getlogin
-X<getlogin> X<login>
 
 S29 lists it, but it does not seem to be yet implemented.
 
 =item getpeername SOCKET
-X<getpeername> X<peer>
 
 S29 lists it, but the implementation does not seem clear or, for that matter,
 implemented.
 
 =item getpgrp PID
-X<getpgrp> X<group>
 
 Does not appear to be implemented.
 
 =item getpriority WHICH,WHO
-X<getpriority> X<priority> X<nice>
 
 Does not appear to be implemented.
 
 =item getpwnam NAME
-X<getpwnam> X<getgrnam> X<gethostbyname> X<getnetbyname> X<getprotobyname>
-X<getpwuid> X<getgrgid> X<getservbyname> X<gethostbyaddr> X<getnetbyaddr>
-X<getprotobynumber> X<getservbyport> X<getpwent> X<getgrent> X<gethostent>
-X<getnetent> X<getprotoent> X<getservent> X<setpwent> X<setgrent>
-X<sethostent>
-X<setnetent> X<setprotoent> X<setservent> X<endpwent> X<endgrent>
-X<endhostent>
-X<endnetent> X<endprotoent> X<endservent> 
 
 =item getgrnam NAME
 
@@ -515,28 +445,23 @@ X<endnetent> X<endprotoent> X<endservent>
 by roles like User, Group, etc.
 
 =item getsockname SOCKET
-X<getsockname>
 
 =item getsockopt SOCKET,LEVEL,OPTNAME
-X<getsockopt>
 
 [NEEDS FURTHER RESEARCH] These are likely implemented by some kind of
 IO::Socket object, but details are unclear.
 
 =item glob EXPR
-X<glob> X<wildcard> X<filename, expansion> X<expand>
 
 Used in an example in S32, but apparently unimplemented.
 
 =item gmtime EXPR
-X<gmtime> X<UTC> X<Greenwich>
 
 Like the various parts of C<localtime>, C<gmtime>'s functionality now appears
 to in the C<DateTime> object. To get a UTC version of a C<DateTime> object for
 the current time, for instance, use C<my $gmtime = DateTime.now.utc>.
 
 =item goto LABEL
-X<goto> X<jump> X<jmp>
 
 =item goto EXPR
 
@@ -545,7 +470,6 @@ X<goto> X<jump> X<jmp>
 [NEEDS FURTHER RESEARCH] Described in S04, but not yet fully documented.
 
 =item grep BLOCK LIST
-X<grep>
 
 =item grep EXPR,LIST
 
@@ -554,7 +478,6 @@ the block. I.e. C<@foo = grep { $_ = "bars" }, @baz>. Can also be used as a
 method: C<@foo = @bar.grep(/^f/)>
 
 =item hex EXPR
-X<hex> X<hexadecimal>
 
 Replaced by the adverbial form C<:16>. E. g. C<:16("aF")> returns 175.
 
@@ -566,7 +489,6 @@ It just so happens that C<.Str> defaults to base 10, so if you just C<say
 probably isn't the best way to go for this.
 
 =item import LIST
-X<import>
 
 Was never a builtin function in the first place. In Perl 6, typically, one
 declares functions as exportable or not, and all the exportable ones are
@@ -575,12 +497,10 @@ of this document. For details, see
 L<http://doc.perl6.org/language/5to6#Importing_specific_functions_from_a_module>.
 
 =item index STR,SUBSTR,POSITION
-X<index> X<indexOf> X<InStr>
 
 Still works. Can also now be used as a method: C<"howdy!".index("how"); # 0>
 
 =item int EXPR
-X<int> X<integer> X<truncate> X<trunc> X<floor>
 
 There is now a C<truncate> function (also usable as a method) that does
 what Perl 5's C<int> does. You may want to use that as a direct
@@ -589,29 +509,24 @@ the C<.Int> method on the number. C<3.9.Int; # 3> and C<3.9.truncate>
 are equivalent.
 
 =item ioctl FILEHANDLE,FUNCTION,SCALAR
-X<ioctl>
 
 Currently unimplemented in Perl 6.
 
 =item join EXPR,LIST
-X<join>
 
 Still works, and now works as a method: C<@x.join(",")>
 
 =item keys HASH
-X<keys> X<key>
 
 Works as before, and can also be used as a method: C<%hash.keys>
 
 =item kill SIGNAL, LIST
 
 =item kill SIGNAL
-X<kill> X<signal>
 
 Now part of the C<Proc::ASync> class, but looks to work as before.
 
 =item last LABEL
-X<last> X<break>
 
 =item last EXPR
 
@@ -620,46 +535,38 @@ X<last> X<break>
 Unchanged in Perl 6.
 
 =item lc EXPR
-X<lc> X<lowercase>
 
 Works as before and also as a method: C<"UGH".lc>
 
 =item lcfirst EXPR
-X<lcfirst> X<lowercase>
 
 Gone from Perl 6.
 
 =item length EXPR
-X<length> X<size>
 
 Replaced by C<chars>, typically used as a method (C<$string.chars>), but still
 works as a function.
 
 =item __LINE__
-X<__LINE__>
 
 Replaced by C<$?LINE>.
 
 =item link OLDFILE,NEWFILE
-X<link>
 
 Now part of IO::Path. The only difference between Perl 5 and Perl 6 is
 that the argument order has changed. It's now
 C<link($original, $linked_file)>.
 
 =item listen SOCKET,QUEUESIZE
-X<listen>
 
 Not clearly documented, but it appears that C<listen> will now be a method
 you would call on some variety of IO::Socket object.
 
 =item local EXPR
-X<local>
 
 The Perl 6 equivalent is C<temp>.
 
 =item localtime EXPR
-X<localtime> X<ctime>
 
 Most of the functionality of C<localtime> is now found in C<DateTime>. The
 specific parts of C<localtime> can be found as follows:
@@ -686,18 +593,15 @@ result of C<scalar(localtime)> is not available. C<$d.Str> will give something
 along the lines of "2015-06-29T12:49:31-04:00".
 
 =item lock THING
-X<lock>
 
 Now a method in the C<Lock> class.
 
 =item log EXPR
-X<log> X<logarithm> X<e> X<ln> X<base>
 
 Still in Perl 6. Also available as a method. I. e. C<log(2)> is equivalent to
 C<2.log>.
 
 =item lstat FILEHANDLE
-X<lstat>
 
 =item lstat EXPR
 
@@ -718,7 +622,6 @@ and are complicated. for details, see
 L<http://doc.perl6.org/language/regexes#Adverbs>
 
 =item map BLOCK LIST
-X<map>
 
 =item map EXPR,LIST
 
@@ -727,7 +630,6 @@ must be followed by a comma. Can also be used now as a method: C<@new =
 @old.map: { $_ * 2 }>
 
 =item mkdir FILENAME,MASK
-X<mkdir> X<md> X<directory, create>
 
 =item mkdir FILENAME
 
@@ -736,21 +638,16 @@ X<mkdir> X<md> X<directory, create>
 Still available in Perl 6.
 
 =item msgctl ID,CMD,ARG
-X<msgctl>
 
 =item msgget KEY,FLAGS
-X<msgget>
 
 =item msgrcv ID,VAR,SIZE,TYPE,FLAGS
-X<msgrcv>
 
 =item msgsnd ID,MSG,FLAGS
-X<msgsnd>
 
 No longer builtins. May appear in an external module at some point. Maybe.
 
 =item my VARLIST
-X<my>
 
 =item my TYPE VARLIST
 
@@ -761,7 +658,6 @@ X<my>
 Still in Perl 6.
 
 =item next LABEL
-X<next> X<continue>
 
 =item next EXPR
 
@@ -786,7 +682,6 @@ moot point, I would guess not.
 Replaced by the adverbial form C<:8>. E. g. C<:8("100")> returns 64.
 
 =item open FILEHANDLE,EXPR
-X<open> X<pipe> X<file, open> X<fopen>
 
 =item open FILEHANDLE,MODE,EXPR
 
@@ -803,7 +698,6 @@ options for encoding and how the filehandle deals with newlines. Details at
 L<http://doc.perl6.org/routine/open>.
 
 =item opendir DIRHANDLE,EXPR
-X<opendir>
 
 No longer a builtin function. You would use the IO::Path class:
 
@@ -812,12 +706,10 @@ C<my $dir = IO::Path.new("directory")>
 C<my $dir = "directory".IO; # Same, but probably more direct>
 
 =item ord EXPR
-X<ord> X<encoding>
 
 Same. May be used as a method: C<"howdy!".ord; # 104>
 
 =item our VARLIST
-X<our> X<global>
 
 =item our TYPE VARLIST
 
@@ -828,7 +720,6 @@ X<our> X<global>
 Still in Perl 6.
 
 =item pack TEMPLATE,LIST
-X<pack>
 
 Still in Perl 6. The template options are currently more restricted than they
 are in Perl 5. The current documented list can be found at
@@ -837,12 +728,10 @@ L<http://doc.perl6.org/routine/unpack>.
 =item package NAMESPACE
 
 =item package NAMESPACE VERSION
-X<package> X<module> X<namespace> X<version>
 
 =item package NAMESPACE BLOCK
 
 =item package NAMESPACE VERSION BLOCK
-X<package> X<module> X<namespace> X<version>
 
 S10 indicates that C<package> can be used in Perl 6, but only with a
 block. I. e. C<package Foo { ... }> means that the code within the block
@@ -854,31 +743,26 @@ keywords (such as C<class>), it's unlikely you will use C<package>
 directly in Perl 6.
 
 =item __PACKAGE__
-X<__PACKAGE__>
 
 Replaced by C<$?PACKAGE>.
 
 =item pipe READHANDLE,WRITEHANDLE
-X<pipe>
 
 Probably replaced by something in the C<IO::Pipe> class, but this is not
 clearly documented.
 
 =item pop ARRAY
-X<pop> X<stack>
 
 Still works, and can also be used as a method. I. e. C<my $x = pop @a;> and
 C<my $x = @a.pop;> are equivalent.
 
 =item pos SCALAR
-X<pos> X<match, position>
 
 No longer in Perl 6. The closest equivalent is the C<:c> adverb, which defaults
 to C<$/.to> if C<$/> is true, and C<0> if it isn't. For information on C<:c>,
 see L<http://doc.perl6.org/language/regexes#Continue>.
 
 =item print FILEHANDLE LIST
-X<print>
 
 =item print FILEHANDLE
 
@@ -902,13 +786,11 @@ you can use a method call: C<$fh.print("howdy!")>
 Still works in Perl 6. For the formats, see the documentation for C<sprintf>.
 
 =item prototype FUNCTION
-X<prototype>
 
 No longer in Perl 6. The closest equivalent seems to be C<.signature>. E. g.
 C<say &sprintf.signature> results in "(Cool $format, *@args)".
 
 =item push ARRAY,LIST
-X<push> X<stack>
 
 Still works as in Perl 5, as well as being a method: C<@a.push("foo");>
 
@@ -934,7 +816,6 @@ L<http://doc.perl6.org/language/quoting>.
 Has been replaced by C<rx/.../>.
 
 =item quotemeta EXPR
-X<quotemeta> X<metacharacter>
 
 Not direct equivalent, i.e. nothing that just returns the string with all the
 ASCII non-word characters backslashed. In regexes, however, using C<$foo> will
@@ -945,7 +826,6 @@ on this, see
 L<http://design.perl6.org/S05.html#Extensible_metasyntax_(%3C...%3E)>
 
 =item rand EXPR
-X<rand> X<random>
 
 C<rand> by itself still works as it does in Perl 5, but you can no
 longer give it an argument. You can, however, use it as a method on a
@@ -956,7 +836,6 @@ see L<http://doc.perl6.org/language/operators#prefix_%5E> and
 L<http://doc.perl6.org/routine/pick>.
 
 =item read FILEHANDLE,SCALAR,LENGTH,OFFSET
-X<read> X<file, read>
 
 C<read> is now found in C<IO::Handle> and C<IO::Socket>. It now reads the
 specified number of bytes (rather than characters) from the relevant handle or
@@ -964,38 +843,32 @@ socket. The previously available use of an offset is not documented to exist
 at this time.
 
 =item readdir DIRHANDLE
-X<readdir>
 
 No longer a builtin function. To iterate through the contents of a directory,
 take a look at L<http://doc.perl6.org/type/IO::Path#routine_dir>.
 
 =item readline
-X<readline> X<gets> X<fgets>
 
 No longer in Perl 6. You most likely want to use the C<.lines> method in some
 way. For more detailed information on reading from files, see
 L<http://doc.perl6.org/language/io>.
 
 =item readlink EXPR
-X<readlink>
 
 Appear to be gone from Perl 6.
 
 =item readpipe EXPR
 
 =item readpipe
-X<readpipe>
 
 Doesn't appear to be working in Perl 6, but C<qx//> is functional, so it might
 be lurking around in some class that isn't obvious.
 
 =item recv SOCKET,SCALAR,LENGTH,FLAGS
-X<recv>
 
 Appears to now be in IO::Socket. Not extensively documented at this time.
 
 =item redo LABEL
-X<redo>
 
 =item redo EXPR
 
@@ -1004,7 +877,6 @@ X<redo>
 Unchanged in Perl 6.
 
 =item ref EXPR
-X<ref> X<reference>
 
 Gone. To quote S29, "If you really want the type name, you can
 use C<$var.WHAT.perl>.  If you really want P5 ref
@@ -1012,48 +884,40 @@ semantics, use C<Perl5::p5ref>." Except that C<Perl5::p5ref> does not seem to
 currently exist...
 
 =item rename OLDNAME,NEWNAME
-X<rename> X<move> X<mv> X<ren>
 
 Still exists in Perl 6.
 
 =item require VERSION
-X<require>
 
 Seems that this still may work for modules, but unclear if it will still work
 with version numbers.
 
 =item reset EXPR
-X<reset>
 
 Seeing no evidence of this in Perl 6 and, in fact, S29 asks if there was a
 good use for this. I'm guessing it's probably gone.
 
 =item return EXPR
-X<return>
 
 Appears to still be in Perl 6, although not clearly documented.
 
 =item reverse LIST
-X<reverse> X<rev> X<invert>
 
 Now only reverses the elements of a list. C<reverse(@a)> or C<@a.reverse>. To
 reverse the characters in a string, use the C<.flip> method.
 
 =item rewinddir DIRHANDLE
-X<rewinddir>
 
 [NEEDS FURTHER RESEARCH] There does not appear to be an obvious direct
 equivalent. It is possible that some incantation in C<IO::Path> may serve, but
 it's not clear what it would be.
 
 =item rindex STR,SUBSTR,POSITION
-X<rindex>
 
 Works as in Perl 5, and may now also be used as a method. E. g. C<$x =
 "babaganush";say $x.rindex("a");say $x.rindex("a", 3); # 5, 3>
 
 =item rmdir FILENAME
-X<rmdir> X<rd> X<directory, remove>
 
 Still works and can also be used as a method. C<rmdir "Foo";> and
 C<"Foo".IO.rmdir;> are equivalent.
@@ -1081,24 +945,20 @@ discussed at L<http://design.perl6.org/S03.html#line_4019>. Alternately,
 you can use a method call: C<$fh.say("howdy!")>
 
 =item scalar EXPR
-X<scalar> X<context>
 
 Gone. Apparently "very" gone.
 
 =item seek FILEHANDLE,POSITION,WHENCE
-X<seek> X<fseek> X<filehandle, position>
 
 Not documented in a any real way yet, but listed under the C<IO::Handle>
 class.
 
 =item seekdir DIRHANDLE,POS
-X<seekdir>
 
 Not currently documented, but looks to be something that would be implemented
 in one of the C<IO> modules, likely C<IO::Path>.
 
 =item select FILEHANDLE
-X<select> X<filehandle, default>
 
 "[S]elect as a global concept is dead." When I asked around about C<select>, I
 was told that $*OUT and such are overridable in dynamic scope, and that
@@ -1106,38 +966,30 @@ C<IO::Capture::Simple> (at L<https://github.com/sergot/IO-Capture-Simple>) may
 be of use for something you might be doing with the value of C<select>.
 
 =item semctl ID,SEMNUM,CMD,ARG
-X<semctl>
 
 =item semget KEY,NSEMS,FLAGS
-X<semget>
 
 =item semop KEY,OPSTRING
-X<semop>
 
 Gone from the core. May turn up in a module somewhere.
 
 =item send SOCKET,MSG,FLAGS,TO
-X<send>
 
 Now found in C<IO::Socket>.
 
 =item setpgrp PID,PGRP
-X<setpgrp> X<group>
 
 No longer in core. Will probably wind up in a POSIX module.
 
 =item setpriority WHICH,WHO,PRIORITY
-X<setpriority> X<priority> X<nice> X<renice>
 
 No longer in core. Will probably wind up in a POSIX module.
 
 =item setsockopt SOCKET,LEVEL,OPTNAME,OPTVAL
-X<setsockopt>
 
 Not documented, but probably hiding in an C<IO> module somewhere.
 
 =item shift ARRAY
-X<shift>
 
 =item shift EXPR
 
@@ -1147,46 +999,36 @@ Now works as a method as well as a function. C<shift @a> and C<@a.shift> are
 equivalent.
 
 =item shmctl ID,CMD,ARG
-X<shmctl>
 
 =item shmget KEY,SIZE,FLAGS
-X<shmget>
 
 =item shmread ID,VAR,POS,SIZE
-X<shmread>
-X<shmwrite>
 
 =item shmwrite ID,STRING,POS,SIZE
 
 Gone from the core. May turn up in a module somewhere.
 
 =item shutdown SOCKET,HOW
-X<shutdown>
 
 Not documented, but likely moved into C<IO::Socket>.
 
 =item sin EXPR
-X<sin> X<sine> X<asin> X<arcsine>
 
 Still works as a function and now also as a method. C<sin(2)> and
 C<2.sin> are equivalent.
 
 =item sleep EXPR
-X<sleep> X<pause>
 
 Still works as before. As of this writing, works as a method, but that is
 deprecated and will be removed soon.
 
 =item socket SOCKET,DOMAIN,TYPE,PROTOCOL
-X<socket>
 
 =item socketpair SOCKET1,SOCKET2,DOMAIN,TYPE,PROTOCOL
-X<socketpair>
 
 Not currently documented, but will likely wind up in C<IO::Socket>.
 
 =item sort SUBNAME LIST
-X<sort> X<qsort> X<quicksort> X<mergesort>
 
 C<sort> still exists, but has changed somewhat. C<$a> and C<$b> are no longer
 special (See L<Special_Variables.pod>) and sort routines no longer return
@@ -1213,7 +1055,6 @@ Still in Perl 6. Can also be used as a method. C<< splice(@foo, 2,3, <M N O
 P>); >> is equivalent to C<< @foo.splice(2, 3, <M N O P>); >>.
 
 =item split /PATTERN/,EXPR,LIMIT
-X<split>
 
 =item split /PATTERN/,EXPR
 
@@ -1234,7 +1075,6 @@ C<split> are at L<http://doc.perl6.org/routine/split>. Unsurprisingly,
 C<split> also now works as a method: C<"a;b;c".split(';')>
 
 =item sprintf FORMAT, LIST
-X<sprintf>
 
 Works as in Perl 5. The formats currently available are:
 
@@ -1275,12 +1115,10 @@ L  interpret integer as native "long long" (typically uint64)
 q  interpret integer as native "quads" (typically int64 or larger)
 
 =item sqrt EXPR
-X<sqrt> X<root> X<square root>
 
 Works as a function and a method. C<sqrt(4)> and C<4.sqrt> are equivalent.
 
 =item srand EXPR
-X<srand> X<seed> X<randseed>
 
 Still exists in Perl 6.
 
@@ -1294,7 +1132,6 @@ Likely now implemented somewhere in C<IO>, but it is not clear where at this
 time.
 
 =item state VARLIST
-X<state>
 
 =item state TYPE VARLIST
 
@@ -1305,14 +1142,12 @@ X<state>
 Still in Perl 6, but currently not documented.
 
 =item study SCALAR
-X<study>
 
 =item study
 
 C<study> is no more.
 
 =item sub NAME BLOCK
-X<sub>
 
 =item sub NAME (PROTO) BLOCK
 
@@ -1329,12 +1164,10 @@ you should probably consider the option of using a signature). For all the
 gory details, see L<http://doc.perl6.org/language/functions>.
 
 =item __SUB__
-X<__SUB__>
 
 Replaced by C<&?ROUTINE>.
 
 =item substr EXPR,OFFSET,LENGTH,REPLACEMENT
-X<substr> X<substring> X<mid> X<left> X<right>
 
 =item substr EXPR,OFFSET,LENGTH
 
@@ -1344,36 +1177,30 @@ Can be used as a function or a method. C<substr("hola!", 1, 3)> and
 C<"hola!.substr(1, 3)> both return "ola".
 
 =item symlink OLDFILE,NEWFILE
-X<symlink> X<link> X<symbolic link> X<link, symbolic>
 
 Now part of IO::Path. The only difference between Perl 5 and Perl 6 is
 that the argument order has changed. It's now
 C<link($original, $linked_file)>.
 
 =item syscall NUMBER, LIST
-X<syscall> X<system call>
 
 No longer builtin. Most likely out in a module somewhere, but it's currently
 unclear where.
 
 =item sysopen FILEHANDLE,FILENAME,MODE
-X<sysopen>
 
 =item sysopen FILEHANDLE,FILENAME,MODE,PERMS
 
 =item sysread FILEHANDLE,SCALAR,LENGTH,OFFSET
-X<sysread>
 
 =item sysread FILEHANDLE,SCALAR,LENGTH
 
 =item sysseek FILEHANDLE,POSITION,WHENCE
-X<sysseek> X<lseek>
 
 As with the non-sys versions of these functions, are probably lurking in the
 C<IO> namespace somewhere.
 
 =item system LIST
-X<system> X<shell>
 
 =item system PROGRAM LIST
 
@@ -1381,7 +1208,6 @@ You probably want C<run> (L<http://doc.perl6.org/routine/run>) or C<shell>
 (L<http://doc.perl6.org/routine/shell>) for this.
 
 =item syswrite FILEHANDLE,SCALAR,LENGTH,OFFSET
-X<syswrite>
 
 =item syswrite FILEHANDLE,SCALAR,LENGTH
 
@@ -1390,34 +1216,28 @@ X<syswrite>
 As with C<sysopen>, etc. moved into the C<IO> classes.
 
 =item tell FILEHANDLE
-X<tell>
 
 In C<IO::Handle>, but not yet documented, beyond a mention.
 
 =item telldir DIRHANDLE
-X<telldir>
 
 Possibly in C<IO::Path>, but not yet documented.
 
 =item tie VARIABLE,CLASSNAME,LIST
-X<tie>
 
 =item tied VARIABLE
-X<tied>
 
 [NEEDS FURTHER RESEARCH] S29 indicates that variable tying has been
 replaced by container types. Unfortunately, what this means in practical
 terms has not been obviously specified.
 
 =item time
-X<time> X<epoch>
 
 "Returns an Int representing the current time." Although I<how> it represents the
 current time isn't in the documentation currently, it appears to still be
 seconds since epoch, as before.
 
 =item times
-X<times>
 
 No longer in Perl 6.
 
@@ -1434,19 +1254,16 @@ be found at L<http://design.perl6.org/S05.html#Transliteration>. The C<y///>
 equivalent has been done away with.
 
 =item truncate FILEHANDLE,LENGTH
-X<truncate>
 
 =item truncate EXPR,LENGTH
 
 Most likely somewhere in C<IO::Handle>, but not currently documented.
 
 =item uc EXPR
-X<uc> X<uppercase> X<toupper>
 
 Works as a function and a method. C<uc("ha")> and C<"ha".uc> both return "HA".
 
 =item ucfirst EXPR
-X<ucfirst> X<uppercase>
 
 =item ucfirst
 
@@ -1454,12 +1271,10 @@ Perl 6 has done away with C<ucfirst>. The title case function C<tc> probably
 does what you need here. L<http://doc.perl6.org/routine/tc>
 
 =item umask EXPR
-X<umask>
 
 Is now an C<IO> method. C<IO.umask> returns the umask.
 
 =item undef EXPR
-X<undef> X<undefine>
 
 There is no C<undef> in Perl 6. You can't undefine a function, and the closest
 equivalent value is probably C<Nil>, but you'll likely have no use for that.
@@ -1470,14 +1285,12 @@ Perl 6, so the equivalent statement would be C<($file, $line) =
 callframe.annotations<file line>;>
 
 =item unlink LIST
-X<unlink> X<delete> X<remove> X<rm> X<del>
 
 =item unlink
 
 Still available. Now usable as a method: C<"filename".IO.unlink>
 
 =item unpack TEMPLATE,EXPR
-X<unpack>
 
 =item unpack TEMPLATE
 
@@ -1486,7 +1299,6 @@ are in Perl 5. The current documented list can be found at
 L<http://doc.perl6.org/routine/unpack>.
 
 =item unshift ARRAY,LIST
-X<unshift>
 
 =item unshift EXPR,LIST
 
@@ -1494,14 +1306,12 @@ Still in Perl 6. Can be used as a method. C<unshift(@a, "blah")> is equivalent
 to C<@a.unshift("blah")>.
 
 =item untie VARIABLE
-X<untie>
 
 [NEEDS FURTHER RESEARCH] Functions for tying variables seem to be replaced in
 Perl 6 by container types, as mentioned in S29. This has become no clearer
 since I wrote the entry for C<tie>, above.
 
 =item use Module VERSION LIST
-X<use> X<module> X<import>
 
 =item use Module VERSION
 
@@ -1514,14 +1324,12 @@ X<use> X<module> X<import>
 Still in Perl 6, but, oddly, not yet documented.
 
 =item utime LIST
-X<utime>
 
 S32 says this is gone, and refers you to C<Path.times>. Unfortunately, there
 seems to be no sign of C<Path.times>. Perhaps there will be something in
 C<IO::Path>, but it is not currently evident.
 
 =item values HASH
-X<values>
 
 =item values ARRAY
 
@@ -1531,14 +1339,12 @@ Still in Perl 6. Can also be used as a method. C<values %hash> is equivalent
 to C<%hash.values>.
 
 =item vec EXPR,OFFSET,BITS
-X<vec> X<bit> X<bit vector>
 
 S29 says "Should replace C<vec> with declared buffer/array of C<bit>,
 C<uint2>, C<uint4>, etc." It is unclear, however, that this has actually
 happened.
 
 =item wait
-X<wait>
 
 [NEEDS FURTHER RESEARCH] Unclear where this has gone. There's a C<wait>
 method in C<Supply>, and an C<await> method in both C<Channel> and C<Promise>,
@@ -1546,24 +1352,20 @@ but which, if any or all, of these is a direct equivalent of Perl 5's C<wait>
 is unclear.
 
 =item waitpid PID,FLAGS
-X<waitpid>
 
 As with C<wait>, the disposition of this is unclear.
 
 =item wantarray
-X<wantarray> X<context>
 
 There is no longer a C<wantarray> in Perl 6.
 
 =item warn LIST
-X<warn> X<warning> X<STDERR>
 
 C<warn> now throws an exception. To simply print a message to C<$*ERR>, you
 would use the C<note> function. For more on exceptions, see
 L<http://doc.perl6.org/language/exceptions>.
 
 =item write FILEHANDLE
-X<write>
 
 =item write EXPR
 

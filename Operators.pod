@@ -1,7 +1,6 @@
 =begin pod
 
 =head1 NAME
-X<operator>
 
 perlop - Perl operators and precedence
 
@@ -25,7 +24,6 @@ design documents at L<http://design.perl6.org/> and input from the denizens
 of #perl6 on irc.freenode.org
 
 =head2 Operator Precedence and Associativity
-X<operator, precedence> X<precedence> X<associativity>
 
 The operator precedence table is somewhat different in Perl 6 than it is in
 Perl 5, so I will not detail it here. If you need to know the precedence and
@@ -33,7 +31,6 @@ associativity of a given operator in Perl 6, refer to
 L<http://doc.perl6.org/language/operators#Operator_Precedence>.
 
 =head2 Terms and List Operators
-X<list operator> X<operator, list> X<term>
 
 The things listed in Perl 5's perlop document as unary and list operators in
 this section tend to be things that can also be thought of as functions, such
@@ -41,7 +38,6 @@ as C<print> and C<chdir>. As such, you can find information about them in
 L<Functions.pod>. Parentheses are still used for grouping.
 
 =head2 The Arrow Operator
-X<arrow> X<dereference> X<< -> >>
 
 As you typically will not be using references in Perl 6, the arrow is
 probably less useful as a dereferencing operator. If you do need to
@@ -52,7 +48,6 @@ used for constructing Pairs, see
 L<http://doc.perl6.org/language/terms#Pair>.
 
 =head2 Auto-increment and Auto-decrement
-X<increment> X<auto-increment> X<++> X<decrement> X<auto-decrement> X<-->
 
 Still work as in Perl 5. The one possible caveat is that they now function by
 calling the C<succ> method for C<++> and the C<pred> method for C<-->. For
@@ -61,14 +56,12 @@ types can define their own C<succ> and C<pred> methods, so in those cases, you
 should probably take note of what C<++> and C<--> will I<actually> do.
 
 =head2 Exponentiation
-X<**> X<exponentiation> X<power>
 
 Still works as you would expect. The caveat in Perl 5's perlop about C<**>
 binding more tightly than unary minus (i. e. "-2**4" evaluates as "-(2**4)"
 rather than "(-2)**4)") still seems to hold true.
 
 =head2 Symbolic Unary Operators
-X<unary operator> X<operator, unary>
 
 Unary C<!> and C<-> still do logical arithmetic negation, respectively. C<?^>
 is used for bitwise logical negation, which the documentation indicates is
@@ -87,14 +80,12 @@ You can get a reference to a named subroutine by using the C<&> sigil: <$sref
 creation.
 
 =head2 Binding Operators
-X<binding> X<operator, binding> X<=~> X<!~>
 
 C<=~> and C<!~> have been replaced by C<~~> and C<!~~>, respectively. Those of
 you who consider smart matching broken in Perl 5 will be happy to hear that it
 works much better in Perl 6, as the stronger typing means less guesswork.
 
 =head2 Multiplicative Operators
-X<operator, multiplicative>
 
 Binary C<*>, C</>, and C<%> still do multiplication, division, and modulo,
 respectively.
@@ -105,7 +96,6 @@ still gives you a string of 80 dashes, but for the old behavior of C<@ones =
 80;>.
 
 =head2 Additive Operators
-X<operator, additive>
 
 Binary C<+> and <-> still do addition and subtraction, respectively.
 
@@ -113,24 +103,18 @@ C<.> is now the method call operator, so binary C<~> now acts as the
 concatenation operator.
 
 =head2 Shift Operators
-X<shift operator> X<operator, shift> X<<< << >>>
-X<<< >> >>> X<right shift> X<left shift> X<bitwise shift>
-X<shl> X<shr> X<shift, right> X<shift, left>
 
 C<< << >> and C<< >> >> have been replaced by C<< +< >> and C<< +> >>.
 
 =head2 Named Unary Operators
-X<operator, named unary>
 
 As noted above, you'll find these in L<Functions.pod>.
 
 =head2 Relational Operators
-X<relational operator> X<operator, relational>
 
 These all work as in Perl 5.
 
 =head2 Equality Operators
-X<equality> X<equal> X<equals> X<operator, equality>
 
 C<==> and C<!=> both work as in Perl 5.
 
@@ -152,29 +136,23 @@ L<http://design.perl6.org/S03.html#Smart_matching>.
 See the entry on C<~~> directly above.
 
 =head2 Bitwise And
-X<operator, bitwise, and> X<bitwise and> X<&>
 
 Binary C<&> is now C<+&>.
 
 =head2 Bitwise Or and Exclusive Or
-X<operator, bitwise, or> X<bitwise or> X<|> X<operator, bitwise, xor>
-X<bitwise xor> X<^>
 
 Bitwise OR has changed from C<|> to C<+|>. Bitwise XOR has changed from C<^>
 to C<+^>
 
 =head2 C-style Logical And
-X<&&> X<logical and> X<operator, logical, and>
 
 Unchanged.
 
 =head2 C-style Logical Or
-X<||> X<operator, logical, or>
 
 Unchanged.
 
 =head2 Logical Defined-Or
-X</operator>/> X<operator, logical, defined-or>
 
 Still there. Now defined as returning the first defined operand, although it
 appears to return the last operand if none of the operands are defined, so
@@ -182,7 +160,6 @@ that may need a tweak. Also, there is now a low precedence version, called
 C<orelse>.
 
 =head2 Range Operators
-X<operator, range> X<range> X<..> X<...>
 
 In list context, C<..> still operates as the range operator and should not
 need to be changed. That said, there are now exclusionary range operators that
@@ -198,16 +175,11 @@ little-known, and probably even less used. Those operations have been taken
 over by C<ff> and C<fff>, but are not clearly documented at this time.
 
 =head2 Conditional Operator
-X<operator, conditional> X<operator, ternary> X<ternary> X<?:>
 
 C<?:> has been changed to C<?? !!>. I. e. where you would use C<$x = $ok
 ? $y : $z;> in Perl 5, you would use C<$x = $ok ?? $y !! $z;> in Perl 6.
 
 =head2 Assignment Operators
-X<assignment> X<operator, assignment> X<=> X<**=> X<+=> X<*=> X<&=>
-X<<< <<= >>> X<&&=> X<-=> X</->=> X<|=> X<<< >>= >>> X<||=> X</operator>/=>
-X<.=>
-X<%=> X<^=> X<x=> X<&.=> X<|.=> X<^.=>
 
 Although not fully documented, S03 indicates that the mathematical and logical
 assignment operators should work as you would expect. The one noticeable change
@@ -219,7 +191,6 @@ as that feature is currently experimental in Perl 5 itself - although, again,
 this is not specifically documented.
 
 =head2 Comma Operator
-X<comma> X<operator, comma> X<,>
 
 The comma operator still works mostly as expected, but technically it now
 creates Parcels (see L<http://doc.perl6.org/type/Parcel>) or separates
@@ -234,26 +205,20 @@ just literally translate a line of Perl 5 code to Perl 6, it should behave as
 expected.
 
 =head2 List Operators (Rightward)
-X<operator, list, rightward> X<list operator>
 
 Like the Named Unary Operators, you'll find these discussed in
 L<Functions.pod>.
 
 =head2 Logical Not
-X<operator, logical, not> X<not>
 
 Still the lower precedence version of C<!>. As with C<!>, now coerces its
 argument to C<Bool>.
 
 =head2 Logical And
-X<operator, logical, and> X<and>
 
 Lower precedence version of C<&&> as before.
 
 =head2 Logical or and Exclusive Or
-X<operator, logical, or> X<operator, logical, xor>
-X<operator, logical, exclusive or>
-X<or> X<xor>
 
 C<or> is still the low precedence version of C<||>. The documentation lists an
 C<xor>, but does not actually document it.
@@ -263,9 +228,6 @@ C<orelse>. Unlike C<//>, this is documented to return the last argument if
 there is no defined argument.
 
 =head2 Quote and Quote-like Operators
-X<operator, quote> X<operator, quote-like> X<q> X<qq> X<qx> X<qw> X<m>
-X<qr> X<s> X<tr> X<'> X<''> X<"> X<""> X</tr>/> X<`> X<``> X<<< << >>>
-X<escape sequence> X<escape>
 
 For all the gory details on quoting constructs, see
 L<http://doc.perl6.org/language/quoting>.
@@ -322,8 +284,6 @@ i. e. literals with C<Q>, backslash escapes with C<q>, and interpolation with
 C<qq>.
 
 =head2 I/O Operators
-X<operator, i/o> X<operator, io> X<io> X<while> X<filehandle>
-X<< <> >> X<< <<>> >> X<@ARGV>
 
 The full details on Input/Output in Perl 6 can be found at
 L<http://doc.perl6.org/language/io>.
@@ -356,13 +316,11 @@ been replaced by C<$*ARGFILES>, and the C<@ARGV> array of command line
 arguments has been replaced by C<@*ARGS>.
 
 =head2 No-ops
-X<no-op> X<nop>
 
 Although it's not specifically documented, C<1 while foo();> still appears to
 work in this sense.
 
 =head2 Bitwise String Operators
-X<operator, bitwise, string> X<&.> X<|.> X<^.> X<~.>
 
 Documented individually above, but to summarize...
 
