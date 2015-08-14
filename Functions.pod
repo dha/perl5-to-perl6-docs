@@ -16,16 +16,16 @@ necessary.
 I will I<not> be explaining the functions in detail. This document is an
 attempt to guide you from the functions in Perl 5's perlfunc document to
 their equivalents in Perl 6. For full documentation on the Perl 6
-equivalents, please see the Perl 6 documentation.
+functions, please see the Perl 6 documentation.
 
-One general comment: Perl 6 takes its objects a lot more seriously
-than Perl 5. In Perl 6, everything is an object, although the language
-is flexible enough to not force you to work in an object oriented
-manner if you so desire. What this does mean, however, is that a lot
-of things that ar function calls of the form C<function(@args)> can
-now method calls of the form C<@args.function>. This should be obvious
-in the following text, but it probably behooves you to get into that
-frame of mind now.
+One general comment: Perl 6 takes its objects a lot more seriously than
+Perl 5. In Perl 6, everything is an object, although the language is
+flexible enough to not force you to work in an object oriented manner if
+you do not wish to do so. What this does mean, however, is that a lot of
+things that are function calls of the form C<function(@args)> are now
+also method calls of the form C<@args.function> (In rare cases, there is
+I<only> a method call). This should be obvious in the following text,
+but it probably behooves you to get into that frame of mind now.
 
 Also, unless otherwise stated, the use of the term "function" here will mean a
 function in the style of C<func(@args)>, while "method" will refer to a
