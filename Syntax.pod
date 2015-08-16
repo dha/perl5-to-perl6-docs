@@ -53,7 +53,7 @@ $x;say $x;> will give you "(Any)". C<my Int $y;say $y;> will give you "(Int)".
 
 =head2 Comments
 
-C<#> still starts a comment that runs to the end of the line.
+C<#> starts a comment that runs to the end of the line as in Perl 5.
 
 Embedded comments start with a hash character and a backtick (C<#`>), followed by an
 opening bracketing character, and continue to the matching closing bracketing
@@ -83,14 +83,14 @@ values count as true and false.
 
 Mostly, statement modifiers still work, with a few exceptions.
 
-First, C<for> loops are now exclusively what were previously known as
-C<foreach> loops and C<for> is no longer used for C-style C<for> loops.
-To get that behavior, you want C<loop>. C<loop> cannot be used as a
+First, C<for> loops are exclusively what were known in Perl 5 as
+C<foreach> loops and C<for> is not used for C-style C<for> loops in Perl
+6. To get that behavior, you want C<loop>. C<loop> cannot be used as a
 statement modifier.
 
-In Perl 6, you can no longer use the form C<do {...} while $x>. You will want
-to replace C<do> in that form with C<repeat>. Similarly for C<do {...} until
-$x>.
+In Perl 6, you cannot use the form C<do {...} while $x>. You will want
+to replace C<do> in that form with C<repeat>. Similarly for C<do {...}
+until $x>.
 
 =head2 Compound Statements
 
@@ -102,8 +102,8 @@ L<http://doc.perl6.org/language/control#given>.
 
 C<next>, C<last>, and C<redo> have not changed from Perl 5 to Perl 6.
 
-C<continue>, however, no longer exists. You would now use a C<NEXT> block in
-the body of the loop.
+C<continue>, however, does not exist in Perl 6. You would use a C<NEXT>
+block in the body of the loop.
 
 =begin code
 
@@ -131,10 +131,10 @@ for 1..5 {
 
 =head2 For Loops
 
-As noted above, C-style C<for> loops are no longer called C<for> loops in Perl
-6. They are now just C<loop> loops. To write an infinite loop, you do not need
-to use the C idiom of C<loop (;;) {...}>, but may just omit the spec
-completely: C<loop {...}>
+As noted above, C-style C<for> loops are not called C<for> loops in Perl
+6. They are just C<loop> loops. To write an infinite loop, you do not
+need to use the C idiom of C<loop (;;) {...}>, but may just omit the
+spec completely: C<loop {...}>
 
 =head2 Foreach Loops
 
@@ -169,26 +169,26 @@ L<http://design.perl6.org/S04.html#The_goto_statement>.
 
 =head2 The Ellipsis Statement
 
-C<...> (along with the new C<!!!> and C<???>) are used to create stub
-declarations. This is a bit more complicated than the use of C<...> in Perl 5,
-so you'll probably want to look at
-L<http://design.perl6.org/S06.html#Stub_declarations> for the gory details.
-That said, there doesn't seem to be an I<obvious> reason why it shouldn't
-still fulfill the role it did in Perl 5, despite its role being expanded in
-Perl 6.
+C<...> (along with C<!!!> and C<???>) are used to create stub
+declarations. This is a bit more complicated than the use of C<...> in
+Perl 5, so you'll probably want to look at
+L<http://design.perl6.org/S06.html#Stub_declarations> for the gory
+details. That said, there doesn't seem to be an I<obvious> reason why it
+shouldn't still fulfill the role it did in Perl 5, despite its role
+being expanded in Perl 6.
 
 =head2 PODs: Embedded Documentation
 
-Pod has changed between Perl 5 and Perl 6. Probably the biggest difference is
-that you need to enclose your pod between C<=begin pod> and C<=end pod>
-directives. There are a few tweaks here and there as well. As I have
-discovered while writing these documents, the vertical bar ("|") is
-significant in C<< X<> >> codes, and it's not clear how to get a literal "|"
-into them. Your best bet may be to use the Perl 6 interpreter to check your
-pod. You can do this by using the C<--doc> switch. E. g. C<perl6 --doc
-Whatever.pod>. This will output any problems to standard error. (Depending on
-how/where you've installed perl6, you may need to specify the location of
-C<Pod::To::Text>.) Details on Perl 6 style pod is at
-L<http://design.perl6.org/S26.html>.
+Pod has changed between Perl 5 and Perl 6. Probably the biggest
+difference is that you need to enclose your pod between C<=begin pod>
+and C<=end pod> directives. There are a few tweaks here and there as
+well. For instance, as I have discovered while writing these documents,
+the vertical bar ("|") is significant in C<< X<> >> codes, and it's not
+clear how to get a literal "|" into them. Your best bet may be to use
+the Perl 6 interpreter to check your pod. You can do this by using the
+C<--doc> switch. E. g. C<perl6 --doc Whatever.pod>. This will output any
+problems to standard error. (Depending on how/where you've installed
+perl6, you may need to specify the location of C<Pod::To::Text>.)
+Details on Perl 6 style pod is at L<http://design.perl6.org/S26.html>.
 
 =end pod
