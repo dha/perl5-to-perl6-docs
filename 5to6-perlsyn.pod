@@ -1,6 +1,8 @@
 =begin pod
 
-=head1 NAME
+=TITLE 5to6-perlsyn
+
+=SUBTITLE Perl 5 to Perl 6 guide - syntax
 
 perlsyn - Perl syntax
 

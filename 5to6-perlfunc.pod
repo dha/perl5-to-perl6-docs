@@ -1,8 +1,8 @@
 =begin pod
 
-=head1 NAME
+=TITLE 5to6-perlfunc
 
-perlfunc - Perl builtin functions
+=SUBTITLE Perl 5 to Perl 6 guide - functions
 
 =head1 DESCRIPTION
 

@@ -1,6 +1,8 @@
 =begin pod
 
-=head1 Perl 5 to Perl 6 Translation of Special Variables.
+=TITLE 5to6-perlvar
+
+=SUBTITLE Perl 5 to Perl 6 guide - special variables
 
 =head1 DESCRIPTION
 
