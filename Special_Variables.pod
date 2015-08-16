@@ -9,10 +9,11 @@ equivalents with notes on variations between them where necessary.
 
 =head1 NOTE
 
-I will I<not> be explaining the full functions of the Perl 6 variables. This
-document is an attempt to guide you from the Special Variables in Perl 5 to
-their equivalents in Perl 6. For full documentation on the Perl 6 special
-variables, please see the Perl 6 documentation for those variables.
+I will I<not> be explaining the full use of the Perl 6 variables. This
+document is an attempt to guide you from the Special Variables in Perl 5
+to their equivalents in Perl 6. For full documentation on the Perl 6
+special variables, please see the Perl 6 documentation for those
+variables.
 
 =head1 SOURCES
 
@@ -29,11 +30,12 @@ denizens of #perl6 on irc.freenode.org
 =item $_
 
 
-Still, thankfully, the general default variable. The main difference in Perl 6
-seems to be that you can now call methods on it. For instance, Perl 5's C<say
-$_> can be rendered in Perl 6 as C<$_.say>. Furthermore, as it is the default
-variable, you don't even need to use the variable name. The previous example
-can also be achieved by using C<.say>.
+Thankfully, C<$_> is the general default variable as in Perl 5. The
+main difference in Perl 6 seems to be that you can now call methods on
+it. For instance, Perl 5's C<say $_> can be rendered in Perl 6 as
+C<$_.say>. Furthermore, as it is the default variable, you don't even
+need to use the variable name. The previous example can also be
+achieved by using C<.say>.
 
 =item @ARG
 
@@ -79,8 +81,8 @@ match (i. e. capture variables now start from $0 rather than $1).
 
 =item $(
 
-The real group id is provided by C<$*GROUP.Numeric> in Perl 6. C<$*GROUP.Str> will
-return the group name, rather than its number.
+The real group id is provided by C<$*GROUP.Numeric> in Perl 6.
+C<$*GROUP.Str> returns the group name, rather than its number.
 
 =item $EFFECTIVE_GROUP_ID
 
@@ -96,8 +98,8 @@ The effective group id does not appear to be currently provided by Perl 6.
 
 =item $<
 
-The real user id is provided by C<$*USER.Numeric> in Perl 6. C<$*USER.Str> will
-return the user name, rather than its number.
+The real user id is provided by C<$*USER.Numeric> in Perl 6.
+C<$*USER.Str> returns the user name, rather than its number.
 
 =item $EFFECTIVE_USER_ID
 
@@ -120,16 +122,17 @@ Perl 5 code is using this, it's almost certainly really, really old.
 
 =item $b
 
-C<$a> and C<$b> no longer have special meaning in Perl 6. C<sort()> no
-longer uses them. They're just regular old variables.
+C<$a> and C<$b> have no special meaning in Perl 6. C<sort()> does not
+use them for anything special. They're just regular old variables.
 
-This feature has been extended by having blocks with placeholder parameters
-which are more versatile. Placeholder variables are created with the C<^>
-twigil (e. g. C<$^z>. They can be used in a bare block or in a subroutine
-without an explicit parameter list. The arguments to the block are assigned to
-the placeholder variables in their Unicode order. I. e. even if the variables
-appear in the block in the order C<($^q, $^z, $^a)>, they will be I<assigned>
-in the order C<($^a, $^q, $^z)>. Ergo:
+This feature has been extended by having blocks with placeholder
+parameters which are more versatile. Placeholder variables are created
+with the C<^> twigil (e. g. C<$^z>. They can be used in a bare block or
+in a subroutine without an explicit parameter list. The arguments to
+the block are assigned to the placeholder variables in their Unicode
+order. I. e. even if the variables appear in the block in the order
+C<($^q, $^z, $^a)>, they will be I<assigned> in the order C<($^a, $^q,
+$^z)>. Ergo:
 
 =begin code
 
@@ -165,7 +168,6 @@ itself contains, as of this writing, "Perl 6".
 Although the design documents (S28) indicate that this will likely
 become C<$*SYS_FD_MAX>, this has not yet been implemented.
 
-
 =item @F
 
 [NEEDS FURTHER RESEARCH] A bit confusing at this point. Design doc S28
@@ -177,12 +179,12 @@ and <-F> command-line switches are not yet implemented in rakudo.
 =item @INC
 
 [NEEDS FURTHER RESEARCH] If you've been following along, it will
-probably not surprise you that this has become C<@*INC>. The Perl 6 docs
-say "Each repository is represented as an object with the CompUnitRepo
-interface in the @*INC array" which could probably use some further
-explanation. With the version of rakudo star I'm working with, each directory
-is prefixed with either C<file#> or C<inst#>. Presumably this will become
-clear when documentation for CompUnitRepo shows up.
+probably not surprise you that this is C<@*INC> in Perl 6. The Perl 6
+docs say "Each repository is represented as an object with the
+CompUnitRepo interface in the @*INC array" which could probably use some
+further explanation. With the version of rakudo star I'm working with,
+each directory is prefixed with either C<file#> or C<inst#>. Presumably
+this will become clear when documentation for CompUnitRepo shows up.
 
 =item %INC
 
@@ -248,18 +250,18 @@ There does not seem to be any analog to this in Perl 6.
 =item $^X
 
 This has been replaced by C<$*EXECUTABLE_NAME>. Confusingly, the Perl 6
-Variables doc says "Favor $*EXECUTABLE because it is not guaranteed that the
-perl executable is in PATH." Confusingly because C<$*EXECUTABLE> is an C<IO>
-object, which does not seem to be what you would want here.
+Variables doc says "Favor $*EXECUTABLE because it is not guaranteed that
+the perl executable is in PATH." Confusingly because C<$*EXECUTABLE> is
+an C<IO> object, which does not seem to be what you would want here.
 C<$*EXECUTABLE.Str> would give the desired result, though.
 
 =head2 Variables related to regular expressions
 
 =head3 Performance issues
 
-As shown below, C<$`>, C<$&>, and C<$'> are gone, primarily replaced by
-variations on C<$/> and, with their elimination, the associated performance
-issues no longer apply.
+As shown below, C<$`>, C<$&>, and C<$'> are gone from Perl 6, primarily
+replaced by variations on C<$/> and, with their elimination, the
+associated performance issues in Perl 5 do not apply.
 
 =item $<I<digits>> ($1, $2, ...)
 
@@ -272,14 +274,14 @@ to C<$/[0]>, C<$1> is equivalent to C<$/[1]>, etc.
 
 =item $&
 
-C<$/> now contains the match object, so the old behavior of C<$&> can be
-obtained by stringifying it, i. e. C<~$/>. C<$/.Str> also should work, but
-C<~$/> seems to be the consensus preference.
+C<$/> now contains the match object, so the Perl 5 behavior of C<$&> can
+be obtained by stringifying it, i. e. C<~$/>. C<$/.Str> also should
+work, but C<~$/> seems to be the consensus preference.
 
 =item ${^MATCH}
 
-Since the former performance issues are done away with, this variable is no
-longer of use.
+Since the former performance issues are done away with, this variable is
+not of use in Perl 6.
 
 =item $PREMATCH
 
@@ -289,8 +291,8 @@ Replaced by C<$/.prematch>.
 
 =item ${^PREMATCH}
 
-Since the former performance issues are done away with, this variable is no
-longer of use.
+Since the former performance issues are done away with, this variable is
+not of use in Perl 6.
 
 =item $POSTMATCH
 
@@ -300,15 +302,15 @@ Replaced by C<$/.postmatch>.
 
 =item ${^POSTMATCH}
 
-Since the former performance issues are done away with, this variable is no
-longer of use.
+Since the former performance issues are done away with, this variable is
+not of use in Perl 6.
 
 =item $LAST_PAREN_MATCH
 
 =item $+
 
-No longer exists, but you can get the same information using C<$/[*-1].Str>
-(C<$/[*-1]> would be the match object, not the actual string).
+Does not exist in Perl 6, but you can get the same information using C<$/[*-
+1].Str> (C<$/[*-1]> would be the match object, not the actual string).
 
 If you want to I<understand> why that works, you can look at these documents:
 
@@ -333,18 +335,18 @@ any implemented variable that matches C<$^N>.
 
 =item @+
 
-As with most regular expression related variables, this functionality is, at
-least in part, moved to the C<$/> variable. Or, in this case, the numbered
-variables that alias to the indexes of it. The offset is found by using the
-C<.to> method. I. e. the first offset is C<$/[0].to>, which is synonymous with
-C<$0.to>. The value previously provided by C<$+[0]> is now provided by
-C<$/.to>.
+As with most regular expression related variables, this functionality
+is, at least in part, moved to the C<$/> variable in Perl 6. Or, in this
+case, the numbered variables that alias to the indexes of it. The offset
+is found by using the C<.to> method. I. e. the first offset is
+C<$/[0].to>, which is synonymous with C<$0.to>. The value Perl 5
+provides as C<$+[0]> is provided by C<$/.to>.
 
 =item %LAST_PAREN_MATCH
 
 =item %+
 
-Once again, we move over to C<$/>. The former C<$+{$match}> is now
+Once again, we move over to C<$/>. The former C<$+{$match}> is
 C<$/{$match}>.
 
 =item @LAST_MATCH_START
@@ -352,9 +354,9 @@ C<$/{$match}>.
 =item @-
 
 Similarly to C<@+> being replaced by using the C<.to> method, C<@-> is
-now replaced by using the C<.from> method on C<$/> and its variations.
-The first offset is C<$/[0].from> or the equivalent C<$0.from>. The
-former C<$-[0]> is now C<$/.from>.
+replaced by using the C<.from> method on C<$/> and its variations. The
+first offset is C<$/[0].from> or the equivalent C<$0.from>. Perl 5's C<$-
+[0]> is C<$/.from>.
 
 
 =item %LAST_MATCH_START
@@ -421,7 +423,7 @@ filehandle. E. g. C<$*IN.ins>.
 
 =item $/
 
-This is now accessed through the C<.nl> method on the filehandle. E. g.
+This is accessed through the C<.nl> method on the filehandle. E. g.
 C<$*IN.nl>.
 
 =item $OUTPUT_RECORD_SEPARATOR
@@ -446,7 +448,7 @@ Not implemented in Perl 6.
 
 =head3 Variables related to formats
 
-There are no formats in Perl 6.
+There are no built-in formats in Perl 6.
 
 =head2 Error Variables
 
